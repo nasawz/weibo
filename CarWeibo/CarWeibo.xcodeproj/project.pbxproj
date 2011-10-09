@@ -1,0 +1,604 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CBD7ABED14418C500019485E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD7ABEC14418C500019485E /* UIKit.framework */; };
+		CBD7ABEF14418C500019485E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD7ABEE14418C500019485E /* Foundation.framework */; };
+		CBD7ABF114418C500019485E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD7ABF014418C500019485E /* CoreGraphics.framework */; };
+		CBD7ABF714418C500019485E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBD7ABF514418C500019485E /* InfoPlist.strings */; };
+		CBD7ABF914418C500019485E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ABF814418C500019485E /* main.m */; };
+		CBD7ABFD14418C500019485E /* CarWeiboAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ABFC14418C500019485E /* CarWeiboAppDelegate.m */; };
+		CBD7AC0014418C500019485E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBD7ABFE14418C500019485E /* MainWindow.xib */; };
+		CBD7AC0714418C6D0019485E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC0614418C6D0019485E /* Default@2x.png */; };
+		CBD7AC0914418C6F0019485E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC0814418C6F0019485E /* Default.png */; };
+		CBD7AC0B14418C710019485E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC0A14418C710019485E /* Icon.png */; };
+		CBD7AC0D14418C730019485E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC0C14418C730019485E /* Icon@2x.png */; };
+		CBD7AC1514418C810019485E /* bg_header.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC0F14418C810019485E /* bg_header.png */; };
+		CBD7AC1614418C810019485E /* bg_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC1014418C810019485E /* bg_header@2x.png */; };
+		CBD7AC1714418C810019485E /* bg_leathertexture.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC1114418C810019485E /* bg_leathertexture.png */; };
+		CBD7AC1814418C810019485E /* bg_leathertexture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC1214418C810019485E /* bg_leathertexture@2x.png */; };
+		CBD7AC1914418C810019485E /* temp1.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC1314418C810019485E /* temp1.png */; };
+		CBD7AC1A14418C810019485E /* temp1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC1414418C810019485E /* temp1@2x.png */; };
+		CBD7AC1C14418C8D0019485E /* db1.3.sql in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AC1B14418C8D0019485E /* db1.3.sql */; };
+		CBD7AC8B14418CD10019485E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7AC8A14418CD10019485E /* RootViewController.m */; };
+		CBD7AC9114418D3D0019485E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD7AC9014418D3D0019485E /* Security.framework */; };
+		CBD7AC9314418D4C0019485E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD7AC9214418D4B0019485E /* libsqlite3.0.dylib */; };
+		CBD7ACB7144191070019485E /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7AC97144191070019485E /* GTMBase64.m */; };
+		CBD7ACB8144191070019485E /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7AC9A144191070019485E /* ColorUtils.m */; };
+		CBD7ACB9144191070019485E /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7AC9D144191070019485E /* ImageUtils.m */; };
+		CBD7ACBA144191070019485E /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACA1144191070019485E /* NSObject+SBJSON.m */; };
+		CBD7ACBB144191070019485E /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACA3144191070019485E /* NSString+SBJSON.m */; };
+		CBD7ACBC144191070019485E /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACA5144191070019485E /* SBJSON.m */; };
+		CBD7ACBD144191070019485E /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACA7144191070019485E /* SBJsonBase.m */; };
+		CBD7ACBE144191070019485E /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACA9144191070019485E /* SBJsonParser.m */; };
+		CBD7ACBF144191070019485E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACAB144191070019485E /* SBJsonWriter.m */; };
+		CBD7ACC0144191070019485E /* QuartzUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACAC144191070019485E /* QuartzUtils.c */; };
+		CBD7ACC1144191070019485E /* REString.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACAF144191070019485E /* REString.m */; };
+		CBD7ACC2144191070019485E /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACB2144191070019485E /* SFHFKeychainUtils.m */; };
+		CBD7ACC3144191070019485E /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACB4144191070019485E /* StringUtil.m */; };
+		CBD7ACC4144191070019485E /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACB6144191070019485E /* TimeUtils.m */; };
+		CBD7ACEE144191130019485E /* ImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACC8144191130019485E /* ImageStore.m */; };
+		CBD7ACEF144191130019485E /* ImageStoreReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACCA144191130019485E /* ImageStoreReceiver.m */; };
+		CBD7ACF0144191130019485E /* ProfileImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACCC144191130019485E /* ProfileImageCell.m */; };
+		CBD7ACF1144191130019485E /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACCE144191130019485E /* ProfileImageView.m */; };
+		CBD7ACF2144191130019485E /* DBConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACD1144191130019485E /* DBConnection.m */; };
+		CBD7ACF3144191130019485E /* DirectMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACD3144191130019485E /* DirectMessage.m */; };
+		CBD7ACF4144191130019485E /* Followee.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACD5144191130019485E /* Followee.m */; };
+		CBD7ACF5144191130019485E /* Statement.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACD7144191130019485E /* Statement.m */; };
+		CBD7ACF6144191130019485E /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACD9144191130019485E /* Status.m */; };
+		CBD7ACF7144191130019485E /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACDB144191130019485E /* Tweet.m */; };
+		CBD7ACF8144191130019485E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACDD144191130019485E /* User.m */; };
+		CBD7ACF9144191130019485E /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACDF144191130019485E /* UserStore.m */; };
+		CBD7ACFA144191130019485E /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACE2144191130019485E /* ImageDownloader.m */; };
+		CBD7ACFB144191130019485E /* WBAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACE4144191130019485E /* WBAuthorize.m */; };
+		CBD7ACFC144191130019485E /* WBConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACE7144191130019485E /* WBConnection.m */; };
+		CBD7ACFD144191130019485E /* WBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACE9144191130019485E /* WBRequest.m */; };
+		CBD7ACFE144191130019485E /* WBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACEB144191130019485E /* WBUtil.m */; };
+		CBD7ACFF144191130019485E /* WeiBo.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACED144191130019485E /* WeiBo.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CBD7ABE814418C500019485E /* CarWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarWeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBD7ABEC14418C500019485E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CBD7ABEE14418C500019485E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CBD7ABF014418C500019485E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CBD7ABF414418C500019485E /* CarWeibo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CarWeibo-Info.plist"; sourceTree = "<group>"; };
+		CBD7ABF614418C500019485E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CBD7ABF814418C500019485E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CBD7ABFA14418C500019485E /* CarWeibo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CarWeibo-Prefix.pch"; sourceTree = "<group>"; };
+		CBD7ABFB14418C500019485E /* CarWeiboAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarWeiboAppDelegate.h; sourceTree = "<group>"; };
+		CBD7ABFC14418C500019485E /* CarWeiboAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarWeiboAppDelegate.m; sourceTree = "<group>"; };
+		CBD7ABFF14418C500019485E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		CBD7AC0614418C6D0019485E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		CBD7AC0814418C6F0019485E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		CBD7AC0A14418C710019485E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		CBD7AC0C14418C730019485E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		CBD7AC0F14418C810019485E /* bg_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_header.png; sourceTree = "<group>"; };
+		CBD7AC1014418C810019485E /* bg_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_header@2x.png"; sourceTree = "<group>"; };
+		CBD7AC1114418C810019485E /* bg_leathertexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_leathertexture.png; sourceTree = "<group>"; };
+		CBD7AC1214418C810019485E /* bg_leathertexture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_leathertexture@2x.png"; sourceTree = "<group>"; };
+		CBD7AC1314418C810019485E /* temp1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp1.png; sourceTree = "<group>"; };
+		CBD7AC1414418C810019485E /* temp1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temp1@2x.png"; sourceTree = "<group>"; };
+		CBD7AC1B14418C8D0019485E /* db1.3.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = db1.3.sql; sourceTree = "<group>"; };
+		CBD7AC8914418CD10019485E /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		CBD7AC8A14418CD10019485E /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		CBD7AC9014418D3D0019485E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		CBD7AC9214418D4B0019485E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		CBD7AC96144191070019485E /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		CBD7AC97144191070019485E /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		CBD7AC98144191070019485E /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		CBD7AC99144191070019485E /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
+		CBD7AC9A144191070019485E /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
+		CBD7AC9B144191070019485E /* DebugUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugUtils.h; sourceTree = "<group>"; };
+		CBD7AC9C144191070019485E /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		CBD7AC9D144191070019485E /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
+		CBD7AC9F144191070019485E /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		CBD7ACA0144191070019485E /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		CBD7ACA1144191070019485E /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		CBD7ACA2144191070019485E /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		CBD7ACA3144191070019485E /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		CBD7ACA4144191070019485E /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		CBD7ACA5144191070019485E /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		CBD7ACA6144191070019485E /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		CBD7ACA7144191070019485E /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		CBD7ACA8144191070019485E /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		CBD7ACA9144191070019485E /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		CBD7ACAA144191070019485E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		CBD7ACAB144191070019485E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		CBD7ACAC144191070019485E /* QuartzUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = QuartzUtils.c; sourceTree = "<group>"; };
+		CBD7ACAD144191070019485E /* QuartzUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuartzUtils.h; sourceTree = "<group>"; };
+		CBD7ACAE144191070019485E /* REString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REString.h; sourceTree = "<group>"; };
+		CBD7ACAF144191070019485E /* REString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REString.m; sourceTree = "<group>"; };
+		CBD7ACB1144191070019485E /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		CBD7ACB2144191070019485E /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		CBD7ACB3144191070019485E /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
+		CBD7ACB4144191070019485E /* StringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
+		CBD7ACB5144191070019485E /* TimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
+		CBD7ACB6144191070019485E /* TimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
+		CBD7ACC7144191130019485E /* ImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageStore.h; sourceTree = "<group>"; };
+		CBD7ACC8144191130019485E /* ImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStore.m; sourceTree = "<group>"; };
+		CBD7ACC9144191130019485E /* ImageStoreReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageStoreReceiver.h; sourceTree = "<group>"; };
+		CBD7ACCA144191130019485E /* ImageStoreReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStoreReceiver.m; sourceTree = "<group>"; };
+		CBD7ACCB144191130019485E /* ProfileImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageCell.h; sourceTree = "<group>"; };
+		CBD7ACCC144191130019485E /* ProfileImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageCell.m; sourceTree = "<group>"; };
+		CBD7ACCD144191130019485E /* ProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageView.h; sourceTree = "<group>"; };
+		CBD7ACCE144191130019485E /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageView.m; sourceTree = "<group>"; };
+		CBD7ACD0144191130019485E /* DBConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBConnection.h; sourceTree = "<group>"; };
+		CBD7ACD1144191130019485E /* DBConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBConnection.m; sourceTree = "<group>"; };
+		CBD7ACD2144191130019485E /* DirectMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectMessage.h; sourceTree = "<group>"; };
+		CBD7ACD3144191130019485E /* DirectMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectMessage.m; sourceTree = "<group>"; };
+		CBD7ACD4144191130019485E /* Followee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Followee.h; sourceTree = "<group>"; };
+		CBD7ACD5144191130019485E /* Followee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Followee.m; sourceTree = "<group>"; };
+		CBD7ACD6144191130019485E /* Statement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statement.h; sourceTree = "<group>"; };
+		CBD7ACD7144191130019485E /* Statement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Statement.m; sourceTree = "<group>"; };
+		CBD7ACD8144191130019485E /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		CBD7ACD9144191130019485E /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
+		CBD7ACDA144191130019485E /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
+		CBD7ACDB144191130019485E /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		CBD7ACDC144191130019485E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		CBD7ACDD144191130019485E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		CBD7ACDE144191130019485E /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
+		CBD7ACDF144191130019485E /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
+		CBD7ACE1144191130019485E /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
+		CBD7ACE2144191130019485E /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
+		CBD7ACE3144191130019485E /* WBAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBAuthorize.h; sourceTree = "<group>"; };
+		CBD7ACE4144191130019485E /* WBAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBAuthorize.m; sourceTree = "<group>"; };
+		CBD7ACE5144191130019485E /* WBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBConnect.h; sourceTree = "<group>"; };
+		CBD7ACE6144191130019485E /* WBConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBConnection.h; sourceTree = "<group>"; };
+		CBD7ACE7144191130019485E /* WBConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBConnection.m; sourceTree = "<group>"; };
+		CBD7ACE8144191130019485E /* WBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBRequest.h; sourceTree = "<group>"; };
+		CBD7ACE9144191130019485E /* WBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBRequest.m; sourceTree = "<group>"; };
+		CBD7ACEA144191130019485E /* WBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBUtil.h; sourceTree = "<group>"; };
+		CBD7ACEB144191130019485E /* WBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBUtil.m; sourceTree = "<group>"; };
+		CBD7ACEC144191130019485E /* WeiBo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiBo.h; sourceTree = "<group>"; };
+		CBD7ACED144191130019485E /* WeiBo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiBo.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CBD7ABE514418C500019485E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBD7AC9314418D4C0019485E /* libsqlite3.0.dylib in Frameworks */,
+				CBD7AC9114418D3D0019485E /* Security.framework in Frameworks */,
+				CBD7ABED14418C500019485E /* UIKit.framework in Frameworks */,
+				CBD7ABEF14418C500019485E /* Foundation.framework in Frameworks */,
+				CBD7ABF114418C500019485E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CBD7ABDD14418C4F0019485E = {
+			isa = PBXGroup;
+			children = (
+				CBD7AC0C14418C730019485E /* Icon@2x.png */,
+				CBD7AC0A14418C710019485E /* Icon.png */,
+				CBD7AC0814418C6F0019485E /* Default.png */,
+				CBD7AC0614418C6D0019485E /* Default@2x.png */,
+				CBD7ACC5144191130019485E /* weiboEngine */,
+				CBD7AC94144191060019485E /* Thirdpart */,
+				CBD7ABF214418C500019485E /* CarWeibo */,
+				CBD7ABEB14418C500019485E /* Frameworks */,
+				CBD7ABE914418C500019485E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CBD7ABE914418C500019485E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7ABE814418C500019485E /* CarWeibo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CBD7ABEB14418C500019485E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7AC9214418D4B0019485E /* libsqlite3.0.dylib */,
+				CBD7AC9014418D3D0019485E /* Security.framework */,
+				CBD7ABEC14418C500019485E /* UIKit.framework */,
+				CBD7ABEE14418C500019485E /* Foundation.framework */,
+				CBD7ABF014418C500019485E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBD7ABF214418C500019485E /* CarWeibo */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7AC0E14418C810019485E /* images */,
+				CBD7ABFB14418C500019485E /* CarWeiboAppDelegate.h */,
+				CBD7ABFC14418C500019485E /* CarWeiboAppDelegate.m */,
+				CBD7AC8914418CD10019485E /* RootViewController.h */,
+				CBD7AC8A14418CD10019485E /* RootViewController.m */,
+				CBD7ABFE14418C500019485E /* MainWindow.xib */,
+				CBD7ABF314418C500019485E /* Supporting Files */,
+			);
+			path = CarWeibo;
+			sourceTree = "<group>";
+		};
+		CBD7ABF314418C500019485E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7AC1B14418C8D0019485E /* db1.3.sql */,
+				CBD7ABF414418C500019485E /* CarWeibo-Info.plist */,
+				CBD7ABF514418C500019485E /* InfoPlist.strings */,
+				CBD7ABF814418C500019485E /* main.m */,
+				CBD7ABFA14418C500019485E /* CarWeibo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CBD7AC0E14418C810019485E /* images */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7AC0F14418C810019485E /* bg_header.png */,
+				CBD7AC1014418C810019485E /* bg_header@2x.png */,
+				CBD7AC1114418C810019485E /* bg_leathertexture.png */,
+				CBD7AC1214418C810019485E /* bg_leathertexture@2x.png */,
+				CBD7AC1314418C810019485E /* temp1.png */,
+				CBD7AC1414418C810019485E /* temp1@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		CBD7AC94144191060019485E /* Thirdpart */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7AC95144191060019485E /* Base64 */,
+				CBD7AC99144191070019485E /* ColorUtils.h */,
+				CBD7AC9A144191070019485E /* ColorUtils.m */,
+				CBD7AC9B144191070019485E /* DebugUtils.h */,
+				CBD7AC9C144191070019485E /* ImageUtils.h */,
+				CBD7AC9D144191070019485E /* ImageUtils.m */,
+				CBD7AC9E144191070019485E /* JSON */,
+				CBD7ACAC144191070019485E /* QuartzUtils.c */,
+				CBD7ACAD144191070019485E /* QuartzUtils.h */,
+				CBD7ACAE144191070019485E /* REString.h */,
+				CBD7ACAF144191070019485E /* REString.m */,
+				CBD7ACB0144191070019485E /* Security */,
+				CBD7ACB3144191070019485E /* StringUtil.h */,
+				CBD7ACB4144191070019485E /* StringUtil.m */,
+				CBD7ACB5144191070019485E /* TimeUtils.h */,
+				CBD7ACB6144191070019485E /* TimeUtils.m */,
+			);
+			name = Thirdpart;
+			path = ../Thirdpart;
+			sourceTree = "<group>";
+		};
+		CBD7AC95144191060019485E /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7AC96144191070019485E /* GTMBase64.h */,
+				CBD7AC97144191070019485E /* GTMBase64.m */,
+				CBD7AC98144191070019485E /* GTMDefines.h */,
+			);
+			path = Base64;
+			sourceTree = "<group>";
+		};
+		CBD7AC9E144191070019485E /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7AC9F144191070019485E /* JSON.h */,
+				CBD7ACA0144191070019485E /* NSObject+SBJSON.h */,
+				CBD7ACA1144191070019485E /* NSObject+SBJSON.m */,
+				CBD7ACA2144191070019485E /* NSString+SBJSON.h */,
+				CBD7ACA3144191070019485E /* NSString+SBJSON.m */,
+				CBD7ACA4144191070019485E /* SBJSON.h */,
+				CBD7ACA5144191070019485E /* SBJSON.m */,
+				CBD7ACA6144191070019485E /* SBJsonBase.h */,
+				CBD7ACA7144191070019485E /* SBJsonBase.m */,
+				CBD7ACA8144191070019485E /* SBJsonParser.h */,
+				CBD7ACA9144191070019485E /* SBJsonParser.m */,
+				CBD7ACAA144191070019485E /* SBJsonWriter.h */,
+				CBD7ACAB144191070019485E /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		CBD7ACB0144191070019485E /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7ACB1144191070019485E /* SFHFKeychainUtils.h */,
+				CBD7ACB2144191070019485E /* SFHFKeychainUtils.m */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		CBD7ACC5144191130019485E /* weiboEngine */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7ACC6144191130019485E /* ImageStore */,
+				CBD7ACCF144191130019485E /* Models */,
+				CBD7ACE0144191130019485E /* Network */,
+			);
+			name = weiboEngine;
+			path = ../weiboEngine/weiboEngine/weiboEngine;
+			sourceTree = "<group>";
+		};
+		CBD7ACC6144191130019485E /* ImageStore */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7ACC7144191130019485E /* ImageStore.h */,
+				CBD7ACC8144191130019485E /* ImageStore.m */,
+				CBD7ACC9144191130019485E /* ImageStoreReceiver.h */,
+				CBD7ACCA144191130019485E /* ImageStoreReceiver.m */,
+				CBD7ACCB144191130019485E /* ProfileImageCell.h */,
+				CBD7ACCC144191130019485E /* ProfileImageCell.m */,
+				CBD7ACCD144191130019485E /* ProfileImageView.h */,
+				CBD7ACCE144191130019485E /* ProfileImageView.m */,
+			);
+			path = ImageStore;
+			sourceTree = "<group>";
+		};
+		CBD7ACCF144191130019485E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7ACD0144191130019485E /* DBConnection.h */,
+				CBD7ACD1144191130019485E /* DBConnection.m */,
+				CBD7ACD2144191130019485E /* DirectMessage.h */,
+				CBD7ACD3144191130019485E /* DirectMessage.m */,
+				CBD7ACD4144191130019485E /* Followee.h */,
+				CBD7ACD5144191130019485E /* Followee.m */,
+				CBD7ACD6144191130019485E /* Statement.h */,
+				CBD7ACD7144191130019485E /* Statement.m */,
+				CBD7ACD8144191130019485E /* Status.h */,
+				CBD7ACD9144191130019485E /* Status.m */,
+				CBD7ACDA144191130019485E /* Tweet.h */,
+				CBD7ACDB144191130019485E /* Tweet.m */,
+				CBD7ACDC144191130019485E /* User.h */,
+				CBD7ACDD144191130019485E /* User.m */,
+				CBD7ACDE144191130019485E /* UserStore.h */,
+				CBD7ACDF144191130019485E /* UserStore.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CBD7ACE0144191130019485E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7ACE1144191130019485E /* ImageDownloader.h */,
+				CBD7ACE2144191130019485E /* ImageDownloader.m */,
+				CBD7ACE3144191130019485E /* WBAuthorize.h */,
+				CBD7ACE4144191130019485E /* WBAuthorize.m */,
+				CBD7ACE5144191130019485E /* WBConnect.h */,
+				CBD7ACE6144191130019485E /* WBConnection.h */,
+				CBD7ACE7144191130019485E /* WBConnection.m */,
+				CBD7ACE8144191130019485E /* WBRequest.h */,
+				CBD7ACE9144191130019485E /* WBRequest.m */,
+				CBD7ACEA144191130019485E /* WBUtil.h */,
+				CBD7ACEB144191130019485E /* WBUtil.m */,
+				CBD7ACEC144191130019485E /* WeiBo.h */,
+				CBD7ACED144191130019485E /* WeiBo.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CBD7ABE714418C500019485E /* CarWeibo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBD7AC0314418C500019485E /* Build configuration list for PBXNativeTarget "CarWeibo" */;
+			buildPhases = (
+				CBD7ABE414418C500019485E /* Sources */,
+				CBD7ABE514418C500019485E /* Frameworks */,
+				CBD7ABE614418C500019485E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CarWeibo;
+			productName = CarWeibo;
+			productReference = CBD7ABE814418C500019485E /* CarWeibo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CBD7ABDF14418C4F0019485E /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = CBD7ABE214418C4F0019485E /* Build configuration list for PBXProject "CarWeibo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CBD7ABDD14418C4F0019485E;
+			productRefGroup = CBD7ABE914418C500019485E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CBD7ABE714418C500019485E /* CarWeibo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CBD7ABE614418C500019485E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBD7ABF714418C500019485E /* InfoPlist.strings in Resources */,
+				CBD7AC0014418C500019485E /* MainWindow.xib in Resources */,
+				CBD7AC0714418C6D0019485E /* Default@2x.png in Resources */,
+				CBD7AC0914418C6F0019485E /* Default.png in Resources */,
+				CBD7AC0B14418C710019485E /* Icon.png in Resources */,
+				CBD7AC0D14418C730019485E /* Icon@2x.png in Resources */,
+				CBD7AC1514418C810019485E /* bg_header.png in Resources */,
+				CBD7AC1614418C810019485E /* bg_header@2x.png in Resources */,
+				CBD7AC1714418C810019485E /* bg_leathertexture.png in Resources */,
+				CBD7AC1814418C810019485E /* bg_leathertexture@2x.png in Resources */,
+				CBD7AC1914418C810019485E /* temp1.png in Resources */,
+				CBD7AC1A14418C810019485E /* temp1@2x.png in Resources */,
+				CBD7AC1C14418C8D0019485E /* db1.3.sql in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CBD7ABE414418C500019485E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBD7ABF914418C500019485E /* main.m in Sources */,
+				CBD7ABFD14418C500019485E /* CarWeiboAppDelegate.m in Sources */,
+				CBD7AC8B14418CD10019485E /* RootViewController.m in Sources */,
+				CBD7ACB7144191070019485E /* GTMBase64.m in Sources */,
+				CBD7ACB8144191070019485E /* ColorUtils.m in Sources */,
+				CBD7ACB9144191070019485E /* ImageUtils.m in Sources */,
+				CBD7ACBA144191070019485E /* NSObject+SBJSON.m in Sources */,
+				CBD7ACBB144191070019485E /* NSString+SBJSON.m in Sources */,
+				CBD7ACBC144191070019485E /* SBJSON.m in Sources */,
+				CBD7ACBD144191070019485E /* SBJsonBase.m in Sources */,
+				CBD7ACBE144191070019485E /* SBJsonParser.m in Sources */,
+				CBD7ACBF144191070019485E /* SBJsonWriter.m in Sources */,
+				CBD7ACC0144191070019485E /* QuartzUtils.c in Sources */,
+				CBD7ACC1144191070019485E /* REString.m in Sources */,
+				CBD7ACC2144191070019485E /* SFHFKeychainUtils.m in Sources */,
+				CBD7ACC3144191070019485E /* StringUtil.m in Sources */,
+				CBD7ACC4144191070019485E /* TimeUtils.m in Sources */,
+				CBD7ACEE144191130019485E /* ImageStore.m in Sources */,
+				CBD7ACEF144191130019485E /* ImageStoreReceiver.m in Sources */,
+				CBD7ACF0144191130019485E /* ProfileImageCell.m in Sources */,
+				CBD7ACF1144191130019485E /* ProfileImageView.m in Sources */,
+				CBD7ACF2144191130019485E /* DBConnection.m in Sources */,
+				CBD7ACF3144191130019485E /* DirectMessage.m in Sources */,
+				CBD7ACF4144191130019485E /* Followee.m in Sources */,
+				CBD7ACF5144191130019485E /* Statement.m in Sources */,
+				CBD7ACF6144191130019485E /* Status.m in Sources */,
+				CBD7ACF7144191130019485E /* Tweet.m in Sources */,
+				CBD7ACF8144191130019485E /* User.m in Sources */,
+				CBD7ACF9144191130019485E /* UserStore.m in Sources */,
+				CBD7ACFA144191130019485E /* ImageDownloader.m in Sources */,
+				CBD7ACFB144191130019485E /* WBAuthorize.m in Sources */,
+				CBD7ACFC144191130019485E /* WBConnection.m in Sources */,
+				CBD7ACFD144191130019485E /* WBRequest.m in Sources */,
+				CBD7ACFE144191130019485E /* WBUtil.m in Sources */,
+				CBD7ACFF144191130019485E /* WeiBo.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CBD7ABF514418C500019485E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBD7ABF614418C500019485E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CBD7ABFE14418C500019485E /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBD7ABFF14418C500019485E /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CBD7AC0114418C500019485E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liqing Sun (VV34D2P9TL)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "949F82D5-D74E-491D-8174-B3F0E602E24D";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CBD7AC0214418C500019485E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liqing Sun (VV34D2P9TL)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CFB54025-6E9E-4688-B04D-0A29F2149E7C";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CBD7AC0414418C500019485E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CarWeibo/CarWeibo-Prefix.pch";
+				INFOPLIST_FILE = "CarWeibo/CarWeibo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CBD7AC0514418C500019485E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CarWeibo/CarWeibo-Prefix.pch";
+				INFOPLIST_FILE = "CarWeibo/CarWeibo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CBD7ABE214418C4F0019485E /* Build configuration list for PBXProject "CarWeibo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBD7AC0114418C500019485E /* Debug */,
+				CBD7AC0214418C500019485E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBD7AC0314418C500019485E /* Build configuration list for PBXNativeTarget "CarWeibo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBD7AC0414418C500019485E /* Debug */,
+				CBD7AC0514418C500019485E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CBD7ABDF14418C4F0019485E /* Project object */;
+}

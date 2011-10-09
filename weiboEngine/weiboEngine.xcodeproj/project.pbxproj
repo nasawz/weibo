@@ -1,0 +1,364 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CB6B478A1435815C009ED1DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6B47891435815C009ED1DC /* Foundation.framework */; };
+		CB6B479F143581A9009ED1DC /* WBAuthorize.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B4796143581A9009ED1DC /* WBAuthorize.h */; };
+		CB6B47A0143581A9009ED1DC /* WBAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B4797143581A9009ED1DC /* WBAuthorize.m */; };
+		CB6B47A1143581A9009ED1DC /* WBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B4798143581A9009ED1DC /* WBConnect.h */; };
+		CB6B47A2143581A9009ED1DC /* WBRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B4799143581A9009ED1DC /* WBRequest.h */; };
+		CB6B47A3143581A9009ED1DC /* WBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B479A143581A9009ED1DC /* WBRequest.m */; };
+		CB6B47A4143581A9009ED1DC /* WBUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B479B143581A9009ED1DC /* WBUtil.h */; };
+		CB6B47A5143581A9009ED1DC /* WBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B479C143581A9009ED1DC /* WBUtil.m */; };
+		CB6B47A6143581A9009ED1DC /* WeiBo.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B479D143581A9009ED1DC /* WeiBo.h */; };
+		CB6B47A7143581A9009ED1DC /* WeiBo.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B479E143581A9009ED1DC /* WeiBo.m */; };
+		CB6B47BF143581E2009ED1DC /* GTMBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B47AB143581E2009ED1DC /* GTMBase64.h */; };
+		CB6B47C0143581E2009ED1DC /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B47AC143581E2009ED1DC /* GTMBase64.m */; };
+		CB6B47C1143581E2009ED1DC /* GTMDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B47AD143581E2009ED1DC /* GTMDefines.h */; };
+		CB6B47C2143581E2009ED1DC /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B47AF143581E2009ED1DC /* JSON.h */; };
+		CB6B47C3143581E2009ED1DC /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B47B0143581E2009ED1DC /* NSObject+SBJSON.h */; };
+		CB6B47C4143581E2009ED1DC /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B47B1143581E2009ED1DC /* NSObject+SBJSON.m */; };
+		CB6B47C5143581E2009ED1DC /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B47B2143581E2009ED1DC /* NSString+SBJSON.h */; };
+		CB6B47C6143581E2009ED1DC /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B47B3143581E2009ED1DC /* NSString+SBJSON.m */; };
+		CB6B47C7143581E2009ED1DC /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B47B4143581E2009ED1DC /* SBJSON.h */; };
+		CB6B47C8143581E2009ED1DC /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B47B5143581E2009ED1DC /* SBJSON.m */; };
+		CB6B47C9143581E2009ED1DC /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B47B6143581E2009ED1DC /* SBJsonBase.h */; };
+		CB6B47CA143581E2009ED1DC /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B47B7143581E2009ED1DC /* SBJsonBase.m */; };
+		CB6B47CB143581E2009ED1DC /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B47B8143581E2009ED1DC /* SBJsonParser.h */; };
+		CB6B47CC143581E2009ED1DC /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B47B9143581E2009ED1DC /* SBJsonParser.m */; };
+		CB6B47CD143581E2009ED1DC /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B47BA143581E2009ED1DC /* SBJsonWriter.h */; };
+		CB6B47CE143581E2009ED1DC /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B47BB143581E2009ED1DC /* SBJsonWriter.m */; };
+		CB6B47CF143581E2009ED1DC /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6B47BD143581E2009ED1DC /* SFHFKeychainUtils.h */; };
+		CB6B47D0143581E2009ED1DC /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6B47BE143581E2009ED1DC /* SFHFKeychainUtils.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CB6B47861435815C009ED1DC /* libweiboEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libweiboEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB6B47891435815C009ED1DC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CB6B478D1435815C009ED1DC /* weiboEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "weiboEngine-Prefix.pch"; sourceTree = "<group>"; };
+		CB6B4796143581A9009ED1DC /* WBAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBAuthorize.h; path = weiboEngine/WBAuthorize.h; sourceTree = "<group>"; };
+		CB6B4797143581A9009ED1DC /* WBAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBAuthorize.m; path = weiboEngine/WBAuthorize.m; sourceTree = "<group>"; };
+		CB6B4798143581A9009ED1DC /* WBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBConnect.h; path = weiboEngine/WBConnect.h; sourceTree = "<group>"; };
+		CB6B4799143581A9009ED1DC /* WBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBRequest.h; path = weiboEngine/WBRequest.h; sourceTree = "<group>"; };
+		CB6B479A143581A9009ED1DC /* WBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBRequest.m; path = weiboEngine/WBRequest.m; sourceTree = "<group>"; };
+		CB6B479B143581A9009ED1DC /* WBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBUtil.h; path = weiboEngine/WBUtil.h; sourceTree = "<group>"; };
+		CB6B479C143581A9009ED1DC /* WBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBUtil.m; path = weiboEngine/WBUtil.m; sourceTree = "<group>"; };
+		CB6B479D143581A9009ED1DC /* WeiBo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiBo.h; path = weiboEngine/WeiBo.h; sourceTree = "<group>"; };
+		CB6B479E143581A9009ED1DC /* WeiBo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeiBo.m; path = weiboEngine/WeiBo.m; sourceTree = "<group>"; };
+		CB6B47AB143581E2009ED1DC /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		CB6B47AC143581E2009ED1DC /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		CB6B47AD143581E2009ED1DC /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		CB6B47AF143581E2009ED1DC /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		CB6B47B0143581E2009ED1DC /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		CB6B47B1143581E2009ED1DC /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		CB6B47B2143581E2009ED1DC /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		CB6B47B3143581E2009ED1DC /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		CB6B47B4143581E2009ED1DC /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		CB6B47B5143581E2009ED1DC /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		CB6B47B6143581E2009ED1DC /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		CB6B47B7143581E2009ED1DC /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		CB6B47B8143581E2009ED1DC /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		CB6B47B9143581E2009ED1DC /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		CB6B47BA143581E2009ED1DC /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		CB6B47BB143581E2009ED1DC /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		CB6B47BD143581E2009ED1DC /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		CB6B47BE143581E2009ED1DC /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB6B47831435815C009ED1DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB6B478A1435815C009ED1DC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CB6B477B1435815C009ED1DC = {
+			isa = PBXGroup;
+			children = (
+				CB6B47A9143581E2009ED1DC /* Thirdpart */,
+				CB6B478C1435815C009ED1DC /* Supporting Files */,
+				CB6B478B1435815C009ED1DC /* weiboEngine */,
+				CB6B47881435815C009ED1DC /* Frameworks */,
+				CB6B47871435815C009ED1DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB6B47871435815C009ED1DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB6B47861435815C009ED1DC /* libweiboEngine.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB6B47881435815C009ED1DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB6B47891435815C009ED1DC /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CB6B478B1435815C009ED1DC /* weiboEngine */ = {
+			isa = PBXGroup;
+			children = (
+				CB6B4796143581A9009ED1DC /* WBAuthorize.h */,
+				CB6B4797143581A9009ED1DC /* WBAuthorize.m */,
+				CB6B4798143581A9009ED1DC /* WBConnect.h */,
+				CB6B4799143581A9009ED1DC /* WBRequest.h */,
+				CB6B479A143581A9009ED1DC /* WBRequest.m */,
+				CB6B479B143581A9009ED1DC /* WBUtil.h */,
+				CB6B479C143581A9009ED1DC /* WBUtil.m */,
+				CB6B479D143581A9009ED1DC /* WeiBo.h */,
+				CB6B479E143581A9009ED1DC /* WeiBo.m */,
+			);
+			path = weiboEngine;
+			sourceTree = "<group>";
+		};
+		CB6B478C1435815C009ED1DC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CB6B478D1435815C009ED1DC /* weiboEngine-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = weiboEngine;
+			sourceTree = "<group>";
+		};
+		CB6B47A9143581E2009ED1DC /* Thirdpart */ = {
+			isa = PBXGroup;
+			children = (
+				CB6B47AA143581E2009ED1DC /* Base64 */,
+				CB6B47AE143581E2009ED1DC /* JSON */,
+				CB6B47BC143581E2009ED1DC /* Security */,
+			);
+			name = Thirdpart;
+			path = ../Thirdpart;
+			sourceTree = "<group>";
+		};
+		CB6B47AA143581E2009ED1DC /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				CB6B47AB143581E2009ED1DC /* GTMBase64.h */,
+				CB6B47AC143581E2009ED1DC /* GTMBase64.m */,
+				CB6B47AD143581E2009ED1DC /* GTMDefines.h */,
+			);
+			path = Base64;
+			sourceTree = "<group>";
+		};
+		CB6B47AE143581E2009ED1DC /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				CB6B47AF143581E2009ED1DC /* JSON.h */,
+				CB6B47B0143581E2009ED1DC /* NSObject+SBJSON.h */,
+				CB6B47B1143581E2009ED1DC /* NSObject+SBJSON.m */,
+				CB6B47B2143581E2009ED1DC /* NSString+SBJSON.h */,
+				CB6B47B3143581E2009ED1DC /* NSString+SBJSON.m */,
+				CB6B47B4143581E2009ED1DC /* SBJSON.h */,
+				CB6B47B5143581E2009ED1DC /* SBJSON.m */,
+				CB6B47B6143581E2009ED1DC /* SBJsonBase.h */,
+				CB6B47B7143581E2009ED1DC /* SBJsonBase.m */,
+				CB6B47B8143581E2009ED1DC /* SBJsonParser.h */,
+				CB6B47B9143581E2009ED1DC /* SBJsonParser.m */,
+				CB6B47BA143581E2009ED1DC /* SBJsonWriter.h */,
+				CB6B47BB143581E2009ED1DC /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		CB6B47BC143581E2009ED1DC /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				CB6B47BD143581E2009ED1DC /* SFHFKeychainUtils.h */,
+				CB6B47BE143581E2009ED1DC /* SFHFKeychainUtils.m */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		CB6B47841435815C009ED1DC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB6B479F143581A9009ED1DC /* WBAuthorize.h in Headers */,
+				CB6B47A1143581A9009ED1DC /* WBConnect.h in Headers */,
+				CB6B47A2143581A9009ED1DC /* WBRequest.h in Headers */,
+				CB6B47A4143581A9009ED1DC /* WBUtil.h in Headers */,
+				CB6B47A6143581A9009ED1DC /* WeiBo.h in Headers */,
+				CB6B47BF143581E2009ED1DC /* GTMBase64.h in Headers */,
+				CB6B47C1143581E2009ED1DC /* GTMDefines.h in Headers */,
+				CB6B47C2143581E2009ED1DC /* JSON.h in Headers */,
+				CB6B47C3143581E2009ED1DC /* NSObject+SBJSON.h in Headers */,
+				CB6B47C5143581E2009ED1DC /* NSString+SBJSON.h in Headers */,
+				CB6B47C7143581E2009ED1DC /* SBJSON.h in Headers */,
+				CB6B47C9143581E2009ED1DC /* SBJsonBase.h in Headers */,
+				CB6B47CB143581E2009ED1DC /* SBJsonParser.h in Headers */,
+				CB6B47CD143581E2009ED1DC /* SBJsonWriter.h in Headers */,
+				CB6B47CF143581E2009ED1DC /* SFHFKeychainUtils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		CB6B47851435815C009ED1DC /* weiboEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB6B47931435815C009ED1DC /* Build configuration list for PBXNativeTarget "weiboEngine" */;
+			buildPhases = (
+				CB6B47821435815C009ED1DC /* Sources */,
+				CB6B47831435815C009ED1DC /* Frameworks */,
+				CB6B47841435815C009ED1DC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = weiboEngine;
+			productName = weiboEngine;
+			productReference = CB6B47861435815C009ED1DC /* libweiboEngine.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB6B477D1435815C009ED1DC /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = CB6B47801435815C009ED1DC /* Build configuration list for PBXProject "weiboEngine" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CB6B477B1435815C009ED1DC;
+			productRefGroup = CB6B47871435815C009ED1DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB6B47851435815C009ED1DC /* weiboEngine */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB6B47821435815C009ED1DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB6B47A0143581A9009ED1DC /* WBAuthorize.m in Sources */,
+				CB6B47A3143581A9009ED1DC /* WBRequest.m in Sources */,
+				CB6B47A5143581A9009ED1DC /* WBUtil.m in Sources */,
+				CB6B47A7143581A9009ED1DC /* WeiBo.m in Sources */,
+				CB6B47C0143581E2009ED1DC /* GTMBase64.m in Sources */,
+				CB6B47C4143581E2009ED1DC /* NSObject+SBJSON.m in Sources */,
+				CB6B47C6143581E2009ED1DC /* NSString+SBJSON.m in Sources */,
+				CB6B47C8143581E2009ED1DC /* SBJSON.m in Sources */,
+				CB6B47CA143581E2009ED1DC /* SBJsonBase.m in Sources */,
+				CB6B47CC143581E2009ED1DC /* SBJsonParser.m in Sources */,
+				CB6B47CE143581E2009ED1DC /* SBJsonWriter.m in Sources */,
+				CB6B47D0143581E2009ED1DC /* SFHFKeychainUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CB6B47911435815C009ED1DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CB6B47921435815C009ED1DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB6B47941435815C009ED1DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/weiboEngine.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "weiboEngine/weiboEngine-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CB6B47951435815C009ED1DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/weiboEngine.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "weiboEngine/weiboEngine-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB6B47801435815C009ED1DC /* Build configuration list for PBXProject "weiboEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB6B47911435815C009ED1DC /* Debug */,
+				CB6B47921435815C009ED1DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB6B47931435815C009ED1DC /* Build configuration list for PBXNativeTarget "weiboEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB6B47941435815C009ED1DC /* Debug */,
+				CB6B47951435815C009ED1DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CB6B477D1435815C009ED1DC /* Project object */;
+}
