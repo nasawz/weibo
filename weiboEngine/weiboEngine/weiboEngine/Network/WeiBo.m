@@ -223,6 +223,10 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 		[_delegate weiboDidLogout];    
 }
 
+- (void)cancel {
+    [_request.connection cancel];
+}
+
 #pragma mark -
 #pragma mark For Http Request
 //this funcion is used for posting multipart datas.

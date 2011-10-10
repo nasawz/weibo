@@ -18,10 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    BOOL forceCreate = [[NSUserDefaults standardUserDefaults] boolForKey:@"clearLocalCache"];
-//    [DBConnection createEditableCopyOfDatabaseIfNeeded:forceCreate];
-//    [DBConnection getSharedDatabase];
-//    [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"clearLocalCache"];
+    BOOL forceCreate = [[NSUserDefaults standardUserDefaults] boolForKey:@"clearLocalCache"];
+    [DBConnection createEditableCopyOfDatabaseIfNeeded:forceCreate];
+    [DBConnection getSharedDatabase];
+    [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"clearLocalCache"];
     
     // Override point for customization after application launch.
     rootViewController = [[RootViewController alloc] init];
@@ -29,7 +29,7 @@
     [self.window makeKeyAndVisible];
     
     
-//    imageStore = [[ImageStore alloc] init];
+    imageStore = [[ImageStore alloc] init];
     
     return YES;
 }
@@ -102,6 +102,86 @@ static UIAlertView *sAlert = nil;
 +(CarWeiboAppDelegate*)getAppDelegate
 {
     return (CarWeiboAppDelegate*)[UIApplication sharedApplication].delegate;
+}
+
+//
+// Handling links
+//
+//static NSString *urlRegexp  = @"(((http(s?))\\:\\/\\/)([-0-9a-zA-Z]+\\.)+[a-zA-Z]{2,6}(\\:[0-9]+)?(\\/[-0-9a-zA-Z_#!:.?+=&%@~*\\';,/$]*)?)";
+//static NSString *endRegexp  = @"[.,;:]$";
+//static NSString *nameRegexp = @"(@[0-9a-zA-Z_]+)";
+//static NSString *hashRegexp = @"(#[-a-zA-Z0-9_.+:=]+)";
+
+- (void)openLinksViewController:(NSString*)text
+{
+//    UINavigationController* nav = (UINavigationController*)[tabBarController.viewControllers objectAtIndex:selectedTab];
+//    
+//    BOOL hasHash = false;
+//    
+//    NSMutableArray *links = [NSMutableArray array];
+//    
+//    NSMutableArray *array = [NSMutableArray array];
+//    NSString *tmp = text;
+//    
+//    // Find URLs
+//    while ([tmp matches:urlRegexp withSubstring:array]) {
+//        NSString *url = [array objectAtIndex:0];
+//        [array removeAllObjects];
+//        if ([url matches:endRegexp withSubstring:array]) {
+//            url = [url substringToIndex:[url length] - 1];
+//        }
+//        [links addObject:url];
+//        NSRange r = [tmp rangeOfString:url];
+//        tmp = [tmp substringFromIndex:r.location + r.length];
+//        [array removeAllObjects];
+//    }
+//    
+//    // Find screen names
+//    tmp = text;
+//    while ([tmp matches:nameRegexp withSubstring:array]) {
+//        NSString *username = [array objectAtIndex:0];
+//        [links addObject:username];
+//        NSRange r = [tmp rangeOfString:username];
+//        tmp = [tmp substringFromIndex:r.location + r.length];
+//        [array removeAllObjects];
+//    }
+//    
+//    // Find hashtags
+//    tmp = text;
+//    while ([tmp matches:hashRegexp withSubstring:array]) {
+//        NSString *hash = [array objectAtIndex:0];
+//        [links addObject:hash];
+//        NSRange r = [tmp rangeOfString:hash];
+//        tmp = [tmp substringFromIndex:r.location + r.length];
+//        [array removeAllObjects];
+//        hasHash = true;
+//    }
+//    
+//    if ([links count] == 1) {
+//        NSString* url = [links objectAtIndex:0];
+//        NSRange r = [url rangeOfString:@"http://"];
+//        if (r.location != NSNotFound) {
+//            [self openWebView:url on:nav];
+//        }
+//        else {
+//            if (hasHash) {
+//                [self search:[links objectAtIndex:0]];
+//            }
+//            else {
+//                UserTimelineController *userTimeline = [[[UserTimelineController alloc] init] autorelease];
+//                NSString *aScreenName = [links objectAtIndex:0];
+//                [userTimeline loadUserTimeline:[aScreenName substringFromIndex:1]];
+//                [nav pushViewController:userTimeline animated:true];
+//            }
+//        }
+//    }
+//    else {
+//        nav.navigationBar.tintColor = nil;
+//        
+//        LinkViewController* linkView = [[[LinkViewController alloc] init] autorelease];
+//        linkView.links   = links;
+//        [nav pushViewController:linkView animated:true];
+//    }
 }
 
 @end

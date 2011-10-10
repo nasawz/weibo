@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "WeiBo.h"
+#import "CustomTabBar.h"
 
-@interface RootViewController : UIViewController <WBSessionDelegate,WBRequestDelegate>{
-    WeiBo* weibo;
-    UITabBar * tabBar;
+@interface RootViewController : UIViewController <WBSessionDelegate,WBRequestDelegate,CustomTabBarDelegate>{
+    WeiBo*          weibo;
+    CustomTabBar*   tabBar;
 }
+
+@property (nonatomic, retain) CustomTabBar* tabBar;
+
 @end

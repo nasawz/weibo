@@ -3,7 +3,7 @@
 //  CarWeibo
 //
 //  Created by zhe wang on 11-10-9.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
+//  Copyright 2011年 nasa.wang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

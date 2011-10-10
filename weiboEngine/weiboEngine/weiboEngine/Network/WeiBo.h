@@ -91,6 +91,7 @@ typedef enum
 - (BOOL)isDefaultUserLoggedin;					//Check whether the user has logged in.
 - (void)LogOut;                                 //Remove the info about current user.
 - (void)LogOutAll; 
+- (void)cancel;
 @end
 
 @protocol WBSessionDelegate <NSObject>
