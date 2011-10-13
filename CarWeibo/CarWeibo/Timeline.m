@@ -1,11 +1,3 @@
-//
-//  Timeline.m
-//  CarWeibo
-//
-//  Created by zhe wang on 11-10-10.
-//  Copyright 2011年 nasa.wang. All rights reserved.
-//
-
 #import "Timeline.h"
 #import "TimelineCell.h"
 #import "JSON.h"
@@ -26,8 +18,8 @@ static NSInteger sortByDate(id a, id b, void *context)
         return 0;
 }
 
-@implementation Timeline
 
+@implementation Timeline
 
 #define MAX_ROW_COUNT   200
 

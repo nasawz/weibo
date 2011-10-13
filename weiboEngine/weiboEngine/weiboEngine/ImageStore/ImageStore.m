@@ -7,6 +7,7 @@
 
 static UIImage *sProfileImage = nil;
 static UIImage *sProfileImageSmall = nil;
+static UIImage *sThumbnailImage = nil;
 
 @interface ImageStore(Private)
 - (UIImage*)getImageFromDB:(NSString*)url;
@@ -14,6 +15,7 @@ static UIImage *sProfileImageSmall = nil;
 - (UIImage*)resizeImage:(UIImage*)image forURL:(NSString*)str;
 - (UIImage*)convertImage:(UIImage*)image forURL:(NSString*)str;
 + (UIImage*)defaultProfileImage:(BOOL)bigger;
++ (UIImage*)defaultThumbnailImage;
 @end
 
 
@@ -40,10 +42,10 @@ static UIImage *sProfileImageSmall = nil;
 {
     NSString *url;
     if (isLarge) {
-        url = [anURL stringByReplacingOccurrencesOfString:@"_normal." withString:@"_bigger."];
+        url = [anURL stringByReplacingOccurrencesOfString:@"/50/" withString:@"/180/"];
     }
     else {
-        url = anURL;    
+        url = [anURL stringByReplacingOccurrencesOfString:@"/50/" withString:@"/180/"];    
     }        
     
     UIImage *image = [images objectForKey:url];
@@ -78,6 +80,39 @@ static UIImage *sProfileImageSmall = nil;
     return [ImageStore defaultProfileImage:isLarge];
 }
 
+- (UIImage*)getThumbnailImage:(NSString*)url delegate:(id)delegate {     
+    
+    UIImage *image = [images objectForKey:url];
+    if (image) {
+        return image;
+    }
+    
+    image = [self getImageFromDB:url];
+    if (image) {
+        [images setObject:image forKey:url];
+        return image;
+    }
+    
+    
+    ImageDownloader *dl = [pending objectForKey:url];
+    if (dl == nil) {
+        dl = [[[ImageDownloader alloc] initWithDelegate:self] autorelease];
+        [pending setObject:dl forKey:url];
+    }
+    
+    NSMutableArray *arr = [delegates objectForKey:url];
+    if (arr) {
+        [arr addObject:delegate];
+    }
+    else {
+        [delegates setObject:[NSMutableArray arrayWithObject:delegate] forKey:url];
+    }
+    if ([pending count] <= MAX_CONNECTION && dl.requestURL == nil) {
+        [dl get:url];
+    }
+    
+    return [ImageStore defaultThumbnailImage];
+}
 
 - (void)getPendingImage:(ImageDownloader*)sender
 {
@@ -108,18 +143,19 @@ static UIImage *sProfileImageSmall = nil;
 
 - (void)imageDownloaderDidSucceed:(ImageDownloader*)sender
 {
+    NSLog(@"succ %@",sender.requestURL);
 	UIImage *image = [UIImage imageWithData:sender.buf];
     
     if (image) {
         image = [self resizeImage:image forURL:sender.requestURL];
         [self insertImage:sender.buf forURL:sender.requestURL];
-        image = [self convertImage:image forURL:sender.requestURL];
+//        image = [self convertImage:image forURL:sender.requestURL];
         
         NSMutableArray *arr = [delegates objectForKey:sender.requestURL];
         if (arr) {
             for (id delegate in arr) {
-                if ([delegate respondsToSelector:@selector(profileImageDidGetNewImage:)]) {
-                    [delegate performSelector:@selector(profileImageDidGetNewImage:) withObject:image];
+                if ([delegate respondsToSelector:@selector(imageDidGetNewImage:)]) {
+                    [delegate performSelector:@selector(imageDidGetNewImage:) withObject:image];
                 }
             }
             [delegates removeObjectForKey:sender.requestURL];
@@ -182,8 +218,9 @@ static UIImage *sProfileImageSmall = nil;
         // Restore image from Database
         NSData *data = [stmt getData:0];
         image = [UIImage imageWithData:data];
+//        NSLog(@"url = %@",url);
         image = [self resizeImage:image forURL:url];
-        image = [self convertImage:image forURL:url];
+//        image = [self convertImage:image forURL:url];
     }
     [stmt reset];
     
@@ -215,8 +252,8 @@ static UIImage *sProfileImageSmall = nil;
     
     float scale;
     
-    NSRange r = [url rangeOfString:@"_bigger."];
-    float numPixels = (r.location != NSNotFound) ? 73.0 : 48.0;
+    NSRange r = [url rangeOfString:@"/180/"];
+    float numPixels = (r.location != NSNotFound) ? 100.0 : 50.0;
     
     if (width > numPixels || height > numPixels) {
         if (width > height) {
@@ -230,8 +267,8 @@ static UIImage *sProfileImageSmall = nil;
             width = numPixels;
         }
         
-        NSLog(@"Resize image %.0fx%.0f -> (%.0f,%.0f)x(%.0f,%.0f)", image.size.width, image.size.height, 
-              0 - (width - numPixels) / 2, 0 - (height - numPixels) / 2, width, height);
+//        NSLog(@"Resize image %.0fx%.0f -> (%.0f,%.0f)x(%.0f,%.0f)", image.size.width, image.size.height, 
+//              0 - (width - numPixels) / 2, 0 - (height - numPixels) / 2, width, height);
         
         UIGraphicsBeginImageContext(CGSizeMake(numPixels, numPixels));
         [image drawInRect:CGRectMake(0 - (width - numPixels) / 2, 0 - (height - numPixels) / 2, width, height)];
@@ -247,9 +284,9 @@ static UIImage *sProfileImageSmall = nil;
 
 - (UIImage*)convertImage:(UIImage*)image forURL:(NSString*)url
 {
-    NSRange r = [url rangeOfString:@"_bigger."];
-    float numPixels = (r.location != NSNotFound) ? 73.0 : 48.0;
-    float radius = (r.location != NSNotFound) ? 8.0 : 4.0;
+    NSRange r = [url rangeOfString:@"/180/"];
+    float numPixels = (r.location != NSNotFound) ? 100.0 : 50.0;
+    float radius = (r.location != NSNotFound) ? 8.0 : 0.0;
     
     UIGraphicsBeginImageContext(CGSizeMake(numPixels, numPixels));
     CGContextRef c = UIGraphicsGetCurrentContext();
@@ -281,10 +318,18 @@ static UIImage *sProfileImageSmall = nil;
     }
     else {
         if (sProfileImageSmall == nil) {
-            sProfileImageSmall = [[UIImage imageNamed:@"profileImageSmall.png"] retain];
+            sProfileImageSmall = [[UIImage imageNamed:@"profileImage.png"] retain];
         }
         return sProfileImageSmall;
     }
+}
+
++(UIImage*)defaultThumbnailImage 
+{
+    if (sThumbnailImage == nil) {
+        sThumbnailImage = [[UIImage imageNamed:@"thumbleImage.png"] retain];
+    }
+    return sThumbnailImage;
 }
 
 @end

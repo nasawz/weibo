@@ -28,6 +28,7 @@
     [self.window addSubview:rootViewController.view];
     [self.window makeKeyAndVisible];
     
+//    [DBConnection deleteMessageCache];
     
     imageStore = [[ImageStore alloc] init];
     

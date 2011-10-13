@@ -27,6 +27,8 @@
     [self setNeedsLayout];    
 }
 
+
+
 - (UIImage*)getProfileImage:(NSString*)url isLarge:(BOOL)flag
 {
     if (_profileImageUrl != url) {
@@ -39,6 +41,7 @@
     _receiver.imageContainer = self;
     return image;
 }
+
 
 - (void)prepareForReuse
 {

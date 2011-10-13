@@ -66,7 +66,7 @@ typedef enum {
 
 - (NSString*)timestamp;
 - (void)updateAttribute;
-- (void)calcTextBounds:(int)textWidth;
+- (void)calcTextBounds:(int)textWidth AndHasThumble:(BOOL)flag;
 - (BOOL)hasConversation;
 
 - (id)copyWithZone:(NSZone*)zone;

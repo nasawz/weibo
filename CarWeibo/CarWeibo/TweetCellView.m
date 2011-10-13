@@ -49,7 +49,7 @@
     
 	[textColor set];
     if (status.cellType == TWEET_CELL_TYPE_NORMAL) {
-        [status.user.screenName drawInRect:CGRectMake(0, 0, CELL_WIDTH - DETAIL_BUTTON_WIDTH, TOP) withFont:[UIFont boldSystemFontOfSize:14]];
+        [status.user.screenName drawInRect:CGRectMake(0, 8, CELL_WIDTH - DETAIL_BUTTON_WIDTH, TOP) withFont:[UIFont boldSystemFontOfSize:14]];
     }
 	[status.text drawInRect:status.textBounds withFont:[UIFont systemFontOfSize:textFontSize]];
 	[timestampColor set];
@@ -62,9 +62,11 @@
             timestamp = status.timestamp;
         }
         [timestamp drawInRect:CGRectMake(0, status.textBounds.size.height + 3, 250, 16) withFont:[UIFont systemFontOfSize:12]];
+//        [timestamp drawInRect:CGRectMake(CELL_WIDTH - 100 - 8, 8, 100, 16) withFont:[UIFont systemFontOfSize:12] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentRight];
     }
     else {
-        [status.timestamp drawInRect:CGRectMake(0, TOP + status.textBounds.size.height - 1, 250, 16) withFont:[UIFont systemFontOfSize:12]];
+//        [status.timestamp drawInRect:CGRectMake(0, TOP + status.textBounds.size.height - 1, 250, 16) withFont:[UIFont systemFontOfSize:12]];
+        [status.timestamp drawInRect:CGRectMake(CELL_WIDTH - 100 - 20, 8, 100, 16) withFont:[UIFont systemFontOfSize:12] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentRight];
     }
 }
 

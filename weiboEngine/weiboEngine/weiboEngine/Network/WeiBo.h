@@ -10,6 +10,9 @@
 #import "WBRequest.h"
 #import "WBAuthorize.h"
 
+#define SinaWeiBo_APPKey @"2888398119"
+#define SinaWeiBo_APPSecret @"5e9982830d03d178b7e07a83e27430a0"
+
 extern NSString* domainWeiboError;						//The domain of the error which we defined and will be returned in all the protocols.
 typedef enum
 {
@@ -86,6 +89,17 @@ typedef enum
                           andParams:(NSMutableDictionary *)params
                       andHttpMethod:(NSString *)httpMethod
                         andDelegate:(id <WBRequestDelegate>)delegate;
+
+- (WBRequest*)requestWithMethodName:(NSString *)methodName
+                          andParams:(NSMutableDictionary *)params
+                      andHttpMethod:(NSString *)httpMethod
+                        andDelegate:(id <WBRequestDelegate>)delegate 
+                        accessToken:(NSString*)token 
+                       accessSecret:(NSString*)secret;
+
+
+- (WBRequest*)getDefaultFriendsTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
 
 - (BOOL)isUserLoggedin;                         //Check whether the user has logged in.
 - (BOOL)isDefaultUserLoggedin;					//Check whether the user has logged in.

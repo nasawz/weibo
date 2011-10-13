@@ -10,7 +10,7 @@
 #import "CarWeiboAppDelegate.h"
 #import "TimelineCell.h"
 #import "ColorUtils.h"
-
+#import "ImageStoreWaiter.h"
 @implementation TimelineCell
 
 - (void)dealloc
@@ -37,6 +37,12 @@
     cellView.status = status;
     [imageButton setImage:[self getProfileImage:status.user.profileImageUrl isLarge:false]
                  forState:UIControlStateNormal];
+    if (![status.thumbnailPic isEqualToString:@""]) {
+        ImageStore *store = [CarWeiboAppDelegate getAppDelegate].imageStore;
+        
+        UIImage *image = [store getThumbnailImage:status.thumbnailPic delegate:[[[ImageStoreWaiter alloc] initWith:thumbleImageView] autorelease]];
+        [thumbleImageView setImage:image];
+    }
     
     self.contentView.backgroundColor = (status.unread) ? [UIColor cellColorForTab:status.type] : [UIColor whiteColor];
     
@@ -54,10 +60,23 @@
 {
 	[super layoutSubviews];
     
-    self.backgroundColor = self.contentView.backgroundColor;
-    cellView.backgroundColor = self.contentView.backgroundColor;
+    //    self.backgroundColor = self.contentView.backgroundColor;
+    //    cellView.backgroundColor = self.contentView.backgroundColor;
+    self.backgroundColor = [UIColor clearColor];
+    cellView.backgroundColor = [UIColor clearColor];
     
-    imageButton.frame = CGRectMake(IMAGE_PADDING, (status.cellHeight - 48 - 1)/2, IMAGE_WIDTH, 48);
+    imageButton.frame = CGRectMake(IMAGE_PADDING, IMAGE_PADDING, IMAGE_WIDTH, 50);
+    faceBgView.frame = CGRectMake(IMAGE_PADDING, IMAGE_PADDING , 50, 53);
+    backgroundView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    if (![status.thumbnailPic isEqualToString:@""]) {
+        thumbleImageView.frame = CGRectMake(100, status.cellHeight - 68, 50, 50);
+        thumbleBgView.frame = CGRectMake(100 - 5, status.cellHeight - 68 - 5, 60, 62);
+    }else{
+        thumbleImageView.frame = CGRectZero;
+        thumbleBgView.frame = CGRectZero;
+    }
+        
+    
 }
 
 @end

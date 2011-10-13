@@ -19,7 +19,7 @@
     [super dealloc];
 }
 
-- (void)profileImageDidGetNewImage:(UIImage*)image
+- (void)imageDidGetNewImage:(UIImage*)image
 {
     if (imageContainer) {
         if ([imageContainer respondsToSelector:@selector(updateImage:)]) {
@@ -27,5 +27,6 @@
         }
     }
 }
+
 
 @end

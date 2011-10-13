@@ -17,6 +17,10 @@
 	Status*         status;
     TweetCellView*  cellView;
     UIButton*       imageButton;
+    UIImageView *   backgroundView;
+    UIImageView *   faceBgView;
+    UIImageView *   thumbleImageView;
+    UIImageView *   thumbleBgView;
 }
 
 @property (nonatomic, assign) Status*  status;

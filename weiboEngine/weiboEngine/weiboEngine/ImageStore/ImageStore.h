@@ -9,6 +9,7 @@
 }
 
 - (UIImage*)getProfileImage:(NSString*)url isLarge:(BOOL)flag delegate:(id)delegate;
+- (UIImage*)getThumbnailImage:(NSString*)url delegate:(id)delegate;
 
 - (void)removeDelegate:(id)delegate forURL:(NSString*)key;
 

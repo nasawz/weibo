@@ -90,7 +90,7 @@
 - (void)updateAttribute
 {
     [super updateAttribute];  
-    [self calcTextBounds:CELL_WIDTH - INDICATOR_WIDTH];
+    [self calcTextBounds:CELL_WIDTH - INDICATOR_WIDTH AndHasThumble:NO];
 }
 
 + (DirectMessage*)initWithStatement:(Statement*)stmt

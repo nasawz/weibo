@@ -49,12 +49,12 @@
     return dist;
 }
 
-- (void)calcTextBounds:(int)textWidth
+- (void)calcTextBounds:(int)textWidth AndHasThumble:(BOOL)flag
 {
     CGRect bounds, result;
     
     if (cellType == TWEET_CELL_TYPE_NORMAL) {
-        bounds = CGRectMake(0, TOP, textWidth, 200);
+        bounds = CGRectMake(0, TOP + 4, textWidth, 200);
     }
     else {
         bounds = CGRectMake(0, 3, textWidth, 200);
@@ -71,12 +71,16 @@
     textBounds = CGRectMake(bounds.origin.x, bounds.origin.y, textWidth, result.size.height);
     
     if (cellType == TWEET_CELL_TYPE_NORMAL) {
-        result.size.height += 18 + 15 + 2;
+        result.size.height += 18 + 15 + 2 + 8 + 4;
         if (result.size.height < IMAGE_WIDTH + 1) result.size.height = IMAGE_WIDTH + 1;
     }
     else {
         result.size.height += 22;
     }
+    if (flag) {
+        result.size.height += 65;
+    }
+    
     cellHeight = result.size.height;
 }
 
@@ -113,7 +117,7 @@ static NSString *hashRegexp = @"(#[a-zA-Z0-9\\-_\\.+:=]+)";
     }
     
     [array release];
-   
+    //    NSLog(@"text = %@",text);
     range = [text rangeOfString:@"http://"];
     if (range.location != NSNotFound || hasUsername) {    
         accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -165,23 +169,23 @@ static NSString *hashRegexp = @"(#[a-zA-Z0-9\\-_\\.+:=]+)";
     if (distance < 0) distance = 0;
     
     if (distance < 60) {
-        self.timestamp = [NSString stringWithFormat:@"%d %s", distance, (distance == 1) ? "second ago" : "seconds ago"];
+        self.timestamp = [NSString stringWithFormat:@"%d %@", distance, (distance == 1) ? @"秒前" : @"秒前"];
     }
     else if (distance < 60 * 60) {  
         distance = distance / 60;
-        self.timestamp = [NSString stringWithFormat:@"%d %s", distance, (distance == 1) ? "minute ago" : "minutes ago"];
+        self.timestamp = [NSString stringWithFormat:@"%d %@", distance, (distance == 1) ? @"分钟前" : @"分钟前"];
     }  
     else if (distance < 60 * 60 * 24) {
         distance = distance / 60 / 60;
-        self.timestamp = [NSString stringWithFormat:@"%d %s", distance, (distance == 1) ? "hour ago" : "hours ago"];
+        self.timestamp = [NSString stringWithFormat:@"%d %@", distance, (distance == 1) ? @"小时前" : @"小时前"];
     }
     else if (distance < 60 * 60 * 24 * 7) {
         distance = distance / 60 / 60 / 24;
-        self.timestamp = [NSString stringWithFormat:@"%d %s", distance, (distance == 1) ? "day ago" : "days ago"];
+        self.timestamp = [NSString stringWithFormat:@"%d %@", distance, (distance == 1) ? @"天前" : @"天前"];
     }
     else if (distance < 60 * 60 * 24 * 7 * 4) {
         distance = distance / 60 / 60 / 24 / 7;
-        self.timestamp = [NSString stringWithFormat:@"%d %s", distance, (distance == 1) ? "week ago" : "weeks ago"];
+        self.timestamp = [NSString stringWithFormat:@"%d %@", distance, (distance == 1) ? @"周前" : @"周前"];
     }
     else {
         static NSDateFormatter *dateFormatter = nil;

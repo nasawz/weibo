@@ -61,6 +61,26 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 	return self;
 }
 
+- (id)init {
+	if (self = [super init]) {
+		_appKey		= [[NSString alloc]initWithString:SinaWeiBo_APPKey];
+		_appSecret	= [[NSString alloc]initWithString:SinaWeiBo_APPSecret];
+		
+		
+		//When object is created, the user info stored in the KeyChain will be readed out firstly.
+		NSString* serviceName = [[self urlSchemeString] stringByAppendingString:kKeyChainServiceNameForWeiBo];
+		_userID = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainUserIDForWeiBo andServiceName:serviceName error:nil]retain];
+		_accessToken = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainAccessTokenForWeiBo andServiceName:serviceName error:nil]retain];
+		_accessTokenSecret = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainAccessSecretForWeiBo andServiceName:serviceName error:nil]retain];
+        
+        _defaultUserID = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainDefaultUserIDForWeiBo andServiceName:serviceName error:nil]retain];
+		_defaultAccessToken = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainDefaultAccessTokenForWeiBo andServiceName:serviceName error:nil]retain];
+		_defaultAccessTokenSecret = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainDefaultAccessSecretForWeiBo andServiceName:serviceName error:nil]retain];
+        
+	}
+	return self;    
+}
+
 - (void)dealloc
 {
 	[_appKey release];_appKey=nil;
@@ -304,6 +324,69 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 	[_request retain];
 	
 	return _request;
+}
+
+- (WBRequest*)requestWithMethodName:(NSString *)methodName
+                          andParams:(NSMutableDictionary *)params
+                      andHttpMethod:(NSString *)httpMethod
+                        andDelegate:(id <WBRequestDelegate>)delegate 
+                        accessToken:(NSString*)token 
+                       accessSecret:(NSString*)secret {
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:httpMethod
+										   postDataType:WBRequestPostDataType_Normal 
+											   delegate:delegate 
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,methodName]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:token
+										   accessSecret:secret];
+	
+	[_request connect];
+	[_request retain];
+	
+	return _request;    
+}
+
+- (WBRequest*)getDefaultFriendsTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isDefaultUserLoggedin] == FALSE )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"GET"
+										   postDataType:WBRequestPostDataType_Normal 
+											   delegate:delegate 
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/friends_timeline.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_defaultAccessToken
+										   accessSecret:_defaultAccessTokenSecret];
+	
+	[_request connect];
+	[_request retain];
+	
+	return _request; 
 }
 
 #pragma mark For Post Weibo

@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CarWeiboAppDelegate.h"
 #import "TweetCellBase.h"
+#import "ImageUtils.h"
 
 @implementation TweetCellBase
 @synthesize status;
@@ -17,13 +18,29 @@
   	[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     
+    backgroundView = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
+    [self.contentView addSubview:backgroundView];
+    
+    [backgroundView setImage:[[UIImage imageByFileName:@"bg_cell1" FileExtension:@"png"] stretchableImageWithLeftCapWidth:10 topCapHeight:20]];
     
     cellView = [[[TweetCellView alloc] initWithFrame:CGRectZero] autorelease];
     [self.contentView addSubview:cellView];
     
+    faceBgView = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
+    [self.contentView addSubview:faceBgView];
+    [faceBgView setImage:[UIImage imageByFileName:@"bg_face1" FileExtension:@"png"]];
+    
     imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [imageButton addTarget:self action:@selector(didTouchImageButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:imageButton];
+    
+    thumbleBgView = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
+    [self.contentView addSubview:thumbleBgView];
+    [thumbleBgView setImage:[UIImage imageByFileName:@"bg_thumbleImage" FileExtension:@"png"]];
+    
+    thumbleImageView = [[UIImageView alloc] init];
+    [self.contentView addSubview:thumbleImageView];
+    
 
     self.selectionStyle = UITableViewCellSelectionStyleBlue;
     

@@ -5,6 +5,8 @@
 #import "StringUtil.h"
 #import "TimeUtils.h"
 
+#import "NSDictionaryAdditions.h"
+
 @interface Status (Private)
 - (void)insertDB;
 @end
@@ -26,7 +28,7 @@ static NSInteger sortByDateDesc(id a, id b, void *context)
 
 @implementation Status
 
-//@synthesize user;
+@synthesize retweetedStatus;
 @synthesize source;
 @synthesize favorited;
 @synthesize truncated;
@@ -35,8 +37,15 @@ static NSInteger sortByDateDesc(id a, id b, void *context)
 @synthesize inReplyToUserId;
 @synthesize inReplyToScreenName;
 
+@synthesize thumbnailPic, bmiddlePic, originalPic;
+
+@synthesize retweetedTextBounds;
+
 - (void)dealloc
 {
+	[thumbnailPic release];
+	[bmiddlePic release];
+	[originalPic release];
     [inReplyToScreenName release];
     [source release];
   	[super dealloc];
@@ -93,8 +102,16 @@ static NSInteger sortByDateDesc(id a, id b, void *context)
     }
     
     inReplyToStatusId   = [dic objectForKey:@"in_reply_to_status_id"]   == [NSNull null] ? 0 : [[dic objectForKey:@"in_reply_to_status_id"] longLongValue];
-    inReplyToUserId     = [dic objectForKey:@"in_reply_to_user_id"]     == [NSNull null] ? 0 : [[dic objectForKey:@"in_reply_to_user_id"] longValue];
+    //    NSLog(@"in_reply_to_user_id = %@",[dic objectForKey:@"in_reply_to_user_id"]);
+    inReplyToUserId     = ([dic objectForKey:@"in_reply_to_user_id"]     == [NSNull null] || [[dic objectForKey:@"in_reply_to_user_id"] isEqualToString:@""]) ? 0 : [[dic objectForKey:@"in_reply_to_user_id"] longValue];
     inReplyToScreenName = [dic objectForKey:@"in_reply_to_screen_name"];
+    
+    thumbnailPic = [[dic getStringValueForKey:@"thumbnail_pic" defaultValue:@""] retain];
+    bmiddlePic = [[dic getStringValueForKey:@"bmiddle_pic" defaultValue:@""] retain];
+    originalPic = [[dic getStringValueForKey:@"original_pic" defaultValue:@""] retain];    
+    
+    //    NSLog(@"originalPic = %@",originalPic);
+    
     if ((id)inReplyToScreenName == [NSNull null]) inReplyToScreenName = @"";
     if (inReplyToScreenName == nil) inReplyToScreenName = @"";
     [inReplyToScreenName retain];
@@ -103,6 +120,11 @@ static NSInteger sortByDateDesc(id a, id b, void *context)
 	if (userDic) {
         user = [User userWithJsonDictionary:userDic];
     }
+    
+	NSDictionary* retweetedStatusDic = [dic objectForKey:@"retweeted_status"];
+	if (retweetedStatusDic) {
+        retweetedStatus = [Status statusWithJsonDictionary:retweetedStatusDic type:type];
+    }    
 
     [self updateAttribute];
     unread = true;
@@ -165,6 +187,12 @@ static NSInteger sortByDateDesc(id a, id b, void *context)
     dist.inReplyToUserId     = inReplyToUserId;
     dist.inReplyToScreenName = inReplyToScreenName;
     
+    dist.thumbnailPic = thumbnailPic;
+    dist.bmiddlePic = bmiddlePic;
+    dist.originalPic = originalPic;
+    
+    dist.retweetedStatus = retweetedStatus;
+    
     return dist;
 }
 
@@ -190,7 +218,7 @@ int sTextWidth[] = {
     }
     // Calculate text bounds and cell height here
     //
-    [self calcTextBounds:textWidth];
+    [self calcTextBounds:textWidth AndHasThumble:(![thumbnailPic isEqualToString:@""])];
 }
 
 + (Status*)statusWithId:(sqlite_int64)aStatusId
@@ -228,6 +256,14 @@ int sTextWidth[] = {
     s.inReplyToStatusId     = [stmt getInt64:8];
     s.inReplyToUserId       = [stmt getInt32:9];
     s.inReplyToScreenName   = [stmt getString:10];
+    s.thumbnailPic = [stmt getString:11];
+    s.bmiddlePic = [stmt getString:12];
+    s.originalPic = [stmt getString:13];
+    
+    
+    //    NSLog(@"bmiddlePic = %@",s.bmiddlePic);
+    
+    s.retweetedStatus = [Status statusWithId:[stmt getInt32:14]];
 
     s.user = [User userWithId:[stmt getInt32:2]];
 
@@ -335,7 +371,7 @@ int sTextWidth[] = {
 {
     static Statement *stmt = nil;
     if (stmt == nil) {
-        stmt = [DBConnection statementWithQuery:"REPLACE INTO statuses VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"];
+        stmt = [DBConnection statementWithQuery:"REPLACE INTO statuses VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"];
         [stmt retain];
     }
     [stmt bindInt64:tweetId    forIndex:1];
@@ -356,6 +392,13 @@ int sTextWidth[] = {
     [stmt bindInt64:inReplyToStatusId    forIndex:9];
     [stmt bindInt32:inReplyToUserId      forIndex:10];
     [stmt bindString:inReplyToScreenName forIndex:11];
+	[stmt bindString:thumbnailPic       forIndex:12];
+	[stmt bindString:bmiddlePic       forIndex:13];
+	[stmt bindString:originalPic       forIndex:14];
+    
+	if (retweetedStatus) {
+		[stmt bindInt64:retweetedStatus.statusId       forIndex:15];
+	}
     
     if ([stmt step] != SQLITE_DONE) {
         [DBConnection alert];
@@ -363,7 +406,11 @@ int sTextWidth[] = {
     [stmt reset];
     
     [user updateDB];
-
+    
+    if (retweetedStatus) {
+		[retweetedStatus insertDB];
+	}
+    
     if (type == TWEET_TYPE_FRIENDS) {
         [Followee insertDB:user];
     }

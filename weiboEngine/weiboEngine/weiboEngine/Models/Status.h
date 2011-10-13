@@ -10,11 +10,11 @@
 #define INDICATOR_WIDTH     (30 - H_MARGIN)
 #define DETAIL_BUTTON_WIDTH (45 - H_MARGIN)
 
-#define IMAGE_WIDTH         48
+#define IMAGE_WIDTH         50
 #define USER_CELL_LEFT      42
 #define STAR_BUTTON_WIDTH   32
 
-#define TOP                 (16 + 1)
+#define TOP                 (16 + 1 + 8)
 #define LEFT                (IMAGE_PADDING * 2 + IMAGE_WIDTH)
 #define CELL_WIDTH          (320 - LEFT)
 #define TIMESTAMP_WIDTH     60
@@ -31,16 +31,29 @@
     sqlite_int64    inReplyToStatusId;
     int             inReplyToUserId;
     NSString*       inReplyToScreenName;
+    Status*         retweetedStatus;
+	NSString*		thumbnailPic; //缩略图
+	NSString*		bmiddlePic; //中型图片
+	NSString*		originalPic; //原始图片    
+    
+    CGRect          retweetedTextBounds;
 }
 
 @property (getter=tweetId, setter=setTweetId:) sqlite_int64  statusId;
 //@property (nonatomic, retain) User*         user;
+@property (nonatomic, retain) Status*		retweetedStatus; //转发的博文，内容为status，如果不是转发，则没有此字段
 @property (nonatomic, retain) NSString*     source;
 @property (nonatomic, assign) BOOL          favorited;
 @property (nonatomic, assign) BOOL          truncated;
 @property (nonatomic, assign) sqlite_int64  inReplyToStatusId;
 @property (nonatomic, assign) int           inReplyToUserId;
 @property (nonatomic, retain) NSString*     inReplyToScreenName;
+
+@property (nonatomic, retain) NSString*		thumbnailPic; //缩略图
+@property (nonatomic, retain) NSString*		bmiddlePic; //中型图片
+@property (nonatomic, retain) NSString*		originalPic; //原始图片
+
+@property (nonatomic, assign) CGRect        retweetedTextBounds;
 
 + (Status*)statusWithId:(sqlite_int64)statusId;
 + (Status*)statusWithJsonDictionary:(NSDictionary*)dic type:(TweetType)type;

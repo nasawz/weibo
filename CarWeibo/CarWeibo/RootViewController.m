@@ -8,22 +8,25 @@
 
 #import "RootViewController.h"
 #import "ImageUtils.h"
+#import "HomeViewController.h"
+#import "ActivityViewController.h"
 
-#define SinaWeiBoSDKDemo_APPKey @"2888398119"
-#define SinaWeiBoSDKDemo_APPSecret @"5e9982830d03d178b7e07a83e27430a0"
-
-
+//#define SinaWeiBo_APPKey @"2888398119"
+//#define SinaWeiBo_APPSecret @"5e9982830d03d178b7e07a83e27430a0"
+//
+//
 #define CarweiboAccount @"carweibo@sina.cn"
 #define CarweiboPassword @"123456"
+//
+//#if !defined(SinaWeiBo_APPKey)
+//#error "You must define SinaWeiBoSDKDemo_APPKey as your APP Key"
+//#endif
+//
+//#if !defined(SinaWeiBo_APPSecret)
+//#error "You must define SinaWeiBoSDKDemo_APPSecret as your APP Secret"
+//#endif
 
-#if !defined(SinaWeiBoSDKDemo_APPKey)
-#error "You must define SinaWeiBoSDKDemo_APPKey as your APP Key"
-#endif
-
-#if !defined(SinaWeiBoSDKDemo_APPSecret)
-#error "You must define SinaWeiBoSDKDemo_APPSecret as your APP Secret"
-#endif
-
+#define SELECTED_VIEW_CONTROLLER_TAG 98456345
 static NSArray* tabBarItems = nil;
 
 @implementation RootViewController
@@ -33,11 +36,15 @@ static NSArray* tabBarItems = nil;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
+        UINavigationController * home_nav = [[UINavigationController alloc] initWithRootViewController:[[HomeViewController alloc] init]];
+        UINavigationController * activity_nav = [[UINavigationController alloc] initWithRootViewController:[[ActivityViewController alloc] init]];
+        
         tabBarItems = [[NSArray arrayWithObjects:
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_home.png", @"image", @"", @"viewController", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_topic.png", @"image", @"", @"viewController", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_profile.png", @"image", @"", @"viewController", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_activity.png", @"image", @"", @"viewController", nil], nil] retain];
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_home.png", @"image", home_nav, @"viewController", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_topic.png", @"image", home_nav, @"viewController", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_profile.png", @"image", home_nav, @"viewController", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_activity.png", @"image", activity_nav, @"viewController", nil], nil] retain];
     }
     return self;
 }
@@ -101,9 +108,9 @@ static NSArray* tabBarItems = nil;
 		[weibo release];
 		weibo = nil;
 	}
-	weibo = [[WeiBo alloc]initWithAppKey:SinaWeiBoSDKDemo_APPKey 
-						   withAppSecret:SinaWeiBoSDKDemo_APPSecret];
+	weibo = [[WeiBo alloc] init];
 	weibo.delegate = self;
+//    [weibo LogOutAll];
     [weibo startAuthorizeDefaultByAccount:CarweiboAccount Password:CarweiboPassword];
     //    [weibo LogOutAll];
     //    [weibo startAuthorizeByAccount:@"nasawz" Password:@"wa3029q"];
@@ -208,28 +215,32 @@ static NSArray* tabBarItems = nil;
 
 - (void) touchDownAtItemAtIndex:(NSUInteger)itemIndex
 {
-//    // Remove the current view controller's view
-//    UIView* currentView = [self.view viewWithTag:SELECTED_VIEW_CONTROLLER_TAG];
-//    [currentView removeFromSuperview];
-//    
-//    // Get the right view controller
-//    NSDictionary* data = [tabBarItems objectAtIndex:itemIndex];
-//    UIViewController* viewController = [data objectForKey:@"viewController"];
-//    
-//    // Use the TabBarGradient image to figure out the tab bar's height (22x2=44)
-//    UIImage* tabBarGradient = [UIImage imageNamed:@"TabBarGradient.png"];
-//    
-//    // Set the view controller's frame to account for the tab bar
-//    viewController.view.frame = CGRectMake(0,0,self.view.bounds.size.width, self.view.bounds.size.height-(tabBarGradient.size.height*2));
-//    
-//    // Se the tag so we can find it later
-//    viewController.view.tag = SELECTED_VIEW_CONTROLLER_TAG;
-//    
-//    // Add the new view controller's view
-//    [self.view insertSubview:viewController.view belowSubview:tabBar];
-//    
-//    // In 1 second glow the selected tab
-//    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addGlowTimerFireMethod:) userInfo:[NSNumber numberWithInteger:itemIndex] repeats:NO];
+    // Remove the current view controller's view
+    UIView* currentView = [self.view viewWithTag:SELECTED_VIEW_CONTROLLER_TAG];
+    [currentView removeFromSuperview];
+    
+    // Get the right view controller
+    NSDictionary* data = [tabBarItems objectAtIndex:itemIndex];
+    UIViewController* viewController = [data objectForKey:@"viewController"];
+    
+    // Use the TabBarGradient image to figure out the tab bar's height (22x2=44)
+    UIImage* tabBarGradient = [UIImage imageNamed:@"TabBarGradient.png"];
+    
+    // Set the view controller's frame to account for the tab bar
+    viewController.view.frame = CGRectMake(0,0,self.view.bounds.size.width, self.view.bounds.size.height-(tabBarGradient.size.height*2));
+    
+    // Se the tag so we can find it later
+    viewController.view.tag = SELECTED_VIEW_CONTROLLER_TAG;
+    
+    // Add the new view controller's view
+    [self.view insertSubview:viewController.view belowSubview:tabBar];
+    
+//    if (itemIndex == 0) {
+//        [(HomeViewController*)[(UINavigationController *)viewController topViewController] restoreAndLoadTimeline:YES];
+//    }
+    
+    // In 1 second glow the selected tab
+    //    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addGlowTimerFireMethod:) userInfo:[NSNumber numberWithInteger:itemIndex] repeats:NO];
     
 }
 
@@ -260,14 +271,14 @@ static NSArray* tabBarItems = nil;
 }
 
 - (void)weiboDidDefaultLogin {
-	
-	UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil 
-													   message:[NSString stringWithFormat:@"默认用户[%@]验证已成功！",CarweiboAccount] 
-													  delegate:nil 
-											 cancelButtonTitle:@"确定" 
-											 otherButtonTitles:nil];
-	[alertView show];
-	[alertView release];    
+	NSLog(@"===>%@",[NSString stringWithFormat:@"默认用户[%@]验证已成功！",CarweiboAccount]);
+//	UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil 
+//													   message:[NSString stringWithFormat:@"默认用户[%@]验证已成功！",CarweiboAccount] 
+//													  delegate:nil 
+//											 cancelButtonTitle:@"确定" 
+//											 otherButtonTitles:nil];
+//	[alertView show];
+//	[alertView release];    
 }
 
 - (void)weiboLoginFailed:(BOOL)userCancelled withError:(NSError*)error
