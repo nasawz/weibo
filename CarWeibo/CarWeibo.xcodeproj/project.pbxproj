@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB60DF301448050600B82ED6 /* bg_cellEnd.png in Resources */ = {isa = PBXBuildFile; fileRef = CB60DF2E1448050600B82ED6 /* bg_cellEnd.png */; };
+		CB60DF311448050600B82ED6 /* bg_cellEnd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB60DF2F1448050600B82ED6 /* bg_cellEnd@2x.png */; };
+		CB60DF381448062000B82ED6 /* WZLoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB60DF371448062000B82ED6 /* WZLoadMoreTableFooterView.m */; };
 		CB8273AA14428B45003D36E8 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = CB8273A914428B45003D36E8 /* iTunesArtwork */; };
 		CB8273B4144290C4003D36E8 /* icon_activity.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8273AC144290C4003D36E8 /* icon_activity.png */; };
 		CB8273B5144290C4003D36E8 /* icon_activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB8273AD144290C4003D36E8 /* icon_activity@2x.png */; };
@@ -117,6 +120,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB60DF2E1448050600B82ED6 /* bg_cellEnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_cellEnd.png; sourceTree = "<group>"; };
+		CB60DF2F1448050600B82ED6 /* bg_cellEnd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_cellEnd@2x.png"; sourceTree = "<group>"; };
+		CB60DF361448062000B82ED6 /* WZLoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLoadMoreTableFooterView.h; sourceTree = "<group>"; };
+		CB60DF371448062000B82ED6 /* WZLoadMoreTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZLoadMoreTableFooterView.m; sourceTree = "<group>"; };
 		CB8273A914428B45003D36E8 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		CB8273AC144290C4003D36E8 /* icon_activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_activity.png; sourceTree = "<group>"; };
 		CB8273AD144290C4003D36E8 /* icon_activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_activity@2x.png"; sourceTree = "<group>"; };
@@ -477,6 +484,8 @@
 		CBD7AC0E14418C810019485E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				CB60DF2E1448050600B82ED6 /* bg_cellEnd.png */,
+				CB60DF2F1448050600B82ED6 /* bg_cellEnd@2x.png */,
 				CB859C5D1446C11C002A50B4 /* pulltorefresh_arrow.png */,
 				CB859C5E1446C11C002A50B4 /* pulltorefresh_arrow@2x.png */,
 				CB859C4D1446BBCF002A50B4 /* bg_thumbleImage.png */,
@@ -527,6 +536,8 @@
 				CB88AB66144594BB000428BF /* NSDictionaryAdditions.m */,
 				CB859C5A1446C0C9002A50B4 /* WZRefreshTableHeaderView.h */,
 				CB859C5B1446C0C9002A50B4 /* WZRefreshTableHeaderView.m */,
+				CB60DF361448062000B82ED6 /* WZLoadMoreTableFooterView.h */,
+				CB60DF371448062000B82ED6 /* WZLoadMoreTableFooterView.m */,
 			);
 			name = Thirdpart;
 			path = ../Thirdpart;
@@ -670,6 +681,7 @@
 		CBD7ABDF14418C4F0019485E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = nasa.wang;
 			};
 			buildConfigurationList = CBD7ABE214418C4F0019485E /* Build configuration list for PBXProject "CarWeibo" */;
@@ -742,6 +754,8 @@
 				CB859C541446BBCF002A50B4 /* thumbleImage@2x.png in Resources */,
 				CB859C5F1446C11C002A50B4 /* pulltorefresh_arrow.png in Resources */,
 				CB859C601446C11C002A50B4 /* pulltorefresh_arrow@2x.png in Resources */,
+				CB60DF301448050600B82ED6 /* bg_cellEnd.png in Resources */,
+				CB60DF311448050600B82ED6 /* bg_cellEnd@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +819,7 @@
 				CB88AB6A1445B4E7000428BF /* ThumbleImageView.m in Sources */,
 				CB88AB6D1445C23D000428BF /* ImageStoreWaiter.m in Sources */,
 				CB859C5C1446C0C9002A50B4 /* WZRefreshTableHeaderView.m in Sources */,
+				CB60DF381448062000B82ED6 /* WZLoadMoreTableFooterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,6 +895,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarWeibo/CarWeibo-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CarWeibo/CarWeibo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -891,6 +907,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarWeibo/CarWeibo-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CarWeibo/CarWeibo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

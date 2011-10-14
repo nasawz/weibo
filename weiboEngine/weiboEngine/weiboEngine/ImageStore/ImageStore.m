@@ -143,7 +143,7 @@ static UIImage *sThumbnailImage = nil;
 
 - (void)imageDownloaderDidSucceed:(ImageDownloader*)sender
 {
-    NSLog(@"succ %@",sender.requestURL);
+    //    NSLog(@"succ %@",sender.requestURL);
 	UIImage *image = [UIImage imageWithData:sender.buf];
     
     if (image) {

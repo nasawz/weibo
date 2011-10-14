@@ -47,8 +47,8 @@
 	
 	//  update the last update date
 	[refreshHeaderView refreshLastUpdatedDate];
-    
 }
+
 
 - (void) dealloc
 {
@@ -113,7 +113,7 @@
 {
     firstTimeToAppear = true;
     stopwatch = [[Stopwatch alloc] init];
-    tab       = [self navigationController].tabBarItem.tag;
+    tab       = 0;
     
     if (load) [self loadTimeline];
 }

@@ -16,7 +16,7 @@
 //
 //
 #define CarweiboAccount @"carweibo@sina.cn"
-#define CarweiboPassword @"123456"
+#define CarweiboPassword @"fractalist1688"
 //
 //#if !defined(SinaWeiBo_APPKey)
 //#error "You must define SinaWeiBoSDKDemo_APPKey as your APP Key"

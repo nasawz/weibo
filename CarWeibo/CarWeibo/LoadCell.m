@@ -8,9 +8,10 @@
 
 #import "LoadCell.h"
 #import "ColorUtils.h"
+#import "ImageUtils.h"
 
 static NSString *sLabels[] = {
-    @"Load more people...",
+    @"点击加载更多微博",
     @"Load more tweets...",
     @"Load all stored tweets...",
     @"Load this user's timeline...",
@@ -27,15 +28,20 @@ static NSString *sLabels[] = {
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
+    UIImageView * bgView = [[[UIImageView alloc] initWithImage:[UIImage imageByFileName:@"bg_cellEnd" FileExtension:@"png"]] autorelease];
+    [self.contentView addSubview:bgView];
+    
     // name label
     label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-    label.backgroundColor = [UIColor whiteColor];
-    label.textColor = [UIColor cellLabelColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor grayColor];
     label.highlightedTextColor = [UIColor whiteColor];
     label.font = [UIFont boldSystemFontOfSize:16];
     label.numberOfLines = 1;
     label.textAlignment = UITextAlignmentCenter;    
     label.frame = CGRectMake(0, 0, 320, 47);
+    label.shadowColor = [UIColor blackColor];
+    label.shadowOffset = CGSizeMake(0.0f, 1.0f);
     [self.contentView addSubview:label];
     
     spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
@@ -54,9 +60,9 @@ static NSString *sLabels[] = {
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    CGRect bounds = [label textRectForBounds:CGRectMake(0, 0, 320, 48) limitedToNumberOfLines:1];
+    CGRect bounds = [label textRectForBounds:CGRectMake(0, 10, 320, 30) limitedToNumberOfLines:1];
     spinner.frame = CGRectMake(bounds.origin.x + bounds.size.width + 4, (self.frame.size.height / 2) - 8, 16, 16);
-    label.frame = CGRectMake(0, 0, 320, self.frame.size.height - 1);
+    label.frame = CGRectMake(0, 10, 320, 30);
 }
 
 - (void)dealloc {

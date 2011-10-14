@@ -31,7 +31,7 @@
     
     controller = aController;
     tweetType  = type;
-    [loadCell setType:MSG_TYPE_LOAD_FROM_DB];
+    [loadCell setType:MSG_TYPE_LOAD_MORE_FRIENDS];
     isRestored = ([timeline restore:tweetType all:NO] < 20) ? YES : NO;
     return self; 
 }
@@ -89,6 +89,8 @@
 {
     Status* sts = [timeline statusAtIndex:indexPath.row];
     
+    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];  
+    
     if (sts) {
 //        // Display user view
 //        //
@@ -98,7 +100,7 @@
     else {
         // Restore tweets from DB
         //
-        int count = [timeline restore:tweetType all:YES];
+        int count = [timeline restore:tweetType all:NO];
         
         
         NSMutableArray *newPath = [[[NSMutableArray alloc] init] autorelease];
@@ -119,8 +121,7 @@
         }
         [tableView endUpdates];
     }
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];   
+     
 }
 
 
@@ -224,6 +225,7 @@
 	[controller.refreshHeaderView wzRefreshScrollViewDataSourceDidFinishedLoading:controller.tableView];
 	
 }
+
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 

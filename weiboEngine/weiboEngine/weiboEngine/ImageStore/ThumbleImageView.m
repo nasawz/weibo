@@ -27,7 +27,7 @@
     _thumbleImageUrl = [url copy];
     
     ImageStore *store = [CarWeiboAppDelegate getAppDelegate].imageStore;
-    NSLog(@"url = %@",url);
+    //    NSLog(@"url = %@",url);
     UIImage *image = [store getThumbnailImage:url delegate:_receiver];
     _receiver.imageContainer = self;
     return image;
@@ -35,7 +35,7 @@
 
 - (void)updateImage:(UIImage*)image
 {
-    NSLog(@"updateImage");
+    //    NSLog(@"updateImage");
     [self setImage:image];
     [self setNeedsDisplay];
 }

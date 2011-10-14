@@ -18,7 +18,7 @@
 - (id)init
 {
     [super init];
-    loadCell = [[LoadCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"LoadCell"];
+    loadCell = [[LoadCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LoadCell"];
     timeline   = [[Timeline alloc] init];
     return self;
 }

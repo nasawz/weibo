@@ -59,7 +59,7 @@ NSString *TWITTERFON_FORM_BOUNDARY = @"0194784892923";
     
     NSString *URL = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)aURL, (CFStringRef)@"%", NULL, kCFStringEncodingUTF8);
     [URL autorelease];
-    LOG(@"%@", URL);
+    //    LOG(@"%@", URL);
 	NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]
                                          cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                      timeoutInterval:NETWORK_TIMEOUT];
