@@ -11,6 +11,7 @@ typedef enum {
     TWEET_TYPE_SENT,
     TWEET_TYPE_SEARCH_RESULT,
     TWEET_TYPE_FAVORITES,
+    TWEET_TYPE_OTHER,
 } TweetType;
 
 typedef enum {
@@ -57,6 +58,7 @@ typedef enum {
 
 @property (nonatomic, assign) CGFloat       cellHeight;
 @property (nonatomic, assign) CGRect        textBounds;
+@property (nonatomic, assign) CGRect        retweetedTextBounds;
 @property (nonatomic, assign) CGRect        bubbleRect;
 
 @property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
@@ -66,7 +68,7 @@ typedef enum {
 
 - (NSString*)timestamp;
 - (void)updateAttribute;
-- (void)calcTextBounds:(int)textWidth AndHasThumble:(BOOL)flag;
+- (void)calcTextBounds:(int)textWidth AndHasThumble:(BOOL)flag AndRetweetedHeight:(CGFloat)height;
 - (BOOL)hasConversation;
 
 - (id)copyWithZone:(NSZone*)zone;

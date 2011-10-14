@@ -57,7 +57,7 @@
 
 - (long long)getInt64:(int)index
 {
-    return (long long)sqlite3_column_int(stmt, index);
+    return (long long)sqlite3_column_int64(stmt, index);
 }
 
 - (NSData*)getData:(int)index

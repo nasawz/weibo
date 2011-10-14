@@ -39,7 +39,6 @@ static NSInteger sortByDateDesc(id a, id b, void *context)
 
 @synthesize thumbnailPic, bmiddlePic, originalPic;
 
-@synthesize retweetedTextBounds;
 
 - (void)dealloc
 {
@@ -120,12 +119,11 @@ static NSInteger sortByDateDesc(id a, id b, void *context)
 	if (userDic) {
         user = [User userWithJsonDictionary:userDic];
     }
-    
 	NSDictionary* retweetedStatusDic = [dic objectForKey:@"retweeted_status"];
 	if (retweetedStatusDic) {
-        retweetedStatus = [Status statusWithJsonDictionary:retweetedStatusDic type:type];
+        retweetedStatus = [[Status statusWithJsonDictionary:retweetedStatusDic type:TWEET_TYPE_OTHER] retain];
+//        retweetedStatusText = [retweetedStatus.text copy];
     }    
-
     [self updateAttribute];
     unread = true;
 
@@ -218,7 +216,16 @@ int sTextWidth[] = {
     }
     // Calculate text bounds and cell height here
     //
-    [self calcTextBounds:textWidth AndHasThumble:(![thumbnailPic isEqualToString:@""])];
+    CGFloat retweetedHeight = 0.0f;
+//        NSLog(@"--%@",retweetedStatus.text);
+    if (retweetedStatus) {
+        retweetedHeight = retweetedStatus.retweetedTextBounds.size.height;
+        retweetedHeight += 10;
+        if (![retweetedStatus.thumbnailPic isEqualToString:@""]) {
+            retweetedHeight += 75;
+        }
+    }
+    [self calcTextBounds:textWidth AndHasThumble:(![thumbnailPic isEqualToString:@""]) AndRetweetedHeight:retweetedHeight];
 }
 
 + (Status*)statusWithId:(sqlite_int64)aStatusId
@@ -260,10 +267,11 @@ int sTextWidth[] = {
     s.bmiddlePic = [stmt getString:12];
     s.originalPic = [stmt getString:13];
     
+    if ([stmt getInt64:14] != 0) {
+        s.retweetedStatus = [Status statusWithId:[stmt getInt64:14]];
+    }
     
-    //    NSLog(@"bmiddlePic = %@",s.bmiddlePic);
     
-    s.retweetedStatus = [Status statusWithId:[stmt getInt32:14]];
 
     s.user = [User userWithId:[stmt getInt32:2]];
 
@@ -396,9 +404,12 @@ int sTextWidth[] = {
 	[stmt bindString:bmiddlePic       forIndex:13];
 	[stmt bindString:originalPic       forIndex:14];
     
-	if (retweetedStatus) {
-		[stmt bindInt64:retweetedStatus.statusId       forIndex:15];
-	}
+	if (retweetedStatus && type != TWEET_TYPE_OTHER) {
+        //        NSLog(@"insertDB %lld , type = %d",retweetedStatus.statusId,TWEET_TYPE_OTHER);
+        [stmt bindInt64:retweetedStatus.statusId       forIndex:15];
+	}else{
+        [stmt bindInt64:0       forIndex:15];
+    }
     
     if ([stmt step] != SQLITE_DONE) {
         [DBConnection alert];
@@ -407,7 +418,8 @@ int sTextWidth[] = {
     
     [user updateDB];
     
-    if (retweetedStatus) {
+    if (retweetedStatus &&  type != TWEET_TYPE_OTHER) {
+        retweetedStatus.type = TWEET_TYPE_OTHER;
 		[retweetedStatus insertDB];
 	}
     

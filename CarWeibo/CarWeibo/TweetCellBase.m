@@ -21,7 +21,12 @@
     backgroundView = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
     [self.contentView addSubview:backgroundView];
     
+    retweetBackgroundView = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
+    [self.contentView addSubview:retweetBackgroundView];
+    
     [backgroundView setImage:[[UIImage imageByFileName:@"bg_cell1" FileExtension:@"png"] stretchableImageWithLeftCapWidth:10 topCapHeight:20]];
+    
+    [retweetBackgroundView setImage:[[UIImage imageByFileName:@"timeline_rt_border" FileExtension:@"png"] stretchableImageWithLeftCapWidth:0 topCapHeight:14]];
     
     cellView = [[[TweetCellView alloc] initWithFrame:CGRectZero] autorelease];
     [self.contentView addSubview:cellView];

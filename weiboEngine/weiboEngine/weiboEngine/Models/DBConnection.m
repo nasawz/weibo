@@ -28,6 +28,7 @@ const char *delete_tweets =
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSLog(@"documentsDirectory = %@",documentsDirectory);
     NSString *path = [documentsDirectory stringByAppendingPathComponent:dbFilename];
     // Open the database. The database was prepared outside the application.
     if (sqlite3_open([path UTF8String], &instance) != SQLITE_OK) {

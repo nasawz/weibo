@@ -150,7 +150,7 @@
         [param setObject:[NSString stringWithFormat:@"%d", since_id] forKey:@"since_id"];
         [param setObject:@"200" forKey:@"count"];
     }
-    
+    //    [param setObject:@"1" forKey:@"count"];
     [weibo getDefaultFriendsTimelineWithParams:param andDelegate:self];
 }
 
@@ -192,7 +192,6 @@
                 }
                 [sts insertDB];
                 sts.unread = true;
-                
                 [timeline insertStatus:sts atIndex:insertPosition];
                 ++unread;
             }

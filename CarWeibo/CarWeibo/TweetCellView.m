@@ -52,6 +52,17 @@
         [status.user.screenName drawInRect:CGRectMake(0, 8, CELL_WIDTH - DETAIL_BUTTON_WIDTH, TOP) withFont:[UIFont boldSystemFontOfSize:14]];
     }
 	[status.text drawInRect:status.textBounds withFont:[UIFont systemFontOfSize:textFontSize]];
+    
+    if (status.retweetedStatus != nil) {
+    //        NSLog(@"==============%@",status.retweetedStatus);
+    //        NSLog(@"textBounds = %@",NSStringFromCGRect(status.textBounds));
+    //        NSLog(@"retweetedTextBounds = %@",NSStringFromCGRect(status.retweetedTextBounds));
+    //        NSLog(@"!!!!!!!%@",status.retweetedStatus.text);
+    //        NSLog(@"==============");        
+        [status.retweetedStatus.text drawInRect:CGRectOffset(status.retweetedStatus.retweetedTextBounds, status.textBounds.origin.x + 5, status.textBounds.size.height + 15) withFont:[UIFont systemFontOfSize:textFontSize]];
+    }
+    
+    
 	[timestampColor set];
     if (status.cellType != TWEET_CELL_TYPE_NORMAL) {
         NSString *timestamp;

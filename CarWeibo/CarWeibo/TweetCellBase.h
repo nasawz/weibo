@@ -18,6 +18,7 @@
     TweetCellView*  cellView;
     UIButton*       imageButton;
     UIImageView *   backgroundView;
+    UIImageView *   retweetBackgroundView;
     UIImageView *   faceBgView;
     UIImageView *   thumbleImageView;
     UIImageView *   thumbleBgView;

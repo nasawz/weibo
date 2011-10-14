@@ -112,6 +112,9 @@ static NSInteger sortByDate(id a, id b, void *context)
 
 - (void)insertStatus:(Status*)status atIndex:(int)index
 {
+    if (!statuses) {
+        statuses = [[NSMutableArray array] retain];
+    }
     [statuses insertObject:status atIndex:index];
 }
 
@@ -147,7 +150,7 @@ static NSInteger sortByDate(id a, id b, void *context)
     if (stmt == nil) {
         static char *sql = "SELECT * FROM statuses WHERE statuses.type = ? ORDER BY id DESC LIMIT ? OFFSET ?";
         
-        NSLog(@"%s",sql);
+    //        NSLog(@"%s",sql);
         stmt = [DBConnection statementWithQuery:sql];
         [stmt retain];
     }
@@ -157,9 +160,9 @@ static NSInteger sortByDate(id a, id b, void *context)
     [stmt bindInt32:[statuses count] forIndex:3];
     
     
-    NSLog(@"%d",aType);
-    NSLog(@"%d",(all) ? 200 : 20);
-    NSLog(@"%d",[statuses count]);
+    //    NSLog(@"%d",aType);
+    //    NSLog(@"%d",(all) ? 200 : 20);
+    //    NSLog(@"%d",[statuses count]);
     
     int count = 0;
     while ([stmt step] == SQLITE_ROW) {

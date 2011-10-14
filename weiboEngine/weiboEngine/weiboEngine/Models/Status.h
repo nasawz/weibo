@@ -32,11 +32,11 @@
     int             inReplyToUserId;
     NSString*       inReplyToScreenName;
     Status*         retweetedStatus;
+    
 	NSString*		thumbnailPic; //缩略图
 	NSString*		bmiddlePic; //中型图片
 	NSString*		originalPic; //原始图片    
     
-    CGRect          retweetedTextBounds;
 }
 
 @property (getter=tweetId, setter=setTweetId:) sqlite_int64  statusId;
@@ -53,7 +53,6 @@
 @property (nonatomic, retain) NSString*		bmiddlePic; //中型图片
 @property (nonatomic, retain) NSString*		originalPic; //原始图片
 
-@property (nonatomic, assign) CGRect        retweetedTextBounds;
 
 + (Status*)statusWithId:(sqlite_int64)statusId;
 + (Status*)statusWithJsonDictionary:(NSDictionary*)dic type:(TweetType)type;
