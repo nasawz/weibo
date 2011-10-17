@@ -9,12 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "WeiBo.h"
 #import "CustomTabBar.h"
+#import "CustomNavigation.h"
 
 @interface RootViewController : UIViewController <WBSessionDelegate,WBRequestDelegate,CustomTabBarDelegate>{
     WeiBo*          weibo;
     CustomTabBar*   tabBar;
+    CustomNavigation * navigation;
 }
-
+@property (nonatomic, retain) CustomNavigation* navigation;
 @property (nonatomic, retain) CustomTabBar* tabBar;
+
+- (void)hideTabBar;
+- (void)showTabBar;
 
 @end

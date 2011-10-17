@@ -58,8 +58,9 @@
     //        NSLog(@"textBounds = %@",NSStringFromCGRect(status.textBounds));
     //        NSLog(@"retweetedTextBounds = %@",NSStringFromCGRect(status.retweetedTextBounds));
     //        NSLog(@"!!!!!!!%@",status.retweetedStatus.text);
-    //        NSLog(@"==============");        
-        [status.retweetedStatus.text drawInRect:CGRectOffset(status.retweetedStatus.retweetedTextBounds, status.textBounds.origin.x + 5, status.textBounds.size.height + 15) withFont:[UIFont systemFontOfSize:textFontSize]];
+    //        NSLog(@"==============");    
+        
+    [[NSString stringWithFormat:@"%@：%@",status.retweetedStatus.user.screenName,status.retweetedStatus.text] drawInRect:CGRectOffset(status.retweetedStatus.retweetedTextBounds, status.textBounds.origin.x + 5, status.textBounds.size.height + 15) withFont:[UIFont systemFontOfSize:textFontSize]];
     }
     
     

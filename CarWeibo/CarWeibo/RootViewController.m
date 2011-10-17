@@ -31,6 +31,7 @@ static NSArray* tabBarItems = nil;
 
 @implementation RootViewController
 @synthesize tabBar;
+@synthesize navigation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -89,7 +90,7 @@ static NSArray* tabBarItems = nil;
     self.tabBar = [[[CustomTabBar alloc] initWithItemCount:tabBarItems.count itemSize:CGSizeMake(self.view.frame.size.width/tabBarItems.count, tabBarGradient.size.height*2) tag:0 delegate:self] autorelease];
     
     // Place the tab bar at the bottom of our view
-    tabBar.frame = CGRectMake(0,self.view.frame.size.height-(tabBarGradient.size.height*2),self.view.frame.size.width, tabBarGradient.size.height*2);
+    tabBar.frame = CGRectMake(0,416,320, 44);
     [self.view addSubview:tabBar];
     
     // Select the first tab
@@ -114,6 +115,11 @@ static NSArray* tabBarItems = nil;
     [weibo startAuthorizeDefaultByAccount:CarweiboAccount Password:CarweiboPassword];
     //    [weibo LogOutAll];
     //    [weibo startAuthorizeByAccount:@"nasawz" Password:@"wa3029q"];
+    
+    
+    navigation = [[CustomNavigation alloc] initWithTitle:@"车博通" AddStyle:NAV_DOWNARR];
+    [self.view addSubview:navigation];
+    
 }
 
 
@@ -122,6 +128,12 @@ static NSArray* tabBarItems = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)dealloc {
+    
+    [navigation release];
+    [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -302,6 +314,20 @@ static NSArray* tabBarItems = nil;
 											 otherButtonTitles:nil];
 	[alertView show];
 	[alertView release];
+}
+
+- (void)hideTabBar {
+    [UIView beginAnimations:@"hideTabbar" context:nil];
+    [UIView setAnimationDuration:0.3f];
+    tabBar.frame = CGRectMake(0,470,320, 44);
+    [UIView commitAnimations];
+}
+
+- (void)showTabBar {
+    [UIView beginAnimations:@"hideTabbar" context:nil];
+    [UIView setAnimationDuration:0.3f];
+    tabBar.frame = CGRectMake(0,416,320, 44);
+    [UIView commitAnimations];
 }
 
 @end

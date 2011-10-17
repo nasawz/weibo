@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    NAV_DOWNARR,
+    NAV_NORMAL,
+} NAV_STYLE;
+
 @interface CustomNavigation : UIView {
-    
+    NAV_STYLE style;
+    UIImageView *   view_bg;
 }
 
-- (id)initWithTitle:(NSString *)title;
+@property (nonatomic,assign)NAV_STYLE style;
+
+- (id)initWithTitle:(NSString *)title AddStyle:(NAV_STYLE)style;
 
 @end

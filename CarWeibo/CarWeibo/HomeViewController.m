@@ -43,11 +43,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES];
-    navigation = [[CustomNavigation alloc] initWithTitle:@"车博通"];
-    [self.view addSubview:navigation];
     
-    tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 49, 320, 160)];
+    tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 160)];
     
     activityQuickViewModule = [[ActivityQuickViewModule alloc] init];
     [activityQuickViewModule.view setFrame:CGRectOffset(activityQuickViewModule.view.frame, 0, 0)];
@@ -61,17 +58,16 @@
     [lab_news setShadowOffset:CGSizeMake(0, -1)];
     [tableHeaderView addSubview:lab_news];
     
-    friendsTimelineController = [[FriendsTimelineController alloc] init];
-    [friendsTimelineController.tableView setFrame:CGRectMake(0, 49, 320, 460 - 49)];
+    friendsTimelineController = [[FriendsTimelineController alloc] initWithNavController:[self navigationController]];
+    [friendsTimelineController.tableView setFrame:CGRectMake(0, 6, 320, 460-6)];
     [friendsTimelineController.tableView setTableHeaderView:tableHeaderView];
     [friendsTimelineController.tableView setBackgroundColor:[UIColor clearColor]];
-    [self.view insertSubview:friendsTimelineController.view belowSubview:navigation];
+    [self.view addSubview:friendsTimelineController.view];
 }
 
 - (void)dealloc {
     [tableHeaderView release];
     [activityQuickViewModule release];
-    [navigation release];
     [super dealloc];
 }
 

@@ -20,9 +20,11 @@
     FriendsTimelineDataSource*  timelineDataSource;
     CGPoint                     contentOffset;
     WZRefreshTableHeaderView * refreshHeaderView;
+    UINavigationController * navController;
 }
 
 @property (nonatomic, retain) WZRefreshTableHeaderView * refreshHeaderView;
+@property (nonatomic, retain) UINavigationController *      navController;
 
 - (void)loadTimeline;
 - (void)restoreAndLoadTimeline:(BOOL)load;
@@ -30,6 +32,7 @@
 
 - (IBAction)reload:(id)sender;
 
+- (id)initWithNavController:(UINavigationController *)controller;
 
 
 @end

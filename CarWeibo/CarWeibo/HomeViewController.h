@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomNavigation.h"
 #import "ActivityQuickViewModule.h"
 #import "FriendsTimelineController.h"
 
 @interface HomeViewController : UIViewController {
-    CustomNavigation * navigation;
     ActivityQuickViewModule * activityQuickViewModule;
     UIView * tableHeaderView;
     FriendsTimelineController * friendsTimelineController;

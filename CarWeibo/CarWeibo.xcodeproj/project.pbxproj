@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB52568B144BFB4300741F38 /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB52568A144BFB4300741F38 /* TweetViewController.m */; };
+		CB525690144C004C00741F38 /* bg_Navigation_b.png in Resources */ = {isa = PBXBuildFile; fileRef = CB52568E144C004C00741F38 /* bg_Navigation_b.png */; };
+		CB525691144C004C00741F38 /* bg_Navigation_b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB52568F144C004C00741F38 /* bg_Navigation_b@2x.png */; };
+		CB525694144C08EE00741F38 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB525693144C08EE00741F38 /* UserView.m */; };
+		CB525697144C0AE500741F38 /* usercell_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CB525695144C0AE500741F38 /* usercell_background.png */; };
+		CB525698144C0AE500741F38 /* usercell_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB525696144C0AE500741F38 /* usercell_background@2x.png */; };
 		CB60DF301448050600B82ED6 /* bg_cellEnd.png in Resources */ = {isa = PBXBuildFile; fileRef = CB60DF2E1448050600B82ED6 /* bg_cellEnd.png */; };
 		CB60DF311448050600B82ED6 /* bg_cellEnd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB60DF2F1448050600B82ED6 /* bg_cellEnd@2x.png */; };
 		CB60DF381448062000B82ED6 /* WZLoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB60DF371448062000B82ED6 /* WZLoadMoreTableFooterView.m */; };
@@ -122,6 +128,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB525689144BFB4300741F38 /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
+		CB52568A144BFB4300741F38 /* TweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
+		CB52568E144C004C00741F38 /* bg_Navigation_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_Navigation_b.png; sourceTree = "<group>"; };
+		CB52568F144C004C00741F38 /* bg_Navigation_b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_Navigation_b@2x.png"; sourceTree = "<group>"; };
+		CB525692144C08EE00741F38 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
+		CB525693144C08EE00741F38 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
+		CB525695144C0AE500741F38 /* usercell_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usercell_background.png; sourceTree = "<group>"; };
+		CB525696144C0AE500741F38 /* usercell_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usercell_background@2x.png"; sourceTree = "<group>"; };
 		CB60DF2E1448050600B82ED6 /* bg_cellEnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_cellEnd.png; sourceTree = "<group>"; };
 		CB60DF2F1448050600B82ED6 /* bg_cellEnd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_cellEnd@2x.png"; sourceTree = "<group>"; };
 		CB60DF361448062000B82ED6 /* WZLoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -313,6 +327,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB52568D144BFB4F00741F38 /* Tweets */ = {
+			isa = PBXGroup;
+			children = (
+				CB525689144BFB4300741F38 /* TweetViewController.h */,
+				CB52568A144BFB4300741F38 /* TweetViewController.m */,
+				CB525692144C08EE00741F38 /* UserView.h */,
+				CB525693144C08EE00741F38 /* UserView.m */,
+			);
+			name = Tweets;
+			sourceTree = "<group>";
+		};
 		CB8273DF144298BE003D36E8 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +387,7 @@
 				CB8274141442D8A6003D36E8 /* Home */,
 				CBA8E5AD1442E2D6003085A4 /* Activity */,
 				CBA8E5B11442E367003085A4 /* Login */,
+				CB52568D144BFB4F00741F38 /* Tweets */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -488,6 +514,8 @@
 		CBD7AC0E14418C810019485E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				CB525695144C0AE500741F38 /* usercell_background.png */,
+				CB525696144C0AE500741F38 /* usercell_background@2x.png */,
 				CB60DF3914482AEC00B82ED6 /* timeline_rt_border.png */,
 				CB60DF3A14482AEC00B82ED6 /* timeline_rt_border@2x.png */,
 				CB60DF2E1448050600B82ED6 /* bg_cellEnd.png */,
@@ -506,6 +534,8 @@
 				CB88AB52144529F1000428BF /* bg_cell1@2x.png */,
 				CBA8E5A51442E061003085A4 /* bg_Navigation_a.png */,
 				CBA8E5A61442E061003085A4 /* bg_Navigation_a@2x.png */,
+				CB52568E144C004C00741F38 /* bg_Navigation_b.png */,
+				CB52568F144C004C00741F38 /* bg_Navigation_b@2x.png */,
 				CBD7AC0F14418C810019485E /* bg_header.png */,
 				CBD7AC1014418C810019485E /* bg_header@2x.png */,
 				CBD7AC1114418C810019485E /* bg_leathertexture.png */,
@@ -764,6 +794,10 @@
 				CB60DF311448050600B82ED6 /* bg_cellEnd@2x.png in Resources */,
 				CB60DF3B14482AEC00B82ED6 /* timeline_rt_border.png in Resources */,
 				CB60DF3C14482AEC00B82ED6 /* timeline_rt_border@2x.png in Resources */,
+				CB525690144C004C00741F38 /* bg_Navigation_b.png in Resources */,
+				CB525691144C004C00741F38 /* bg_Navigation_b@2x.png in Resources */,
+				CB525697144C0AE500741F38 /* usercell_background.png in Resources */,
+				CB525698144C0AE500741F38 /* usercell_background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +862,8 @@
 				CB88AB6D1445C23D000428BF /* ImageStoreWaiter.m in Sources */,
 				CB859C5C1446C0C9002A50B4 /* WZRefreshTableHeaderView.m in Sources */,
 				CB60DF381448062000B82ED6 /* WZLoadMoreTableFooterView.m in Sources */,
+				CB52568B144BFB4300741F38 /* TweetViewController.m in Sources */,
+				CB525694144C08EE00741F38 /* UserView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

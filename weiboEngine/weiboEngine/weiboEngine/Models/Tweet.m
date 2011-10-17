@@ -71,8 +71,17 @@
     }
     label.font = [UIFont systemFontOfSize:(cellType == TWEET_CELL_TYPE_DETAIL) ? 14 : 13];
     label.text = text;
+    
+    
+    static UILabel *labelRetweeted = nil;
+    if (labelRetweeted == nil) {
+        labelRetweeted = [[UILabel alloc] initWithFrame:CGRectZero];
+    }
+    labelRetweeted.font = [UIFont systemFontOfSize:(cellType == TWEET_CELL_TYPE_DETAIL) ? 14 : 13];
+    labelRetweeted.text = [NSString stringWithFormat:@"%@:%@",user.screenName,text];    
+    
     result = [label textRectForBounds:bounds limitedToNumberOfLines:20];
-    retweetedResult = [label textRectForBounds:retweetedBounds limitedToNumberOfLines:20];
+    retweetedResult = [labelRetweeted textRectForBounds:retweetedBounds limitedToNumberOfLines:20];
     
     textBounds = CGRectMake(bounds.origin.x, bounds.origin.y, textWidth, result.size.height);
     
@@ -142,6 +151,8 @@ static NSString *hashRegexp = @"(#[a-zA-Z0-9\\-_\\.+:=]+)";
             accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
+    
+    accessoryType = UITableViewCellAccessoryNone;
 
     // Convert timestamp string to UNIX time
     //

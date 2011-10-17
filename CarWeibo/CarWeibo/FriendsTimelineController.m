@@ -18,6 +18,15 @@
 
 @implementation FriendsTimelineController
 @synthesize refreshHeaderView;
+@synthesize navController;
+
+- (id)initWithNavController:(UINavigationController *)controller {
+    self = [super initWithStyle:UITableViewStylePlain];
+    if (self) {
+        navController = controller;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {

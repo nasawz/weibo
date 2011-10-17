@@ -8,8 +8,10 @@
 
 #import "CustomNavigation.h"
 #import "ImageUtils.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation CustomNavigation
+@synthesize style;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -20,16 +22,38 @@
     return self;
 }
 
-- (id)initWithTitle:(NSString *)title {
+- (id)initWithTitle:(NSString *)title AddStyle:(NAV_STYLE)aStyle {
     self = [super initWithFrame:CGRectMake(0, 0, 320, 61)];
     if (self) {
-        UIImage *       img_bg = [UIImage imageByFileName:@"bg_Navigation_a" FileExtension:@"png"];
-        UIImageView *   view_bg = [[UIImageView alloc] initWithImage:img_bg];
+        UIImage * img_bg;
+        style = aStyle;
+        if (aStyle == NAV_DOWNARR) {
+            img_bg = [UIImage imageByFileName:@"bg_Navigation_a" FileExtension:@"png"];
+        }else{
+            img_bg = [UIImage imageByFileName:@"bg_Navigation_b" FileExtension:@"png"];
+        }
+        view_bg = [[UIImageView alloc] initWithImage:img_bg];
         [self addSubview:view_bg];
         [img_bg release];
-        [view_bg release];
     }
     return self;    
+}
+
+- (void)setStyle:(NAV_STYLE)aStyle {
+
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.3f;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    
+    animation.type = kCATransitionFade;
+    UIImage * img_bg;
+    if (aStyle == NAV_DOWNARR) {
+        img_bg = [UIImage imageByFileName:@"bg_Navigation_a" FileExtension:@"png"];    
+    }else{
+        img_bg = [UIImage imageByFileName:@"bg_Navigation_b" FileExtension:@"png"];
+    }
+    [view_bg setImage:img_bg];
+    [[self layer] addAnimation:animation forKey:@"animation"];
 }
 
 /*
