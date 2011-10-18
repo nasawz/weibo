@@ -96,7 +96,7 @@
             height += 70;
         }
         height += 18;
-        retweetBackgroundView.frame = CGRectMake(320-270, status.textBounds.origin.y+status.textBounds.size.height + 5, 270, height);
+        retweetBackgroundView.frame = CGRectMake(320-270, status.textBounds.origin.y+status.textBounds.size.height + 5, 260, height);
     }else{
         retweetBackgroundView.frame = CGRectZero;
     }

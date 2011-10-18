@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "ImageUtils.h"
+#import "WBUtil.h"
 #import "HomeViewController.h"
 #import "ActivityViewController.h"
 
@@ -120,6 +121,10 @@ static NSArray* tabBarItems = nil;
     navigation = [[CustomNavigation alloc] initWithTitle:@"车博通" AddStyle:NAV_DOWNARR];
     [self.view addSubview:navigation];
     
+//    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+//	[params setObject:[@"改车" URLEncodedString] forKey:@"q"];
+    
+//    [weibo requestWithMethodName:@"search/statuses.json" andParams:nil andHttpMethod:@"POST" andDelegate:self accessToken:weibo.defaultAccessToken accessSecret:weibo.defaultAccessTokenSecret];
 }
 
 
@@ -328,6 +333,14 @@ static NSArray* tabBarItems = nil;
     [UIView setAnimationDuration:0.3f];
     tabBar.frame = CGRectMake(0,416,320, 44);
     [UIView commitAnimations];
+}
+
+
+- (void)request:(WBRequest *)request didLoad:(id)result {
+    NSLog(@"%@",result);
+}
+- (void)request:(WBRequest *)request didFailWithError:(NSError *)error {
+    NSLog(@"%@",error);
 }
 
 @end

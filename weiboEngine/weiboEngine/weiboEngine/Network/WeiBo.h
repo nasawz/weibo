@@ -68,6 +68,8 @@ typedef enum
 @property (nonatomic,retain,readonly) NSString* userID;
 @property (nonatomic,retain,readonly) NSString* accessToken;
 @property (nonatomic,retain,readonly) NSString* accessTokenSecret;
+@property (nonatomic,retain,readonly) NSString* defaultAccessToken;
+@property (nonatomic,retain,readonly) NSString* defaultAccessTokenSecret;
 @property (nonatomic,readonly) LOGINTYPE  loginType;
 
 @property (nonatomic,assign) id<WBSessionDelegate> delegate;

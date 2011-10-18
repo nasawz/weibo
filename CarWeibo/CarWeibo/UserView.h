@@ -17,6 +17,7 @@
     float               height;
     UIImageView *       faceBgView;
     UIImageView *       faceImageView;
+    UILabel*            lab_username;
 }
 @property(nonatomic, assign) User*      user;
 @property(nonatomic, assign) float      height;

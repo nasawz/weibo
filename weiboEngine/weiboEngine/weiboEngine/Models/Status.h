@@ -11,7 +11,7 @@
 #define DETAIL_BUTTON_WIDTH (45 - H_MARGIN)
 
 #define IMAGE_WIDTH         50
-#define USER_CELL_LEFT      42
+#define USER_CELL_LEFT      15
 #define STAR_BUTTON_WIDTH   32
 
 #define TOP                 (16 + 1 + 8)

@@ -8,18 +8,48 @@
 
 #import "TweetViewController.h"
 #import "CarWeiboAppDelegate.h"
+#import "ImageUtils.h"
+
+#define NUM_SECTIONS 2
+enum {
+    SECTION_MESSAGE,
+    SECTION_REPLAYS,
+};
+enum {
+    ROW_MESSAGE,
+    ROW_IN_REPLY_TO,
+};
 
 @implementation TweetViewController
 
 - (void)initCommon {
     userView   = [[UserView alloc] initWithFrame:CGRectMake(0, 0, 320, 77)];
+    tweetCell  = [[UserTimelineCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessageCell"];
+    
+    
+    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+    
+    UIButton* backButton = [delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    delegate.rootViewController.navigation.leftButton = backButton;
+    
+}
+
+- (void)back:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+    delegate.rootViewController.navigation.leftButton = nil;
 }
 
 - (void)setStatus:(Status*)value
 {
     status = [value copy];
-//    status.cellType = TWEET_CELL_TYPE_DETAIL;
+    status.cellType = TWEET_CELL_TYPE_DETAIL;
     [status  updateAttribute];
+    if (status.retweetedStatus) {
+        status.retweetedStatus.cellType = TWEET_CELL_TYPE_DETAIL;
+        [status.retweetedStatus updateAttribute];
+    }
     
 //    actionCell.status = status;
     [userView setUser:status.user];
@@ -36,11 +66,10 @@
 }
 
 - (id)initWithMessage:(Status*)sts {
-    self = [super initWithStyle:UITableViewStyleGrouped];
+    self = [super initWithStyle:UITableViewStylePlain];
+    [self.navigationController.view setFrame:CGRectMake(0, 0, 320, 460)];
     [self initCommon];
-    [self setWantsFullScreenLayout:YES];
     [self setStatus:sts];
-    [self.view setBackgroundColor:[UIColor clearColor]];
     return self;
 }
 
@@ -60,17 +89,12 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.navigationController.view setFrame:CGRectMake(0, 0, 320, 460)];
+//    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageByFileName:@"bg_papertexture" FileExtension:@"png"]]];
+    [self.view setBackgroundColor:[UIColor clearColor]];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -104,61 +128,55 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-//    if (status) {
-//        return NUM_SECTIONS;
-//    }
-//    else {
-//        return 1;
-//    }
-    return 1;
+    if (status) {
+        return NUM_SECTIONS;
+    }
+    else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-//    if (status) {
-//        int s = sections[section];
-//        switch (s) {
-//            case SECTION_MESSAGE:
-//                if (status.inReplyToStatusId) {
-//                    return 2;
-//                }
-//                else {
-//                    return ([status hasConversation]) ? 2 : 1;
-//                }
-//                break;
-//            case SECTION_ACTIONS:
-//                return 1;
-//            case SECTION_MORE_ACTIONS:
-//                return 2;
-//            case SECTION_DELETE:
-//                return 1;
-//        }
-//    }
-//    return 0;
+    if (status) {
+        int s = section;
+        switch (s) {
+            case SECTION_MESSAGE:
+                return 1;
+                break;
+            case SECTION_REPLAYS:
+                return 0;
+                break;
+        }
+    }
     return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.section == SECTION_MESSAGE && indexPath.row == ROW_MESSAGE) {
-//        return status.cellHeight;
-//    }
-//    else {
-//        return 44;
-//    }
-    return 77;
+    if (indexPath.section == SECTION_MESSAGE && indexPath.row == ROW_MESSAGE) {
+        return status.cellHeight;
+    }
+    else {
+        return 44;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-//    if (indexPath.section == SECTION_MESSAGE && indexPath.row == ROW_MESSAGE) {
-//        tweetCell.status = status;
-//        [tweetCell update];
-//        tweetCell.contentView.backgroundColor = [UIColor clearColor];
-//        return tweetCell;
-//    }
-//    
-//    int section = sections[indexPath.section];
-//    
+    
+    int section = indexPath.section;
+    
+    NSLog(@"section = %d",section);
+    
+    if (indexPath.section == SECTION_MESSAGE && indexPath.row == ROW_MESSAGE) {
+        tweetCell.status = status;
+        [tweetCell update];
+        tweetCell.contentView.backgroundColor = [UIColor clearColor];
+        return tweetCell;
+    }
+
+    
+    
 //    if (section == SECTION_ACTIONS) {
 //        return actionCell;
 //    }
@@ -203,24 +221,22 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//    if (section == SECTION_MESSAGE) {
-//        return userView;
-//    }
-//    else {
-//        return nil;
-//    }
-    return userView;
+    if (section == SECTION_MESSAGE) {
+        return userView;
+    }
+    else {
+        return nil;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-//    if (section == SECTION_MESSAGE) {
-//        return userView.height;
-//    }
-//    else {
-//        return 0;
-//    }
-    return 77;
+    if (section == SECTION_MESSAGE) {
+        return userView.height;
+    }
+    else {
+        return 0;
+    }
 }
 
 

@@ -65,6 +65,12 @@
     [self.view addSubview:friendsTimelineController.view];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.navigationController.view setFrame:CGRectMake(0, 0, 320, 460 - 44)];
+}
+
 - (void)dealloc {
     [tableHeaderView release];
     [activityQuickViewModule release];

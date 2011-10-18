@@ -50,6 +50,11 @@
 	[textColor set];
     if (status.cellType == TWEET_CELL_TYPE_NORMAL) {
         [status.user.screenName drawInRect:CGRectMake(0, 8, CELL_WIDTH - DETAIL_BUTTON_WIDTH, TOP) withFont:[UIFont boldSystemFontOfSize:14]];
+        status.retweetedStatus.cellType = TWEET_CELL_TYPE_NORMAL;
+        [status.retweetedStatus updateAttribute];
+    }else if(status.cellType == TWEET_CELL_TYPE_USER){
+        status.retweetedStatus.cellType = TWEET_CELL_TYPE_USER;
+        [status.retweetedStatus updateAttribute];
     }
 	[status.text drawInRect:status.textBounds withFont:[UIFont systemFontOfSize:textFontSize]];
     
@@ -67,13 +72,18 @@
 	[timestampColor set];
     if (status.cellType != TWEET_CELL_TYPE_NORMAL) {
         NSString *timestamp;
-        if ([status.source length]) {
-            timestamp = [status.timestamp stringByAppendingFormat:@" from %@", status.source];
-        }
-        else {
+//        if ([status.source length]) {
+//            timestamp = [status.timestamp stringByAppendingFormat:@" from %@", status.source];
+//        }
+//        else {
             timestamp = status.timestamp;
+//        }
+        CGFloat h;
+        h = status.textBounds.size.height;
+        if (status.retweetedStatus) {
+            h += (status.retweetedStatus.retweetedTextBounds.size.height + 30);
         }
-        [timestamp drawInRect:CGRectMake(0, status.textBounds.size.height + 3, 250, 16) withFont:[UIFont systemFontOfSize:12]];
+        [timestamp drawInRect:CGRectMake(CELL_WIDTH - 250 + LEFT / 2, status.cellHeight - 20, 250, 16) withFont:[UIFont systemFontOfSize:12] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentRight];
 //        [timestamp drawInRect:CGRectMake(CELL_WIDTH - 100 - 8, 8, 100, 16) withFont:[UIFont systemFontOfSize:12] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentRight];
     }
     else {

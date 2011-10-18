@@ -6,6 +6,7 @@
 	NSMutableDictionary*    images;
     NSMutableDictionary*    delegates;
 	NSMutableDictionary*    pending;
+    CGFloat w;
 }
 
 - (UIImage*)getProfileImage:(NSString*)url isLarge:(BOOL)flag delegate:(id)delegate;

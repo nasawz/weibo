@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Status.h"
 #import "UserView.h"
+#import "UserTimelineCell.h"
 
 @interface TweetViewController : UITableViewController {
     UserView*           userView;
     Status*             status;
+    UserTimelineCell*       tweetCell;;
 }
 
 - (id)initWithMessage:(Status*)status;

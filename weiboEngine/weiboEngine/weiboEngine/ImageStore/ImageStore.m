@@ -8,6 +8,8 @@
 static UIImage *sProfileImage = nil;
 static UIImage *sProfileImageSmall = nil;
 static UIImage *sThumbnailImage = nil;
+static UIImage *sBmiddleImage = nil;
+static UIImage *sOriginalImage = nil;
 
 @interface ImageStore(Private)
 - (UIImage*)getImageFromDB:(NSString*)url;
@@ -16,6 +18,8 @@ static UIImage *sThumbnailImage = nil;
 - (UIImage*)convertImage:(UIImage*)image forURL:(NSString*)str;
 + (UIImage*)defaultProfileImage:(BOOL)bigger;
 + (UIImage*)defaultThumbnailImage;
++ (UIImage*)defaultBmiddleImage;
++ (UIImage*)defaultOriginalImage;
 @end
 
 
@@ -75,6 +79,28 @@ static UIImage *sThumbnailImage = nil;
     }
     if ([pending count] <= MAX_CONNECTION && dl.requestURL == nil) {
         [dl get:url];
+    }
+    
+    NSRange r0 = [url rangeOfString:@"/50/"];
+    NSRange r1 = [url rangeOfString:@"/180/"];
+    NSRange r2 = [url rangeOfString:@"/thumbnail/"];
+    NSRange r3 = [url rangeOfString:@"/bmiddle/"];
+    NSRange r4 = [url rangeOfString:@"/large/"];
+
+    if (r0.location != NSNotFound) {
+        [ImageStore defaultProfileImage:YES];
+    }
+    if (r1.location != NSNotFound) {
+        [ImageStore defaultProfileImage:YES];
+    }
+    if (r2.location != NSNotFound) {
+        [ImageStore defaultThumbnailImage];
+    }
+    if (r3.location != NSNotFound) {
+        [ImageStore defaultBmiddleImage];
+    }
+    if (r4.location != NSNotFound) {
+        [ImageStore defaultOriginalImage];
     }
     
     return [ImageStore defaultProfileImage:isLarge];
@@ -252,8 +278,27 @@ static UIImage *sThumbnailImage = nil;
     
     float scale;
     
-    NSRange r = [url rangeOfString:@"/180/"];
-    float numPixels = (r.location != NSNotFound) ? 100.0 : 50.0;
+    NSRange r0 = [url rangeOfString:@"/50/"];
+    NSRange r1 = [url rangeOfString:@"/180/"];
+    NSRange r2 = [url rangeOfString:@"/thumbnail/"];
+    NSRange r3 = [url rangeOfString:@"/bmiddle/"];
+    NSRange r4 = [url rangeOfString:@"/large/"];
+    float numPixels = 50.0;
+    if (r0.location != NSNotFound) {
+        numPixels = 50.0;
+    }
+    if (r1.location != NSNotFound) {
+        numPixels = 100.0;
+    }
+    if (r2.location != NSNotFound) {
+        numPixels = 100.0;
+    }
+    if (r3.location != NSNotFound) {
+        numPixels = 300.0;
+    }
+    if (r4.location != NSNotFound) {
+        numPixels = 500.0;
+    }
     
     if (width > numPixels || height > numPixels) {
         if (width > height) {
@@ -331,5 +376,16 @@ static UIImage *sThumbnailImage = nil;
     }
     return sThumbnailImage;
 }
-
++ (UIImage*)defaultBmiddleImage {
+    if (sBmiddleImage == nil) {
+        sBmiddleImage = [[UIImage imageNamed:@"bmiddleImage.png"] retain];
+    }
+    return sBmiddleImage;
+}
++ (UIImage*)defaultOriginalImage {
+    if (sOriginalImage == nil) {
+        sOriginalImage = [[UIImage imageNamed:@"thumbleImage.png"] retain];
+    }
+    return sOriginalImage;
+}
 @end

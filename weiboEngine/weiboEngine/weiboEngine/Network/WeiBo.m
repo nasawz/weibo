@@ -32,6 +32,7 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 
 @implementation WeiBo
 @synthesize userID = _userID,accessToken = _accessToken,accessTokenSecret = _accessTokenSecret,delegate=_delegate;
+@synthesize defaultAccessToken = _defaultAccessToken,defaultAccessTokenSecret = _defaultAccessTokenSecret;
 @synthesize loginType;
 
 - (NSString*)urlSchemeString
@@ -338,7 +339,6 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 		[_request release];
 		_request = nil;
 	}
-	
 	_request = [WBRequest getAuthorizeRequestWithParams:params
 											 httpMethod:httpMethod
 										   postDataType:WBRequestPostDataType_Normal 

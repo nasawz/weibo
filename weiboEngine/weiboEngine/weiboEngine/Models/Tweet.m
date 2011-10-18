@@ -54,13 +54,13 @@
 {
     CGRect bounds, result,retweetedBounds,retweetedResult;
     
-    CGFloat retweetedWidth = 200.0f;
+    CGFloat retweetedWidth = textWidth - 18;
     
     if (cellType == TWEET_CELL_TYPE_NORMAL) {
         bounds = CGRectMake(0, TOP + 4, textWidth, 200);
     }
     else {
-        bounds = CGRectMake(0, 3, textWidth, 200);
+        bounds = CGRectMake(0, 4, textWidth, 200);
     }
     
     retweetedBounds = CGRectMake(bounds.origin.x,bounds.origin.y,retweetedWidth,bounds.size.height);
@@ -96,10 +96,15 @@
         if (result.size.height < IMAGE_WIDTH + 1) result.size.height = IMAGE_WIDTH + 1;
     }
     else {
-        result.size.height += 22;
+        result.size.height += 40;
     }
     if (flag) {
-        result.size.height += 65;
+        if (cellType == TWEET_CELL_TYPE_NORMAL) {
+            result.size.height += 65;
+        }
+        if (cellType == TWEET_CELL_TYPE_DETAIL) {
+            result.size.height += 270;
+        }
     }
     result.size.height += height;
     cellHeight = result.size.height;

@@ -222,7 +222,12 @@ int sTextWidth[] = {
         retweetedHeight = retweetedStatus.retweetedTextBounds.size.height;
         retweetedHeight += 10;
         if (![retweetedStatus.thumbnailPic isEqualToString:@""]) {
-            retweetedHeight += 75;
+            if (cellType == TWEET_CELL_TYPE_NORMAL) {
+                retweetedHeight += 75;
+            }
+            if (cellType == TWEET_CELL_TYPE_DETAIL) {
+                retweetedHeight += 270;
+            }
         }
     }
     [self calcTextBounds:textWidth AndHasThumble:(![thumbnailPic isEqualToString:@""]) AndRetweetedHeight:retweetedHeight];

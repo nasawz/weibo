@@ -15,11 +15,23 @@ typedef enum {
 
 @interface CustomNavigation : UIView {
     NAV_STYLE style;
+    CGFloat backButtonCapWidth;
     UIImageView *   view_bg;
+    
+    UIButton *      leftButton;
+    UIButton *      rightButton;
+    
 }
 
 @property (nonatomic,assign)NAV_STYLE style;
+@property (nonatomic,retain)UIButton *      leftButton;
+@property (nonatomic,retain)UIButton *      rightButton;
+
 
 - (id)initWithTitle:(NSString *)title AddStyle:(NAV_STYLE)style;
+
+
+-(UIButton*) backButtonWith:(UIImage*)backButtonImage highlight:(UIImage*)backButtonHighlightImage leftCapWidth:(CGFloat)capWidth;
+-(void) setText:(NSString*)text onBackButton:(UIButton*)backButton;
 
 @end

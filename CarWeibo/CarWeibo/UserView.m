@@ -28,6 +28,13 @@
     faceImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(6, 14, 57, 57)] autorelease];
     [self addSubview:faceImageView];
     
+    lab_username = [[UILabel alloc] initWithFrame:CGRectMake(70, 24, 200, 26)];
+    [lab_username setBackgroundColor:[UIColor clearColor]];
+    [lab_username setTextColor:[UIColor whiteColor]];
+    [lab_username setShadowColor:[UIColor darkGrayColor]];
+    [lab_username setShadowOffset:CGSizeMake(0, -1)];
+    [self addSubview:lab_username];
+    
 //    url = [UIButton buttonWithType:UIButtonTypeCustom];
 //    url.font = [UIFont boldSystemFontOfSize:14];  	
 //    [url setTitleColor:[UIColor cellLabelColor] forState:UIControlStateNormal];
@@ -101,10 +108,11 @@
     if (profileImage) {
         [profileImage release];
     }
-    NSLog(@"user.profileImageUrl = %@",user.profileImageUrl);
     profileImage = [self getProfileImage:user.profileImageUrl isLarge:true];
     [profileImage retain];
     [faceImageView setImage:profileImage];
+    
+    [lab_username setText:user.name];
     
 //    if ([user.url length]) {
 //        [url setTitle:user.url forState:UIControlStateNormal];
@@ -115,7 +123,7 @@
 //        url.enabled = false;
 //    }
     
-    height = 113;
+    height = 77;
 //    if (hasDetail) {
 //        UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
 //        label.font = [UIFont systemFontOfSize:14];
