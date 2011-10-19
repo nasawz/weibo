@@ -10,7 +10,7 @@
 #import "CarWeiboAppDelegate.h"
 #import "ImageUtils.h"
 
-#define NUM_SECTIONS 2
+#define NUM_SECTIONS 1
 enum {
     SECTION_MESSAGE,
     SECTION_REPLAYS,
@@ -25,20 +25,9 @@ enum {
 - (void)initCommon {
     userView   = [[UserView alloc] initWithFrame:CGRectMake(0, 0, 320, 77)];
     tweetCell  = [[UserTimelineCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessageCell"];
-    
-    
-    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
-    
-    UIButton* backButton = [delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
-    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    delegate.rootViewController.navigation.leftButton = backButton;
-    
-}
-
-- (void)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
-    delegate.rootViewController.navigation.leftButton = nil;
+    endCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"endCell"];
+    [endCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [endCell setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageByFileName:@"bg_cellEnd1" FileExtension:@"png"]]];
 }
 
 - (void)setStatus:(Status*)value
@@ -67,9 +56,9 @@ enum {
 
 - (id)initWithMessage:(Status*)sts {
     self = [super initWithStyle:UITableViewStylePlain];
-    [self.navigationController.view setFrame:CGRectMake(0, 0, 320, 460)];
     [self initCommon];
     [self setStatus:sts];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     return self;
 }
 
@@ -92,24 +81,9 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController.view setFrame:CGRectMake(0, 0, 320, 460)];
+    [self.tableView setShowsVerticalScrollIndicator:NO];
 //    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageByFileName:@"bg_papertexture" FileExtension:@"png"]]];
     [self.view setBackgroundColor:[UIColor clearColor]];
-}
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
-    [delegate.rootViewController.navigation setStyle:NAV_NORMAL];
-    [delegate.rootViewController hideTabBar];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
-    [delegate.rootViewController.navigation setStyle:NAV_DOWNARR];
-    [delegate.rootViewController showTabBar];
 }
 
 
@@ -139,15 +113,16 @@ enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
     if (status) {
-        int s = section;
-        switch (s) {
-            case SECTION_MESSAGE:
-                return 1;
-                break;
-            case SECTION_REPLAYS:
-                return 0;
-                break;
-        }
+        //        int s = section;
+        //        switch (s) {
+        //            case SECTION_MESSAGE:
+        //                return 1;
+        //                break;
+        //            case SECTION_REPLAYS:
+        //                return 0;
+        //                break;
+        //        }
+        return 2;
     }
     return 0;
 }
@@ -157,7 +132,7 @@ enum {
         return status.cellHeight;
     }
     else {
-        return 44;
+        return 60;
     }
 }
 
@@ -173,6 +148,8 @@ enum {
         [tweetCell update];
         tweetCell.contentView.backgroundColor = [UIColor clearColor];
         return tweetCell;
+    }else{
+        return endCell;
     }
 
     

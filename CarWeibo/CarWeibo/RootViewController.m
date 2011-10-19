@@ -114,7 +114,6 @@ static NSArray* tabBarItems = nil;
 	weibo.delegate = self;
 //    [weibo LogOutAll];
     [weibo startAuthorizeDefaultByAccount:CarweiboAccount Password:CarweiboPassword];
-    //    [weibo LogOutAll];
     //    [weibo startAuthorizeByAccount:@"nasawz" Password:@"wa3029q"];
     
     

@@ -14,7 +14,8 @@
 @interface TweetViewController : UITableViewController {
     UserView*           userView;
     Status*             status;
-    UserTimelineCell*       tweetCell;;
+    UserTimelineCell*       tweetCell;
+    UITableViewCell*            endCell;
 }
 
 - (id)initWithMessage:(Status*)status;

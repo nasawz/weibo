@@ -9,7 +9,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FriendsTimelineDataSource.h"
 #import "CarWeiboAppDelegate.h"
-#import "TweetViewController.h"
+//#import "TweetViewController.h"
+#import "TweetInfoViewController.h"
 //#import "ProfileViewController.h"
 #import "FriendsTimelineController.h"
 
@@ -94,11 +95,11 @@
     if (sts) {
         // Display user view
         //
-        TweetViewController* tweetView = [[[TweetViewController alloc] initWithMessage:sts] autorelease];
+        TweetInfoViewController* tweetInfoView = [[[TweetInfoViewController alloc] initWithMessage:sts] autorelease];
         
 //        NSLog(@"%@",[controller parentViewController]);
         
-        [controller.navController pushViewController:tweetView animated:TRUE];
+        [controller.navController pushViewController:tweetInfoView animated:TRUE];
     }      
     else {
         // Restore tweets from DB

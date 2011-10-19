@@ -19,9 +19,9 @@
 #define kKeyChainAccessSecretForWeiBo		@"accessSecret"
 
 
-#define kKeyChainDefaultUserIDForWeiBo				@"userID"
-#define kKeyChainDefaultAccessTokenForWeiBo         @"accessToken"
-#define kKeyChainDefaultAccessSecretForWeiBo		@"accessSecret"
+#define kKeyChainDefaultUserIDForWeiBo				@"DefaultuserID"
+#define kKeyChainDefaultAccessTokenForWeiBo         @"DefaultaccessToken"
+#define kKeyChainDefaultAccessSecretForWeiBo		@"DefaultaccessSecret"
 
 NSString* domainWeiboError      =    @"domainWeiboError";
 NSString* keyCodeWeiboSDKError  =    @"weibo_error_code";
@@ -73,6 +73,7 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 		_userID = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainUserIDForWeiBo andServiceName:serviceName error:nil]retain];
 		_accessToken = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainAccessTokenForWeiBo andServiceName:serviceName error:nil]retain];
 		_accessTokenSecret = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainAccessSecretForWeiBo andServiceName:serviceName error:nil]retain];
+        
         
         _defaultUserID = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainDefaultUserIDForWeiBo andServiceName:serviceName error:nil]retain];
 		_defaultAccessToken = [[SFHFKeychainUtils getPasswordForUsername:kKeyChainDefaultAccessTokenForWeiBo andServiceName:serviceName error:nil]retain];
@@ -382,6 +383,7 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 											  appSecret:_appSecret
 											accessToken:_defaultAccessToken
 										   accessSecret:_defaultAccessTokenSecret];
+    //    NSLog(@"_defaultAccessToken %@",_defaultAccessToken);
 	
 	[_request connect];
 	[_request retain];
