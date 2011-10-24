@@ -10,6 +10,7 @@
 #import "CarWeiboAppDelegate.h"
 #import "ImageUtils.h"
 #import "LoginViewController.h"
+#import "CommentsViewController.h"
 
 @implementation TweetInfoViewController
 
@@ -31,22 +32,18 @@
     self = [super init];
     [self setStatus:sts];
     
-    
-    
-    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
-    
-    UIButton* backButton = [delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
-    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    delegate.rootViewController.navigation.leftButton = backButton;
-    
-    
     return self;
 }
 
 - (void)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
     CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
     delegate.rootViewController.navigation.leftButton = nil;
+    
+    [delegate.rootViewController.navigation setStyle:NAV_DOWNARR];
+    [delegate.rootViewController showTabBar];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,10 +109,17 @@
 }
 
 - (void)onComment:(id)sender {
-    if (!weibo) 
-        weibo = [[WeiBo alloc] init];
+    if( weibo )
+	{
+		[weibo release];
+		weibo = nil;
+	}
+	weibo = [[WeiBo alloc] init];
     if (!weibo.isUserLoggedin) {
         [self showLogin];
+    }else{
+        CommentsViewController * commentView = [[CommentsViewController alloc] initWithMessage:status];
+        [self.navigationController pushViewController:commentView animated:YES];
     }
 }
 
@@ -125,14 +129,11 @@
     CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
     [delegate.rootViewController.navigation setStyle:NAV_NORMAL];
     [delegate.rootViewController hideTabBar];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
     
-    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
-    [delegate.rootViewController.navigation setStyle:NAV_DOWNARR];
-    [delegate.rootViewController showTabBar];
+    
+    UIButton* backButton = [delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    delegate.rootViewController.navigation.leftButton = backButton;
 }
 
 - (void)viewDidUnload

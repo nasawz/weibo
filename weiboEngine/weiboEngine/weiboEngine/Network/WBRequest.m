@@ -152,6 +152,7 @@ headerFieldsInfo = _headerFieldsInfo;
 - (id)parseJsonResponse:(NSData *)data error:(NSError **)error {
 	
 	NSString* responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    //    NSLog(@"%@",responseString);
 	SBJSON *jsonParser = [[SBJSON alloc]init];
 	
 	NSError* parserError = nil;
@@ -283,7 +284,6 @@ headerFieldsInfo = _headerFieldsInfo;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	[self handleResponseData:_responseText];
-	
 	[_responseText release];
 	_responseText = nil;
 	[_connection release];

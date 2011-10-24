@@ -122,8 +122,9 @@
 
 - (void)setLeftButton:(UIButton *)aLeftButton {
     if (aLeftButton) {
-        if (leftButton) 
-            [leftButton release];
+        if (leftButton) {
+            [leftButton removeFromSuperview];
+        }
         leftButton = [aLeftButton retain];
         leftButton.frame = CGRectOffset(leftButton.frame, 10, 10);
         [self addSubview:leftButton];

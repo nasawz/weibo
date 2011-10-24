@@ -37,6 +37,8 @@
 	NSString*		bmiddlePic; //中型图片
 	NSString*		originalPic; //原始图片    
     
+    int             repostsCount;//转发数
+    int             commentsCount;//评论数
 }
 
 @property (getter=tweetId, setter=setTweetId:) sqlite_int64  statusId;

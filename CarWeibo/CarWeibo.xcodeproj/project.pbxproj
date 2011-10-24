@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB0C65BD14513C5400C5BA1D /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0C65BC14513C5400C5BA1D /* Comment.m */; };
 		CB33965D144EC862005A0DEB /* toolbar_bg_lt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB33965C144EC862005A0DEB /* toolbar_bg_lt@2x.png */; };
 		CB339666144EC9C5005A0DEB /* TweetInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB339665144EC9C5005A0DEB /* TweetInfoViewController.m */; };
 		CB339668144ED4C2005A0DEB /* toolbar_bg_lt.png in Resources */ = {isa = PBXBuildFile; fileRef = CB339667144ED4C2005A0DEB /* toolbar_bg_lt.png */; };
@@ -82,6 +83,7 @@
 		CB88AB67144594BB000428BF /* NSDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CB88AB66144594BB000428BF /* NSDictionaryAdditions.m */; };
 		CB88AB6A1445B4E7000428BF /* ThumbleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB88AB691445B4E6000428BF /* ThumbleImageView.m */; };
 		CB88AB6D1445C23D000428BF /* ImageStoreWaiter.m in Sources */ = {isa = PBXBuildFile; fileRef = CB88AB6C1445C23C000428BF /* ImageStoreWaiter.m */; };
+		CB8B84831455411A0033B7BA /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8B84821455411A0033B7BA /* CommentCell.m */; };
 		CBA8E5A71442E061003085A4 /* bg_Navigation_a.png in Resources */ = {isa = PBXBuildFile; fileRef = CBA8E5A51442E061003085A4 /* bg_Navigation_a.png */; };
 		CBA8E5A81442E061003085A4 /* bg_Navigation_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBA8E5A61442E061003085A4 /* bg_Navigation_a@2x.png */; };
 		CBA8E5AC1442E2CD003085A4 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA8E5AB1442E2CD003085A4 /* ActivityViewController.m */; };
@@ -153,9 +155,14 @@
 		CBD7ACFD144191130019485E /* WBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACE9144191130019485E /* WBRequest.m */; };
 		CBD7ACFE144191130019485E /* WBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACEB144191130019485E /* WBUtil.m */; };
 		CBD7ACFF144191130019485E /* WeiBo.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD7ACED144191130019485E /* WeiBo.m */; };
+		CBEB1BBA145020CB008811CC /* CommentsTimelineController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEB1BB9145020CB008811CC /* CommentsTimelineController.m */; };
+		CBEB1BBF145020FE008811CC /* CommentsTimelineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEB1BBE145020FE008811CC /* CommentsTimelineDataSource.m */; };
+		CBEB1BC21450217A008811CC /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEB1BC11450217A008811CC /* CommentsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB0C65BB14513C5400C5BA1D /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		CB0C65BC14513C5400C5BA1D /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		CB33965C144EC862005A0DEB /* toolbar_bg_lt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_bg_lt@2x.png"; sourceTree = "<group>"; };
 		CB339664144EC9C5005A0DEB /* TweetInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetInfoViewController.h; sourceTree = "<group>"; };
 		CB339665144EC9C5005A0DEB /* TweetInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetInfoViewController.m; sourceTree = "<group>"; };
@@ -250,6 +257,8 @@
 		CB88AB691445B4E6000428BF /* ThumbleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbleImageView.m; sourceTree = "<group>"; };
 		CB88AB6B1445C23C000428BF /* ImageStoreWaiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageStoreWaiter.h; sourceTree = "<group>"; };
 		CB88AB6C1445C23C000428BF /* ImageStoreWaiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStoreWaiter.m; sourceTree = "<group>"; };
+		CB8B84811455411A0033B7BA /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		CB8B84821455411A0033B7BA /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		CBA8E5A51442E061003085A4 /* bg_Navigation_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_Navigation_a.png; sourceTree = "<group>"; };
 		CBA8E5A61442E061003085A4 /* bg_Navigation_a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_Navigation_a@2x.png"; sourceTree = "<group>"; };
 		CBA8E5AA1442E2CD003085A4 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
@@ -366,6 +375,12 @@
 		CBD7ACEB144191130019485E /* WBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBUtil.m; sourceTree = "<group>"; };
 		CBD7ACEC144191130019485E /* WeiBo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiBo.h; sourceTree = "<group>"; };
 		CBD7ACED144191130019485E /* WeiBo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiBo.m; sourceTree = "<group>"; };
+		CBEB1BB8145020CA008811CC /* CommentsTimelineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTimelineController.h; sourceTree = "<group>"; };
+		CBEB1BB9145020CB008811CC /* CommentsTimelineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTimelineController.m; sourceTree = "<group>"; };
+		CBEB1BBD145020FE008811CC /* CommentsTimelineDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTimelineDataSource.h; sourceTree = "<group>"; };
+		CBEB1BBE145020FE008811CC /* CommentsTimelineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTimelineDataSource.m; sourceTree = "<group>"; };
+		CBEB1BC01450217A008811CC /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
+		CBEB1BC11450217A008811CC /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +400,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB0C65BA14513C0F00C5BA1D /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				CBD7ACD0144191130019485E /* DBConnection.h */,
+				CBD7ACD1144191130019485E /* DBConnection.m */,
+				CBD7ACD6144191130019485E /* Statement.h */,
+				CBD7ACD7144191130019485E /* Statement.m */,
+			);
+			name = DB;
+			sourceTree = "<group>";
+		};
 		CB339663144EC974005A0DEB /* UserTimeline */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +484,7 @@
 				CBA8E5B11442E367003085A4 /* Login */,
 				CB52568D144BFB4F00741F38 /* Tweets */,
 				CB339663144EC974005A0DEB /* UserTimeline */,
+				CBEB1BBC145020D7008811CC /* CommentsTimeline */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -747,18 +774,17 @@
 		CBD7ACCF144191130019485E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CBD7ACD0144191130019485E /* DBConnection.h */,
-				CBD7ACD1144191130019485E /* DBConnection.m */,
+				CB0C65BA14513C0F00C5BA1D /* DB */,
 				CBD7ACD2144191130019485E /* DirectMessage.h */,
 				CBD7ACD3144191130019485E /* DirectMessage.m */,
 				CBD7ACD4144191130019485E /* Followee.h */,
 				CBD7ACD5144191130019485E /* Followee.m */,
-				CBD7ACD6144191130019485E /* Statement.h */,
-				CBD7ACD7144191130019485E /* Statement.m */,
 				CBD7ACD8144191130019485E /* Status.h */,
 				CBD7ACD9144191130019485E /* Status.m */,
 				CBD7ACDA144191130019485E /* Tweet.h */,
 				CBD7ACDB144191130019485E /* Tweet.m */,
+				CB0C65BB14513C5400C5BA1D /* Comment.h */,
+				CB0C65BC14513C5400C5BA1D /* Comment.m */,
 				CBD7ACDC144191130019485E /* User.h */,
 				CBD7ACDD144191130019485E /* User.m */,
 				CBD7ACDE144191130019485E /* UserStore.h */,
@@ -785,6 +811,21 @@
 				CBD7ACED144191130019485E /* WeiBo.m */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		CBEB1BBC145020D7008811CC /* CommentsTimeline */ = {
+			isa = PBXGroup;
+			children = (
+				CBEB1BC01450217A008811CC /* CommentsViewController.h */,
+				CBEB1BC11450217A008811CC /* CommentsViewController.m */,
+				CBEB1BB8145020CA008811CC /* CommentsTimelineController.h */,
+				CBEB1BB9145020CB008811CC /* CommentsTimelineController.m */,
+				CBEB1BBD145020FE008811CC /* CommentsTimelineDataSource.h */,
+				CBEB1BBE145020FE008811CC /* CommentsTimelineDataSource.m */,
+				CB8B84811455411A0033B7BA /* CommentCell.h */,
+				CB8B84821455411A0033B7BA /* CommentCell.m */,
+			);
+			name = CommentsTimeline;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -988,6 +1029,11 @@
 				CB525694144C08EE00741F38 /* UserView.m in Sources */,
 				CBBD8406144D478400DE3990 /* UserTimelineCell.m in Sources */,
 				CB339666144EC9C5005A0DEB /* TweetInfoViewController.m in Sources */,
+				CBEB1BBA145020CB008811CC /* CommentsTimelineController.m in Sources */,
+				CBEB1BBF145020FE008811CC /* CommentsTimelineDataSource.m in Sources */,
+				CBEB1BC21450217A008811CC /* CommentsViewController.m in Sources */,
+				CB0C65BD14513C5400C5BA1D /* Comment.m in Sources */,
+				CB8B84831455411A0033B7BA /* CommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

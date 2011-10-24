@@ -100,7 +100,14 @@ typedef enum
                        accessSecret:(NSString*)secret;
 
 
+// 获取当前默认用户及其所关注用户的最新微博
 - (WBRequest*)getDefaultFriendsTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
+// 根据微博ID返回某条微博的评论列表
+- (WBRequest*)getCommentsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
+
+
 
 
 - (BOOL)isUserLoggedin;                         //Check whether the user has logged in.

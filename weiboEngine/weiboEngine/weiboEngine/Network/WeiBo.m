@@ -357,8 +357,10 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 	return _request;    
 }
 
+#pragma mark - 
+// 获取当前默认用户及其所关注用户的最新微博
 - (WBRequest*)getDefaultFriendsTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
-    if( [self isDefaultUserLoggedin] == FALSE )
+    if( [self isDefaultUserLoggedin] == NO )
 	{
 		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
 			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
@@ -383,7 +385,9 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 											  appSecret:_appSecret
 											accessToken:_defaultAccessToken
 										   accessSecret:_defaultAccessTokenSecret];
-    //    NSLog(@"_defaultAccessToken %@",_defaultAccessToken);
+    //    NSLog(@"_defaultAccessToken         = %@",_defaultAccessToken);
+    //    NSLog(@"_defaultAccessTokenSecret   = %@",_defaultAccessTokenSecret);
+    //    NSLog(@"friend RequestURL = %@",[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/friends_timeline.json"]);
 	
 	[_request connect];
 	[_request retain];
@@ -391,6 +395,47 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 	return _request; 
 }
 
+// 根据微博ID返回某条微博的评论列表
+- (WBRequest*)getCommentsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+    
+    //用登陆用户帐号来获取微博评论，减少默认帐户发起的请求数。
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"GET"
+										   postDataType:WBRequestPostDataType_Normal 
+											   delegate:delegate 
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/comments.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+    //    NSLog(@"CommentsRequestURL = %@",[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/comments.json"]);
+	//https://api.weibo.com/2/comments/show.json
+    //[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"comments/show.json"]
+	[_request connect];
+	[_request retain];
+	
+	return _request;     
+}
+
+
+//分组 http://open.weibo.com/wiki/GET/:user/lists
+//旧接口 http://open.weibo.com/wiki/index.php/Rest_API
 #pragma mark For Post Weibo
 - (WBRequest*)postWeiboRequestWithText:(NSString*)text
 							  andImage:(UIImage*)image 

@@ -54,6 +54,7 @@ static NSInteger sortByDateDesc(id a, id b, void *context)
 {
 	self = [super init];
     
+    
     type = aType;
     cellType = TWEET_CELL_TYPE_NORMAL;
     
