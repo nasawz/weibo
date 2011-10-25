@@ -13,6 +13,7 @@
 #define MAX_BACK_BUTTON_WIDTH 160.0
 
 @implementation CustomNavigation
+@synthesize leftButton,rightButton;
 @synthesize style;
 
 - (id)initWithFrame:(CGRect)frame
@@ -108,6 +109,46 @@
     return button;
 }
 
+-(UIButton*) buttonWith:(UIImage*)backButtonImage highlight:(UIImage*)backButtonHighlightImage leftCapWidth:(CGFloat)capWidth {
+    // store the cap width for use later when we set the text
+    buttonCapWidth = capWidth;
+    
+    // Create stretchable images for the normal and highlighted states
+    UIImage* buttonImage = [backButtonImage stretchableImageWithLeftCapWidth:buttonCapWidth topCapHeight:0.0];
+    UIImage* buttonHighlightImage = [backButtonHighlightImage stretchableImageWithLeftCapWidth:buttonCapWidth topCapHeight:0.0];
+    
+    // Create a custom button
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    // Set the title to use the same font and shadow as the standard back button
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]];
+    button.titleLabel.textColor = [UIColor whiteColor];
+    button.titleLabel.shadowOffset = CGSizeMake(0,-1);
+    button.titleLabel.shadowColor = [UIColor darkGrayColor];
+    
+    // Set the break mode to truncate at the end like the standard back button
+    button.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    
+    // Inset the title on the left and right
+    button.titleEdgeInsets = UIEdgeInsetsMake(0, 3.0, 0, 3.0);
+    
+    // Make the button as high as the passed in image
+    button.frame = CGRectMake(0, 0, 0, buttonImage.size.height);
+    
+    // Just like the standard back button, use the title of the previous item as the default back text
+    [self setText:@"完成" onBackButton:button];
+    
+    // Set the stretchable images as the background for the button
+    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [button setBackgroundImage:buttonHighlightImage forState:UIControlStateHighlighted];
+    [button setBackgroundImage:buttonHighlightImage forState:UIControlStateSelected];
+    
+    // Add an action for going back
+    //    [button addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;    
+}
+
 // Set the text on the custom back button
 -(void) setText:(NSString*)text onBackButton:(UIButton*)backButton
 {
@@ -120,17 +161,66 @@
     [backButton setTitle:text forState:UIControlStateNormal];
 }
 
+-(void) setText:(NSString*)text onButton:(UIButton*)button {
+    // Measure the width of the text
+    CGSize textSize = [text sizeWithFont:button.titleLabel.font];
+    // Change the button's frame. The width is either the width of the new text or the max width
+    button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y, (textSize.width + (buttonCapWidth * 1.5)) > MAX_BACK_BUTTON_WIDTH ? MAX_BACK_BUTTON_WIDTH : (textSize.width + (buttonCapWidth * 1.5)), button.frame.size.height);
+    
+    // Set the text on the button
+    [button setTitle:text forState:UIControlStateNormal];    
+}
+
 - (void)setLeftButton:(UIButton *)aLeftButton {
     if (aLeftButton) {
+        CGFloat alpha = 0.0f;
         if (leftButton) {
+            alpha = 1.0f;
             [leftButton removeFromSuperview];
         }
         leftButton = [aLeftButton retain];
         leftButton.frame = CGRectOffset(leftButton.frame, 10, 10);
+        leftButton.alpha = alpha;
         [self addSubview:leftButton];
+        [UIView beginAnimations:@"setLeftButton" context:nil];
+        [UIView setAnimationDuration:0.2f];
+        leftButton.alpha = 1.0f;
+        [UIView commitAnimations];
     }else{
         if (leftButton) {
-            [leftButton removeFromSuperview];
+//            [leftButton removeFromSuperview];
+            
+            [UIView beginAnimations:@"setLeftButton" context:nil];
+            [UIView setAnimationDuration:0.2f];
+            leftButton.alpha = 0.0f;
+            [UIView commitAnimations];
+        }
+    }
+}
+
+- (void)setRightButton:(UIButton *)aRightButton {
+    if (aRightButton) {
+        CGFloat alpha = 0.0f;
+        if (rightButton) {
+            alpha = 1.0f;
+            [rightButton removeFromSuperview];
+        }
+        rightButton = [aRightButton retain];
+        rightButton.frame = CGRectOffset(rightButton.frame, 320 - rightButton.frame.size.width - 10, 10);
+        rightButton.alpha = alpha;
+        [self addSubview:rightButton];
+        [UIView beginAnimations:@"setRightButton" context:nil];
+        [UIView setAnimationDuration:0.2f];
+        rightButton.alpha = 1.0f;        
+        [UIView commitAnimations];
+    }else{
+        if (rightButton) {
+//            [rightButton removeFromSuperview];
+            
+            [UIView beginAnimations:@"setRightButton" context:nil];
+            [UIView setAnimationDuration:0.2f];
+            rightButton.alpha = 0.0f;        
+            [UIView commitAnimations];
         }
     }
 }

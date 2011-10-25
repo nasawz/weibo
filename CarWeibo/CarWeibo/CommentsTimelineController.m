@@ -114,7 +114,6 @@
         // Avoid to create too many table cell.
         //            if (numInsert > 8) numInsert = 8;
         for (int i = 0; i < numInsert; ++i) {
-            NSLog(@":position + i = %d",position + i);
             [insertion addObject:[NSIndexPath indexPathForRow:position + i inSection:0]];
         }        
         [self.tableView insertRowsAtIndexPaths:insertion withRowAnimation:UITableViewRowAnimationTop];

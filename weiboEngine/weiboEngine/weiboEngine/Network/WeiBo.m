@@ -434,6 +434,72 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 }
 
 
+// 对一条微博信息进行评论。
+- (WBRequest*)sendCommentsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"POST"
+										   postDataType:WBRequestPostDataType_Normal
+											   delegate:delegate
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/comment.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+	[_request connect];
+	[_request retain];
+	
+	return _request;     
+}
+
+// 转发一条微博消息。
+- (WBRequest*)retweetStatusWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"POST"
+										   postDataType:WBRequestPostDataType_Normal
+											   delegate:delegate
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/repost.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+	[_request connect];
+	[_request retain];
+	
+	return _request;     
+}
+
 //分组 http://open.weibo.com/wiki/GET/:user/lists
 //旧接口 http://open.weibo.com/wiki/index.php/Rest_API
 #pragma mark For Post Weibo

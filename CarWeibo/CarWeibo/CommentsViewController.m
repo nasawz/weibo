@@ -9,6 +9,8 @@
 #import "CommentsViewController.h"
 #import "CarWeiboAppDelegate.h"
 #import "CommentsTimelineController.h"
+#import "PostViewController.h"
+#import "LoginViewController.h"
 
 @implementation CommentsViewController
 
@@ -28,11 +30,39 @@
 
 - (void)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-//    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
 //    delegate.rootViewController.navigation.leftButton = nil;
 //    
 //    [delegate.rootViewController.navigation setStyle:NAV_DOWNARR];
 //    [delegate.rootViewController showTabBar];
+    
+    delegate.rootViewController.navigation.rightButton = nil;
+}
+
+- (void)showLogin {
+    
+    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+    
+    LoginViewController * loginView = [[LoginViewController alloc] init];
+    [delegate.rootViewController presentModalViewController:loginView animated:YES];
+    [loginView release];
+}
+
+- (void)openPostView:(id)sender {
+    if( weibo )
+	{
+		[weibo release];
+		weibo = nil;
+	}
+	weibo = [[WeiBo alloc] init];
+    if (!weibo.isUserLoggedin) {
+        [self showLogin];
+    }else{
+        PostViewController * postViewController = [[PostViewController alloc] initWithPostType:POST_TYPE_COMMENT];
+        [postViewController setStatus:status];
+        [self presentModalViewController:postViewController animated:YES];
+        [postViewController release];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,6 +93,12 @@
     UIButton* backButton = [delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
     [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     delegate.rootViewController.navigation.leftButton = backButton;
+    
+    
+    UIButton* sendButton = [delegate.rootViewController.navigation buttonWith:[UIImage imageNamed:@"nav_btn.png"] highlight:nil leftCapWidth:6.0];
+    [sendButton addTarget:self action:@selector(openPostView:) forControlEvents:UIControlEventTouchUpInside];
+    [delegate.rootViewController.navigation setText:@"发表评论" onButton:sendButton];
+    delegate.rootViewController.navigation.rightButton = sendButton;
 }
 
 

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Status.h"
+#import "WeiBo.h"
 
 @interface CommentsViewController : UIViewController {
     Status*             status;
+    WeiBo*                  weibo;
 }
 - (id)initWithMessage:(Status*)status;
 

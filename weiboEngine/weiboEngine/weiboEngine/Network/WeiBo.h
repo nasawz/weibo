@@ -107,6 +107,11 @@ typedef enum
 - (WBRequest*)getCommentsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
 
 
+// 对一条微博信息进行评论。
+- (WBRequest*)sendCommentsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+// 转发一条微博消息。
+- (WBRequest*)retweetStatusWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
 
 
 

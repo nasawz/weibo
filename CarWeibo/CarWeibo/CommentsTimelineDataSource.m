@@ -31,7 +31,7 @@
 
 - (void)dealloc {
 	[super dealloc];
-}
+} 
 
 - (void)getTimelineWithStatus:(Status*)status {
     if (weibo) return;
@@ -75,7 +75,6 @@
             }
             Comment* comment = [Comment commentWithJsonDictionary:[ary objectAtIndex:i]];
             [comment calcTextBounds];
-            NSLog(@"comment = %@",comment);
             [comments insertObject:comment atIndex:insertPosition];
         }
     }
@@ -105,7 +104,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat h;
-    NSLog(@"indexPath.row = %d",indexPath.row);
     if (indexPath.row >= [comments count]) {
         h = 60;
     }else{

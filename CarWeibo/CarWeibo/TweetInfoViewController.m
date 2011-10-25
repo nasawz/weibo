@@ -11,6 +11,7 @@
 #import "ImageUtils.h"
 #import "LoginViewController.h"
 #import "CommentsViewController.h"
+#import "PostViewController.h"
 
 @implementation TweetInfoViewController
 
@@ -41,6 +42,7 @@
     
     [delegate.rootViewController.navigation setStyle:NAV_DOWNARR];
     [delegate.rootViewController showTabBar];
+    
     
     [self.navigationController popViewControllerAnimated:YES];
     
@@ -86,6 +88,7 @@
     [btnActionsheet setTitle:@"     0" forState:UIControlStateNormal];
     [btnActionsheet.titleLabel setShadowColor:[UIColor darkGrayColor]];
     [btnActionsheet.titleLabel setShadowOffset:CGSizeMake(0, -1)];
+    [btnActionsheet addTarget:self action:@selector(onReweet:) forControlEvents:UIControlEventTouchUpInside];
     [toolBar addSubview:btnActionsheet];
     
     btnComment = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -109,6 +112,11 @@
 }
 
 - (void)onComment:(id)sender {
+    CommentsViewController * commentView = [[CommentsViewController alloc] initWithMessage:status];
+    [self.navigationController pushViewController:commentView animated:YES];
+}
+
+- (void)onReweet:(id)sender {
     if( weibo )
 	{
 		[weibo release];
@@ -118,13 +126,15 @@
     if (!weibo.isUserLoggedin) {
         [self showLogin];
     }else{
-        CommentsViewController * commentView = [[CommentsViewController alloc] initWithMessage:status];
-        [self.navigationController pushViewController:commentView animated:YES];
-    }
+        PostViewController * postViewController = [[PostViewController alloc] initWithPostType:POST_TYPE_RETWEET];
+        [postViewController setStatus:status];
+        [self presentModalViewController:postViewController animated:YES];
+        [postViewController release];
+    }    
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
     [delegate.rootViewController.navigation setStyle:NAV_NORMAL];
@@ -134,6 +144,8 @@
     UIButton* backButton = [delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
     [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     delegate.rootViewController.navigation.leftButton = backButton;
+    
+    delegate.rootViewController.navigation.rightButton = nil;
 }
 
 - (void)viewDidUnload
