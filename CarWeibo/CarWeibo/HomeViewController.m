@@ -44,23 +44,23 @@
 {
     [super viewDidLoad];
     
-    tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 160)];
-    
-    activityQuickViewModule = [[ActivityQuickViewModule alloc] init];
-    [activityQuickViewModule.view setFrame:CGRectOffset(activityQuickViewModule.view.frame, 0, 0)];
-    [tableHeaderView addSubview:activityQuickViewModule.view];
-    
-    UILabel * lab_news = [[UILabel alloc] initWithFrame:CGRectMake(10, 125, 100, 16)];
-    [lab_news setText:@"最近更新"];
-    [lab_news setBackgroundColor:[UIColor clearColor]];
-    [lab_news setTextColor:[UIColor whiteColor]];
-    [lab_news setShadowColor:[UIColor blackColor]];
-    [lab_news setShadowOffset:CGSizeMake(0, -1)];
-    [tableHeaderView addSubview:lab_news];
+//    tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 160)];
+//    
+//    activityQuickViewModule = [[ActivityQuickViewModule alloc] init];
+//    [activityQuickViewModule.view setFrame:CGRectOffset(activityQuickViewModule.view.frame, 0, 0)];
+//    [tableHeaderView addSubview:activityQuickViewModule.view];
+//    
+//    UILabel * lab_news = [[UILabel alloc] initWithFrame:CGRectMake(10, 125, 100, 16)];
+//    [lab_news setText:@"最近更新"];
+//    [lab_news setBackgroundColor:[UIColor clearColor]];
+//    [lab_news setTextColor:[UIColor whiteColor]];
+//    [lab_news setShadowColor:[UIColor blackColor]];
+//    [lab_news setShadowOffset:CGSizeMake(0, -1)];
+//    [tableHeaderView addSubview:lab_news];
     
     friendsTimelineController = [[FriendsTimelineController alloc] initWithNavController:[self navigationController]];
     [friendsTimelineController.tableView setFrame:CGRectMake(0, 6, 320, 460-6)];
-    [friendsTimelineController.tableView setTableHeaderView:tableHeaderView];
+//    [friendsTimelineController.tableView setTableHeaderView:tableHeaderView];
     [friendsTimelineController.tableView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:friendsTimelineController.view];
 }
@@ -72,7 +72,7 @@
 }
 
 - (void)dealloc {
-    [tableHeaderView release];
+//    [tableHeaderView release];
     [activityQuickViewModule release];
     [super dealloc];
 }

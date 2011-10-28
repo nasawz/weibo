@@ -23,8 +23,12 @@
 
 }
 
+@property (nonatomic, retain)NSMutableArray* comments;
+
 - (id)initWithController:(CommentsTimelineController*)controller;
 
 - (void)getTimelineWithStatus:(Status*)status ;
+
+- (void)insertComment:(id)result;
 
 @end

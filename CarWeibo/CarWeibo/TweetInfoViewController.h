@@ -10,14 +10,18 @@
 #import "WBConnect.h"
 #import "TweetViewController.h"
 #import "Status.h"
+#import "PostViewController.h"
+#import "CommentsViewController.h"
 
 
-@interface TweetInfoViewController : UIViewController {
+@interface TweetInfoViewController : UIViewController <WBRequestDelegate,PostViewControllerDelegate,CommentsViewControllerDelegate>{
     Status*             status;
     UIImageView*        toolBar;
     UIButton*           btnActionsheet;
     UIButton*           btnComment;
     WeiBo*                  weibo;
+    int                 comments;
+    int                 rt;
 }
 - (id)initWithMessage:(Status*)status;
 @end

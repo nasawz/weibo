@@ -10,7 +10,7 @@
 
 
 @implementation CommentsTimelineController
-
+@synthesize timelineDataSource;
 - (void)initCommon {
     
 }
@@ -52,7 +52,6 @@
     if (!isLoaded) {
         [self loadTimeline];
     }
-    
 }
 
 - (void)viewDidUnload
@@ -129,4 +128,5 @@
 //        //        [self navigationController].tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", unread];
 //    }
 }
+
 @end

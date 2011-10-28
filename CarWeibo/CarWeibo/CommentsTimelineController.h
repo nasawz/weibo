@@ -18,8 +18,11 @@
     BOOL                        firstTimeToAppear;
 }
 
+@property (nonatomic, retain) CommentsTimelineDataSource* timelineDataSource;
+
 - (id)initWithMessage:(Status*)status;
 
 - (void)loadTimeline;
 
 @end
+

@@ -1,18 +1,18 @@
 //
-//  FriendsTimelineDataSource.m
+//  UserTimelineDataSource.m
 //  CarWeibo
 //
-//  Created by zhe wang on 11-10-10.
-//  Copyright 2011年 nasa.wang. All rights reserved.
+//  Created by zhe wang on 11-10-28.
+//  Copyright (c) 2011年 nasa.wang. All rights reserved.
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import "FriendsTimelineDataSource.h"
+#import "UserTimelineDataSource.h"
 #import "CarWeiboAppDelegate.h"
 //#import "TweetViewController.h"
 #import "TweetInfoViewController.h"
 //#import "ProfileViewController.h"
-#import "FriendsTimelineController.h"
+#import "UserTimelineController.h"
 
 #import "TimelineCell.h"
 #import "DBConnection.h"
@@ -21,15 +21,16 @@
 #import "JSON.h"
 
 @interface NSObject (TimelineViewControllerDelegate)
-- (void)timelineDidUpdate:(FriendsTimelineDataSource*)sender count:(int)count insertAt:(int)position;
-- (void)timelineDidFailToUpdate:(FriendsTimelineDataSource*)sender position:(int)position;
+- (void)timelineDidUpdate:(UserTimelineController*)sender count:(int)count insertAt:(int)position;
+- (void)timelineDidFailToUpdate:(UserTimelineController*)sender position:(int)position;
 @end
 
-@implementation FriendsTimelineDataSource
+@implementation UserTimelineDataSource
 
-- (id)initWithController:(FriendsTimelineController*)aController tweetType:(TweetType)type {
+- (id)initWithController:(UserTimelineController*)aController tweetType:(TweetType)type User:(User *)aUser {
     [super init];
     
+    user = aUser;
     controller = aController;
     tweetType  = type;
     [loadCell setType:MSG_TYPE_LOAD_MORE_FRIENDS];
@@ -97,7 +98,7 @@
         //
         TweetInfoViewController* tweetInfoView = [[[TweetInfoViewController alloc] initWithMessage:sts] autorelease];
         
-//        NSLog(@"%@",[controller parentViewController]);
+        //        NSLog(@"%@",[controller parentViewController]);
         
         [controller.navController pushViewController:tweetInfoView animated:TRUE];
     }      
@@ -125,7 +126,7 @@
         }
         [tableView endUpdates];
     }
-     
+    
 }
 
 
@@ -146,7 +147,7 @@
     for (int i = 0; i < [timeline countStatuses]; ++i) {
         Status* sts = [timeline statusAtIndex:i];
         
-//        NSLog(@"===>sts.user.screenName = %@",sts.user.screenName);
+        //        NSLog(@"===>sts.user.screenName = %@",sts.user.screenName);
         
         if ([CarWeiboAppDelegate isMyScreenName:sts.user.screenName] == false) {
             since_id = sts.statusId;
@@ -158,17 +159,18 @@
         [param setObject:[NSString stringWithFormat:@"%d", since_id] forKey:@"since_id"];
         [param setObject:@"200" forKey:@"count"];
     }
-    //    [param setObject:@"1" forKey:@"count"];
-    [weibo getDefaultFriendsTimelineWithParams:param andDelegate:self];
+    [param setObject:[NSString stringWithFormat:@"%u",user.userId] forKey:@"user_id"];
+    NSLog(@"%@",param);
+    [weibo getUserTimelineWithParams:param andDelegate:self];
 }
 
 - (void)request:(WBRequest *)request didLoad:(id)result {
-//    NSString *urlString = request.url;
-//    NSLog(@"%@",urlString);
-//	if ([urlString rangeOfString:@"statuses/public_timeline"].location !=  NSNotFound)
-//	{
-//		NSLog(@"%@",result);
-//	}
+    //    NSString *urlString = request.url;
+    //    NSLog(@"%@",urlString);
+    //	if ([urlString rangeOfString:@"statuses/public_timeline"].location !=  NSNotFound)
+    //	{
+    //		NSLog(@"%@",result);
+    //	}
     
     weibo = nil;
     [loadCell.spinner stopAnimating];

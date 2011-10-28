@@ -16,16 +16,24 @@ typedef enum {
     POST_TYPE_RETWEET,
 } PostType;
 
+@protocol PostViewControllerDelegate;
 @interface PostViewController : UIViewController <WBRequestDelegate>{
     PostView*                  postView;
     PostType                   postType;
     Status*                    status;
     WeiBo*                     weibo;
+    id                         delegate;
 }
 
 - (id)initWithPostType:(PostType)type;
 
+@property(nonatomic,assign) id <PostViewControllerDelegate> delegate;
 @property (nonatomic, retain) Status* status;
 @property (nonatomic, assign) PostType postType;
 
+@end
+
+@protocol PostViewControllerDelegate
+@optional
+- (void)PostDidSucc:(PostViewController *)controller res:(id)result;
 @end

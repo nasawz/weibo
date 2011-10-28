@@ -500,6 +500,112 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 	return _request;     
 }
 
+
+//批量获取n条微博消息的评论数和转发数。一次请求最多可以获取20条微博消息的评论数和转发数
+- (WBRequest*)getStatusesCountsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"POST"
+										   postDataType:WBRequestPostDataType_Normal
+											   delegate:delegate
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/counts.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+	[_request connect];
+	[_request retain];
+	
+	return _request;     
+}
+
+
+//按用户ID或昵称返回用户资料以及用户的最新发布的一条微博消息。
+- (WBRequest*)getUserWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"POST"
+										   postDataType:WBRequestPostDataType_Normal
+											   delegate:delegate
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"users/show.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+	[_request connect];
+	[_request retain];
+	
+	return _request;      
+}
+
+
+// 返回用户最新发表的微博消息列表。
+- (WBRequest*)getUserTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isDefaultUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"GET"
+										   postDataType:WBRequestPostDataType_Normal 
+											   delegate:delegate 
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/user_timeline.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+    //    NSLog(@"_defaultAccessToken         = %@",_defaultAccessToken);
+    //    NSLog(@"_defaultAccessTokenSecret   = %@",_defaultAccessTokenSecret);
+    NSLog(@"user RequestURL = %@",[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/user_timeline.json"]);
+	
+	[_request connect];
+	[_request retain];
+	
+	return _request;     
+}
+
 //分组 http://open.weibo.com/wiki/GET/:user/lists
 //旧接口 http://open.weibo.com/wiki/index.php/Rest_API
 #pragma mark For Post Weibo

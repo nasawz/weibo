@@ -41,6 +41,14 @@
 		CB525694144C08EE00741F38 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB525693144C08EE00741F38 /* UserView.m */; };
 		CB525697144C0AE500741F38 /* usercell_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CB525695144C0AE500741F38 /* usercell_background.png */; };
 		CB525698144C0AE500741F38 /* usercell_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB525696144C0AE500741F38 /* usercell_background@2x.png */; };
+		CB5AC451145A85F300BECB9D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5AC450145A85F300BECB9D /* ProfileViewController.m */; };
+		CB5AC456145A955A00BECB9D /* mask_face.png in Resources */ = {isa = PBXBuildFile; fileRef = CB5AC454145A955A00BECB9D /* mask_face.png */; };
+		CB5AC457145A955A00BECB9D /* mask_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB5AC455145A955A00BECB9D /* mask_face@2x.png */; };
+		CB5AC45A145AA25B00BECB9D /* btn_ViewStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = CB5AC458145AA25A00BECB9D /* btn_ViewStatus.png */; };
+		CB5AC45B145AA25B00BECB9D /* btn_ViewStatus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB5AC459145AA25B00BECB9D /* btn_ViewStatus@2x.png */; };
+		CB5AC45E145AA60000BECB9D /* UserTimelineController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5AC45D145AA60000BECB9D /* UserTimelineController.m */; };
+		CB5AC461145AA62000BECB9D /* UserTimelineDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5AC460145AA62000BECB9D /* UserTimelineDataSource.m */; };
+		CB5AC464145AAB3A00BECB9D /* ProfileStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5AC463145AAB3900BECB9D /* ProfileStatusViewController.m */; };
 		CB60DF301448050600B82ED6 /* bg_cellEnd.png in Resources */ = {isa = PBXBuildFile; fileRef = CB60DF2E1448050600B82ED6 /* bg_cellEnd.png */; };
 		CB60DF311448050600B82ED6 /* bg_cellEnd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB60DF2F1448050600B82ED6 /* bg_cellEnd@2x.png */; };
 		CB60DF381448062000B82ED6 /* WZLoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB60DF371448062000B82ED6 /* WZLoadMoreTableFooterView.m */; };
@@ -211,6 +219,18 @@
 		CB525693144C08EE00741F38 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 		CB525695144C0AE500741F38 /* usercell_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usercell_background.png; sourceTree = "<group>"; };
 		CB525696144C0AE500741F38 /* usercell_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usercell_background@2x.png"; sourceTree = "<group>"; };
+		CB5AC44F145A85F300BECB9D /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		CB5AC450145A85F300BECB9D /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		CB5AC454145A955A00BECB9D /* mask_face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask_face.png; sourceTree = "<group>"; };
+		CB5AC455145A955A00BECB9D /* mask_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mask_face@2x.png"; sourceTree = "<group>"; };
+		CB5AC458145AA25A00BECB9D /* btn_ViewStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_ViewStatus.png; sourceTree = "<group>"; };
+		CB5AC459145AA25B00BECB9D /* btn_ViewStatus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_ViewStatus@2x.png"; sourceTree = "<group>"; };
+		CB5AC45C145AA60000BECB9D /* UserTimelineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTimelineController.h; sourceTree = "<group>"; };
+		CB5AC45D145AA60000BECB9D /* UserTimelineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTimelineController.m; sourceTree = "<group>"; };
+		CB5AC45F145AA62000BECB9D /* UserTimelineDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTimelineDataSource.h; sourceTree = "<group>"; };
+		CB5AC460145AA62000BECB9D /* UserTimelineDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTimelineDataSource.m; sourceTree = "<group>"; };
+		CB5AC462145AAB3900BECB9D /* ProfileStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileStatusViewController.h; sourceTree = "<group>"; };
+		CB5AC463145AAB3900BECB9D /* ProfileStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileStatusViewController.m; sourceTree = "<group>"; };
 		CB60DF2E1448050600B82ED6 /* bg_cellEnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_cellEnd.png; sourceTree = "<group>"; };
 		CB60DF2F1448050600B82ED6 /* bg_cellEnd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_cellEnd@2x.png"; sourceTree = "<group>"; };
 		CB60DF361448062000B82ED6 /* WZLoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -438,6 +458,10 @@
 			children = (
 				CBBD8404144D478400DE3990 /* UserTimelineCell.h */,
 				CBBD8405144D478400DE3990 /* UserTimelineCell.m */,
+				CB5AC45C145AA60000BECB9D /* UserTimelineController.h */,
+				CB5AC45D145AA60000BECB9D /* UserTimelineController.m */,
+				CB5AC45F145AA62000BECB9D /* UserTimelineDataSource.h */,
+				CB5AC460145AA62000BECB9D /* UserTimelineDataSource.m */,
 			);
 			name = UserTimeline;
 			sourceTree = "<group>";
@@ -464,6 +488,17 @@
 				CB525693144C08EE00741F38 /* UserView.m */,
 			);
 			name = Tweets;
+			sourceTree = "<group>";
+		};
+		CB5AC453145A860900BECB9D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CB5AC44F145A85F300BECB9D /* ProfileViewController.h */,
+				CB5AC450145A85F300BECB9D /* ProfileViewController.m */,
+				CB5AC462145AAB3900BECB9D /* ProfileStatusViewController.h */,
+				CB5AC463145AAB3900BECB9D /* ProfileStatusViewController.m */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		CB8273DF144298BE003D36E8 /* TabBar */ = {
@@ -519,6 +554,7 @@
 				CB339663144EC974005A0DEB /* UserTimeline */,
 				CBEB1BBC145020D7008811CC /* CommentsTimeline */,
 				CB41022814569968007DD334 /* Post */,
+				CB5AC453145A860900BECB9D /* Profile */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -645,6 +681,10 @@
 		CBD7AC0E14418C810019485E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				CB5AC458145AA25A00BECB9D /* btn_ViewStatus.png */,
+				CB5AC459145AA25B00BECB9D /* btn_ViewStatus@2x.png */,
+				CB5AC454145A955A00BECB9D /* mask_face.png */,
+				CB5AC455145A955A00BECB9D /* mask_face@2x.png */,
 				CB410214145698A3007DD334 /* btn_select_a@2x.png */,
 				CB410215145698A3007DD334 /* btn_select_a.png */,
 				CB410216145698A3007DD334 /* btn_select_b.png */,
@@ -1011,6 +1051,10 @@
 				CB41021F145698A3007DD334 /* bg_commentBar@2x.png in Resources */,
 				CB41022E1456AA06007DD334 /* nav_btn.png in Resources */,
 				CB41022F1456AA06007DD334 /* nav_btn@2x.png in Resources */,
+				CB5AC456145A955A00BECB9D /* mask_face.png in Resources */,
+				CB5AC457145A955A00BECB9D /* mask_face@2x.png in Resources */,
+				CB5AC45A145AA25B00BECB9D /* btn_ViewStatus.png in Resources */,
+				CB5AC45B145AA25B00BECB9D /* btn_ViewStatus@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,6 +1130,10 @@
 				CB8B84831455411A0033B7BA /* CommentCell.m in Sources */,
 				CB41022714569912007DD334 /* PostViewController.m in Sources */,
 				CB41022B14569A37007DD334 /* PostView.m in Sources */,
+				CB5AC451145A85F300BECB9D /* ProfileViewController.m in Sources */,
+				CB5AC45E145AA60000BECB9D /* UserTimelineController.m in Sources */,
+				CB5AC461145AA62000BECB9D /* UserTimelineDataSource.m in Sources */,
+				CB5AC464145AAB3A00BECB9D /* ProfileStatusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

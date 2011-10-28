@@ -10,7 +10,7 @@
 #import "ImageUtils.h"
 #import "WBUtil.h"
 #import "HomeViewController.h"
-#import "ActivityViewController.h"
+#import "ProfileViewController.h"
 
 //#define SinaWeiBo_APPKey @"2888398119"
 //#define SinaWeiBo_APPSecret @"5e9982830d03d178b7e07a83e27430a0"
@@ -40,13 +40,14 @@ static NSArray* tabBarItems = nil;
     if (self) {
         
         UINavigationController * home_nav = [[UINavigationController alloc] initWithRootViewController:[[HomeViewController alloc] init]];
-        UINavigationController * activity_nav = [[UINavigationController alloc] initWithRootViewController:[[ActivityViewController alloc] init]];
+        UINavigationController * profile_nav = [[UINavigationController alloc] initWithRootViewController:[[ProfileViewController alloc] init]];
         
         tabBarItems = [[NSArray arrayWithObjects:
                         [NSDictionary dictionaryWithObjectsAndKeys:@"icon_home.png", @"image", home_nav, @"viewController", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_topic.png", @"image", home_nav, @"viewController", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_profile.png", @"image", home_nav, @"viewController", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_activity.png", @"image", activity_nav, @"viewController", nil], nil] retain];
+//                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_topic.png", @"image", home_nav, @"viewController", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_profile.png", @"image", profile_nav, @"viewController", nil],
+//                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_activity.png", @"image", activity_nav, @"viewController", nil],
+                        nil] retain];
     }
     return self;
 }
@@ -117,7 +118,7 @@ static NSArray* tabBarItems = nil;
     //    [weibo startAuthorizeByAccount:@"nasawz" Password:@"wa3029q"];
     
     
-    navigation = [[CustomNavigation alloc] initWithTitle:@"车博通" AddStyle:NAV_DOWNARR];
+    navigation = [[CustomNavigation alloc] initWithTitle:@"车博通" AddStyle:NAV_NORMAL];
     [self.view addSubview:navigation];
     
 //    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];

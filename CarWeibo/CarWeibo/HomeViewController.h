@@ -12,7 +12,7 @@
 
 @interface HomeViewController : UIViewController {
     ActivityQuickViewModule * activityQuickViewModule;
-    UIView * tableHeaderView;
+//    UIView * tableHeaderView;
     FriendsTimelineController * friendsTimelineController;
 }
 

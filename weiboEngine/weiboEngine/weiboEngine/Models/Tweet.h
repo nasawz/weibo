@@ -12,6 +12,7 @@ typedef enum {
     TWEET_TYPE_SEARCH_RESULT,
     TWEET_TYPE_FAVORITES,
     TWEET_TYPE_OTHER,
+    TWEET_TYPE_USER,
 } TweetType;
 
 typedef enum {

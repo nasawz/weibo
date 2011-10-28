@@ -9,10 +9,10 @@
 #import "CommentsViewController.h"
 #import "CarWeiboAppDelegate.h"
 #import "CommentsTimelineController.h"
-#import "PostViewController.h"
 #import "LoginViewController.h"
 
 @implementation CommentsViewController
+@synthesize info_delegate;
 
 - (void)setStatus:(Status*)value
 {
@@ -29,6 +29,12 @@
 
 
 - (void)back:(id)sender {
+    
+    if ([info_delegate respondsToSelector:@selector(CommentsBackToInfo:)]) {
+        [info_delegate CommentsBackToInfo:[commentsTimelineViewController.timelineDataSource.comments count]];
+    }
+    
+    
     [self.navigationController popViewControllerAnimated:YES];
     CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
 //    delegate.rootViewController.navigation.leftButton = nil;
@@ -59,6 +65,7 @@
         [self showLogin];
     }else{
         PostViewController * postViewController = [[PostViewController alloc] initWithPostType:POST_TYPE_COMMENT];
+        [postViewController setDelegate:self];
         [postViewController setStatus:status];
         [self presentModalViewController:postViewController animated:YES];
         [postViewController release];
@@ -107,9 +114,9 @@
 {
     [super viewDidLoad];
     
-    CommentsTimelineController * commentView = [[CommentsTimelineController alloc] initWithMessage:status];
-    [commentView.view setFrame:CGRectMake(0, 6, 320, 460-6)];
-    [self.view addSubview:commentView.view];
+    commentsTimelineViewController = [[CommentsTimelineController alloc] initWithMessage:status];
+    [commentsTimelineViewController.view setFrame:CGRectMake(0, 6, 320, 460-6)];
+    [self.view addSubview:commentsTimelineViewController.view];
 }
 
 - (void)viewDidUnload
@@ -123,6 +130,12 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+#pragma mark - PostViewControllerDelegate
+- (void)PostDidSucc:(PostViewController *)controller res:(id)result{
+    [commentsTimelineViewController.timelineDataSource insertComment:result];
 }
 
 @end

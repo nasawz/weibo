@@ -10,8 +10,12 @@
 #import "WBRequest.h"
 #import "WBAuthorize.h"
 
-#define SinaWeiBo_APPKey @"2888398119"
-#define SinaWeiBo_APPSecret @"5e9982830d03d178b7e07a83e27430a0"
+//#define SinaWeiBo_APPKey @"2888398119"
+//#define SinaWeiBo_APPSecret @"5e9982830d03d178b7e07a83e27430a0"
+
+
+#define SinaWeiBo_APPKey @"399273601"
+#define SinaWeiBo_APPSecret @"9e4fc846e44db2387c5c2c52990fa424"
 
 extern NSString* domainWeiboError;						//The domain of the error which we defined and will be returned in all the protocols.
 typedef enum
@@ -112,7 +116,16 @@ typedef enum
 // 转发一条微博消息。
 - (WBRequest*)retweetStatusWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
 
+//批量获取n条微博消息的评论数和转发数。一次请求最多可以获取20条微博消息的评论数和转发数
+- (WBRequest*)getStatusesCountsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
 
+
+//按用户ID或昵称返回用户资料以及用户的最新发布的一条微博消息。
+- (WBRequest*)getUserWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
+
+// 返回用户最新发表的微博消息列表。
+- (WBRequest*)getUserTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
 
 
 - (BOOL)isUserLoggedin;                         //Check whether the user has logged in.

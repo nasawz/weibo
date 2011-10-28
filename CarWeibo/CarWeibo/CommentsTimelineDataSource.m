@@ -17,7 +17,7 @@
 @end
 
 @implementation CommentsTimelineDataSource
-
+@synthesize comments;
 
 - (id)initWithController:(CommentsTimelineController*)aController {
     [super init];
@@ -34,7 +34,11 @@
 } 
 
 - (void)getTimelineWithStatus:(Status*)status {
-    if (weibo) return;
+    if( weibo )
+	{
+		[weibo release];
+		weibo = nil;
+	}
 	weibo = [[WeiBo alloc] init];
     
     
@@ -82,6 +86,24 @@
     if ([controller respondsToSelector:@selector(timelineDidUpdate:count:insertAt:)]) {
         [controller timelineDidUpdate:self count:[comments count] insertAt:insertPosition];
 	}   
+}
+
+- (void)insertComment:(id)result {
+
+    if ([result isKindOfClass:[NSDictionary class]]) {
+        
+        NSDictionary *dic = (NSDictionary*)result;
+        Comment* comment = [Comment commentWithJsonDictionary:dic];
+        [comment calcTextBounds];
+        [comments insertObject:comment atIndex:insertPosition];
+    }
+    else {
+        return;
+    }  
+    if ([controller respondsToSelector:@selector(timelineDidUpdate:count:insertAt:)]) {
+        [controller timelineDidUpdate:self count:[comments count] insertAt:insertPosition];
+	}   
+    
 }
 
 

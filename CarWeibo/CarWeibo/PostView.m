@@ -32,7 +32,6 @@
         [self addSubview:barView];
         
         
-        
         recipient = [[UITextView alloc] initWithFrame:CGRectMake(0, 4, 320, 120 - 4)];
         [recipient setFont:[UIFont systemFontOfSize:18.0f]];
         [recipient setKeyboardType:UIKeyboardTypeDefault];

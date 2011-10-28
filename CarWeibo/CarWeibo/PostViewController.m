@@ -13,6 +13,7 @@
 @implementation PostViewController
 @synthesize status;
 @synthesize postType;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,18 +34,18 @@
         [postView setFrame:CGRectMake(0, 50, 320, 160)];
         [self.view addSubview:postView];
         
-        CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+        CarWeiboAppDelegate *app_delegate = [CarWeiboAppDelegate getAppDelegate];
         
-        UIButton* backButton = [delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
+        UIButton* backButton = [app_delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
         [backButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-        [delegate.rootViewController.navigation setText:@"取消" onBackButton:backButton];
-        delegate.rootViewController.navigation.leftButton = backButton;
+        [app_delegate.rootViewController.navigation setText:@"取消" onBackButton:backButton];
+        app_delegate.rootViewController.navigation.leftButton = backButton;
         
         
-        UIButton* sendButton = [delegate.rootViewController.navigation buttonWith:[UIImage imageNamed:@"nav_btn.png"] highlight:nil leftCapWidth:6.0];
+        UIButton* sendButton = [app_delegate.rootViewController.navigation buttonWith:[UIImage imageNamed:@"nav_btn.png"] highlight:nil leftCapWidth:6.0];
         [sendButton addTarget:self action:@selector(send:) forControlEvents:UIControlEventTouchUpInside];
-        [delegate.rootViewController.navigation setText:@" 发送 " onButton:sendButton];
-        delegate.rootViewController.navigation.rightButton = sendButton;
+        [app_delegate.rootViewController.navigation setText:@" 发送 " onButton:sendButton];
+        app_delegate.rootViewController.navigation.rightButton = sendButton;
     }
     return self;
 }
@@ -63,7 +64,11 @@
 }
 - (void)send:(id)sender {
     if (postType == POST_TYPE_COMMENT) {
-        if (weibo) return;
+        //        if (weibo) return;if( weibo )
+        {
+            [weibo release];
+            weibo = nil;
+        }
         weibo = [[WeiBo alloc] init];
         
         
@@ -81,7 +86,11 @@
         
     }else{
         
-        if (weibo) return;
+        //        if (weibo) return;if( weibo )
+        {
+            [weibo release];
+            weibo = nil;
+        }
         weibo = [[WeiBo alloc] init];
         
         
@@ -107,6 +116,9 @@
     }else{
         // TODO: 提示成功
         [self dismissModalViewControllerAnimated:YES];
+    }
+    if ([delegate respondsToSelector:@selector(PostDidSucc:res:)]) {
+        [delegate PostDidSucc:self res:result];
     }
 }
 

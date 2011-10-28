@@ -1,4 +1,4 @@
-//
+ //
 //  TweetInfoViewController.m
 //  CarWeibo
 //
@@ -10,8 +10,6 @@
 #import "CarWeiboAppDelegate.h"
 #import "ImageUtils.h"
 #import "LoginViewController.h"
-#import "CommentsViewController.h"
-#import "PostViewController.h"
 
 @implementation TweetInfoViewController
 
@@ -36,11 +34,26 @@
     return self;
 }
 
+- (void)getStatusCount {
+    
+    if( weibo )
+	{
+		[weibo release];
+		weibo = nil;
+	}
+    
+	weibo = [[WeiBo alloc] init];
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:[NSString stringWithFormat:@"%lld",status.statusId] forKey:@"ids"];
+    [weibo getStatusesCountsWithParams:param andDelegate:self];
+}
+
 - (void)back:(id)sender {
     CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
     delegate.rootViewController.navigation.leftButton = nil;
     
-    [delegate.rootViewController.navigation setStyle:NAV_DOWNARR];
+    [delegate.rootViewController.navigation setStyle:NAV_NORMAL];
     [delegate.rootViewController showTabBar];
     
     
@@ -85,7 +98,7 @@
     [btnActionsheet setBackgroundImage:bg_btn forState:UIControlStateNormal];
     [btnActionsheet setImage:[UIImage imageByFileName:@"btn_icon_actionsheet_wt" FileExtension:@"png"] forState:UIControlStateNormal];
     [btnActionsheet setFrame:CGRectMake(14, 16, 140, 38)];
-    [btnActionsheet setTitle:@"     0" forState:UIControlStateNormal];
+    [btnActionsheet setTitle:@"     ..." forState:UIControlStateNormal];
     [btnActionsheet.titleLabel setShadowColor:[UIColor darkGrayColor]];
     [btnActionsheet.titleLabel setShadowOffset:CGSizeMake(0, -1)];
     [btnActionsheet addTarget:self action:@selector(onReweet:) forControlEvents:UIControlEventTouchUpInside];
@@ -95,11 +108,32 @@
     [btnComment setBackgroundImage:bg_btn forState:UIControlStateNormal];
     [btnComment setImage:[UIImage imageByFileName:@"btn_icon_comment_wt" FileExtension:@"png"] forState:UIControlStateNormal];
     [btnComment setFrame:CGRectMake(166, 16, 140, 38)];
-    [btnComment setTitle:@"     6" forState:UIControlStateNormal];
+    [btnComment setTitle:@"     ..." forState:UIControlStateNormal];
     [btnComment.titleLabel setShadowColor:[UIColor darkGrayColor]];
     [btnComment.titleLabel setShadowOffset:CGSizeMake(0, -1)];
     [btnComment addTarget:self action:@selector(onComment:) forControlEvents:UIControlEventTouchUpInside];
     [toolBar addSubview:btnComment];    
+
+    [self getStatusCount];
+}
+
+- (void)request:(WBRequest *)request didLoad:(id)result {
+    weibo = nil;
+    NSLog(@"====>>>%@",result);
+    NSArray *ary = nil;
+    if ([result isKindOfClass:[NSArray class]]) {
+        ary = (NSArray*)result;
+    }
+    else {
+        return;
+    }
+    if ([result count] > 0) {
+        NSDictionary * dic = (NSDictionary *)[result objectAtIndex:0];
+        comments = [[dic objectForKey:@"comments"] intValue];
+        rt = [[dic objectForKey:@"rt"] intValue];        
+        [btnComment setTitle:[NSString stringWithFormat:@"     %d",comments] forState:UIControlStateNormal];
+        [btnActionsheet setTitle:[NSString stringWithFormat:@"     %d",rt] forState:UIControlStateNormal];
+    }
 }
 
 - (void)showLogin {
@@ -113,6 +147,7 @@
 
 - (void)onComment:(id)sender {
     CommentsViewController * commentView = [[CommentsViewController alloc] initWithMessage:status];
+    [commentView setInfo_delegate:self];
     [self.navigationController pushViewController:commentView animated:YES];
 }
 
@@ -127,6 +162,7 @@
         [self showLogin];
     }else{
         PostViewController * postViewController = [[PostViewController alloc] initWithPostType:POST_TYPE_RETWEET];
+        [postViewController setDelegate:self];
         [postViewController setStatus:status];
         [self presentModalViewController:postViewController animated:YES];
         [postViewController release];
@@ -161,4 +197,14 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - PostViewControllerDelegate
+- (void)PostDidSucc:(PostViewController *)controller res:(id)result{
+    rt += 1;
+    [btnActionsheet setTitle:[NSString stringWithFormat:@"     %d",rt] forState:UIControlStateNormal];
+}
+#pragma mark - CommentsViewControllerDelegate
+- (void)CommentsBackToInfo:(int)commentsCount {
+    comments = commentsCount;
+    [btnComment setTitle:[NSString stringWithFormat:@"     %d",comments] forState:UIControlStateNormal];
+}
 @end
