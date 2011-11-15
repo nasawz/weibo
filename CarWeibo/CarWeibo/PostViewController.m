@@ -53,7 +53,7 @@
 - (void)setStatus:(Status *)aStatus {
     status = [aStatus retain];
     if (postType == POST_TYPE_COMMENT) {
-        [postView setBothText:@"同时专发到我的微博"];
+        [postView setBothText:@"同时转发到我的微博"];
     }else{
         [postView setBothText:[NSString stringWithFormat:@"同时评论给%@",status.user.name]];
     }

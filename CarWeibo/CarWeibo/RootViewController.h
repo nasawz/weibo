@@ -15,11 +15,17 @@
     WeiBo*          weibo;
     CustomTabBar*   tabBar;
     CustomNavigation * navigation;
+    
+    UINavigationController * currNav;
 }
 @property (nonatomic, retain) CustomNavigation* navigation;
 @property (nonatomic, retain) CustomTabBar* tabBar;
 
 - (void)hideTabBar;
 - (void)showTabBar;
+
+- (void) touchDownAtItemAtIndex:(NSUInteger)itemIndex;
+
+- (UINavigationController *)getCurrNav;
 
 @end

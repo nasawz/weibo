@@ -606,6 +606,252 @@ static NSString* weiboHttpRequestDomain		= @"http://api.t.sina.com.cn/";
 	return _request;     
 }
 
+// 获取某话题下的微博消息。
+- (WBRequest*)getTrendsTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isDefaultUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"GET"
+										   postDataType:WBRequestPostDataType_Normal 
+											   delegate:delegate 
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"trends/statuses.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_defaultAccessToken
+										   accessSecret:_defaultAccessTokenSecret];
+    //    NSLog(@"_defaultAccessToken         = %@",_defaultAccessToken);
+    //    NSLog(@"_defaultAccessTokenSecret   = %@",_defaultAccessTokenSecret);
+    NSLog(@"user RequestURL = %@",[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"trends/statuses.json"]);
+	
+	[_request connect];
+	[_request retain];
+	
+	return _request;      
+}
+
+
+// 关注某话题。
+- (WBRequest*)getTrendFollowTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isDefaultUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"POST"
+										   postDataType:WBRequestPostDataType_Normal 
+											   delegate:delegate 
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"trends/follow.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+    //    NSLog(@"_defaultAccessToken         = %@",_defaultAccessToken);
+    //    NSLog(@"_defaultAccessTokenSecret   = %@",_defaultAccessTokenSecret);
+    //    NSLog(@"user RequestURL = %@",[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"trends/follow.json"]);
+	
+	[_request connect];
+	[_request retain];
+	
+	return _request;     
+}
+
+// 获取某用户的话题。
+- (WBRequest*)getTrendsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isDefaultUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"GET"
+										   postDataType:WBRequestPostDataType_Normal 
+											   delegate:delegate 
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"trends.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+    //    NSLog(@"_defaultAccessToken         = %@",_defaultAccessToken);
+    //    NSLog(@"_defaultAccessTokenSecret   = %@",_defaultAccessTokenSecret);
+    //    NSLog(@"user RequestURL = %@",[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"trends/follow.json"]);
+	
+	[_request connect];
+	[_request retain];
+	
+	return _request;     
+}
+
+
+
+// 获取用户关注列表及每个关注用户的最新一条微博，返回结果按关注时间倒序排列，最新关注的用户排在最前面。
+- (WBRequest*)getFriendsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isDefaultUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"GET"
+										   postDataType:WBRequestPostDataType_Normal 
+											   delegate:delegate 
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/friends.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+    //    NSLog(@"_defaultAccessToken         = %@",_defaultAccessToken);
+    //    NSLog(@"_defaultAccessTokenSecret   = %@",_defaultAccessTokenSecret);
+    NSLog(@"user RequestURL = %@",[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/friends.json"]);
+	
+	[_request connect];
+	[_request retain];
+	
+	return _request;     
+}
+
+
+// 发布一条微博信息。也可以同时转发某条微博。请求必须用POST方式提交。
+- (WBRequest*)updateTweetWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isDefaultUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"GET"
+										   postDataType:WBRequestPostDataType_Normal 
+											   delegate:delegate 
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/update.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+    //    NSLog(@"_defaultAccessToken         = %@",_defaultAccessToken);
+    //    NSLog(@"_defaultAccessTokenSecret   = %@",_defaultAccessTokenSecret);
+    NSLog(@"user RequestURL = %@",[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/update.json"]);
+	
+	[_request connect];
+	[_request retain];
+	
+	return _request; 
+}
+
+// 发表带图片的微博。必须用POST方式提交pic参数，且Content-Type必须设置为multipart/form-data。图片大小<5M。
+- (WBRequest*)uploadTweetWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate {
+    if( [self isDefaultUserLoggedin] == NO )
+	{
+		if( [delegate respondsToSelector:@selector(request:didFailWithError:)] )
+			[delegate request:nil didFailWithError:[NSError errorWithDomain:domainWeiboError 
+																	   code:CodeWeiboError_SDK 
+																   userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",CodeWeiboSDKError_NotAuthorized] forKey:keyCodeWeiboSDKError]]];
+		return nil;
+	}
+	
+	if( _request )
+	{
+		[_request release];
+		_request = nil;
+	}
+	
+	_request = [WBRequest getAuthorizeRequestWithParams:params
+											 httpMethod:@"GET"
+										   postDataType:WBRequestPostDataType_Normal 
+											   delegate:delegate 
+											 requestURL:[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/upload.json"]
+									   headerFieldsInfo: nil 
+												 appKey:_appKey	
+											  appSecret:_appSecret
+											accessToken:_accessToken
+										   accessSecret:_accessTokenSecret];
+    //    NSLog(@"_defaultAccessToken         = %@",_defaultAccessToken);
+    //    NSLog(@"_defaultAccessTokenSecret   = %@",_defaultAccessTokenSecret);
+    NSLog(@"user RequestURL = %@",[NSString stringWithFormat:@"%@%@",weiboHttpRequestDomain,@"statuses/upload.json"]);
+	
+	[_request connect];
+	[_request retain];
+	
+	return _request; 
+}
+
+- (WBRequest*)postWeiboRequestWithText:(NSString*)text							//Just create an URL request to post one weibo with text and image.
+                                params:(NSMutableDictionary*)params
+							  andImage:(UIImage*)image
+						   andDelegate:(id <WBRequestDelegate>)delegate {
+	if( image )
+		[params setObject:image forKey:@"pic"];
+	
+	[params setObject:text?text:@"" forKey:@"status"];
+	if( image )
+		return [self postRequestWithMethodName:@"statuses/upload.json" 
+									 andParams:params 
+							   andPostDataType:WBRequestPostDataType_Multipart 
+								   andDelegate:delegate];
+	else
+		return [self requestWithMethodName:@"statuses/update.json" 
+								 andParams:params 
+							 andHttpMethod:@"POST" 
+							   andDelegate:delegate];
+}
+
 //分组 http://open.weibo.com/wiki/GET/:user/lists
 //旧接口 http://open.weibo.com/wiki/index.php/Rest_API
 #pragma mark For Post Weibo

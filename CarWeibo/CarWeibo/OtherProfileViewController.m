@@ -1,19 +1,20 @@
 //
-//  ProfileViewController.m
+//  OtherProfileViewController.m
 //  CarWeibo
 //
-//  Created by zhe wang on 11-10-28.
+//  Created by zhe wang on 11-11-15.
 //  Copyright (c) 2011年 nasa.wang. All rights reserved.
 //
 
-#import "ProfileViewController.h"
+#import "OtherProfileViewController.h"
 #import "CarWeiboAppDelegate.h"
 #import "LoginViewController.h"
 #import "ImageUtils.h"
 #import "ImageStoreWaiter.h"
 #import "ProfileStatusViewController.h"
 
-@implementation ProfileViewController
+@implementation OtherProfileViewController
+@synthesize currUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -21,7 +22,6 @@
     if (self) {
         // Custom initialization
         
-        [self buildUI];
     }
     return self;
 }
@@ -35,31 +35,6 @@
 }
 #pragma mark - 
 
-- (void)showLogin {
-    
-    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
-    
-    LoginViewController * loginView = [[LoginViewController alloc] init];
-    [delegate.rootViewController presentModalViewController:loginView animated:YES];
-    [loginView release];
-}
-
-- (void)doLogout {
-    if( weibo )
-	{
-		[weibo release];
-		weibo = nil;
-	}
-	weibo = [[WeiBo alloc] init];
-    [weibo LogOut];
-//    [[ROIFestivalAppDelegate getAppDelegate] alert:@"已取消授权！"];
-//    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isFollowTrend"];
-//    [self.navigationController popViewControllerAnimated:YES];
-    
-    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
-    [delegate.rootViewController.tabBar selectItemAtIndex:0];
-    [delegate.rootViewController touchDownAtItemAtIndex:0];
-}
 
 - (void)goStatus {
     
@@ -73,11 +48,11 @@
 #pragma mark - View lifecycle
 
 /*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
+ // Implement loadView to create a view hierarchy programmatically, without using a nib.
+ - (void)loadView
+ {
+ }
+ */
 
 - (void)buildUI {
     
@@ -106,15 +81,15 @@
     [self.view addSubview:lab_location];
     [self.view addSubview:txt_description];  
     
-    btnLogout = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnLogout setBackgroundImage:[[UIImage imageByFileName:@"btn_bg_blue" FileExtension:@"png"] stretchableImageWithLeftCapWidth:6 topCapHeight:0] forState:UIControlStateNormal];
-    [btnLogout setFrame:CGRectMake(7, 211 - 50, 307, 38)];
-    [btnLogout.titleLabel setShadowColor:[UIColor blackColor]];
-    [btnLogout.titleLabel setShadowOffset:CGSizeMake(0, -1)];
-    [btnLogout setTitle:@"退出登陆" forState:UIControlStateNormal];
-    [btnLogout addTarget:self action:@selector(doLogout) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnLogout];
-
+    //    btnLogout = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    [btnLogout setBackgroundImage:[[UIImage imageByFileName:@"btn_bg_blue" FileExtension:@"png"] stretchableImageWithLeftCapWidth:6 topCapHeight:0] forState:UIControlStateNormal];
+    //    [btnLogout setFrame:CGRectMake(7, 211 - 50, 307, 38)];
+    //    [btnLogout.titleLabel setShadowColor:[UIColor blackColor]];
+    //    [btnLogout.titleLabel setShadowOffset:CGSizeMake(0, -1)];
+    //    [btnLogout setTitle:@"退出登陆" forState:UIControlStateNormal];
+    //    [btnLogout addTarget:self action:@selector(doLogout) forControlEvents:UIControlEventTouchUpInside];
+    //    [self.view addSubview:btnLogout];
+    
     btnViewStatus = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnViewStatus setBackgroundImage:[UIImage imageByFileName:@"btn_ViewStatus" FileExtension:@"png"] forState:UIControlStateNormal];
     [btnViewStatus setFrame:CGRectMake(0, 268 - 50, 320, 53)];
@@ -144,34 +119,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if( weibo )
-	{
-		[weibo release];
-		weibo = nil;
-	}
-	weibo = [[WeiBo alloc] init];
-    if (!weibo.isUserLoggedin) {
-        [self showLogin];
-    }else{
-        if (!currUser) {
-            [self getCurrUser];
-        }else{
-            [self dataBinding];
-        }
-    }
+    
+    [self buildUI];
+    [self dataBinding];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if( weibo )
-	{
-		[weibo release];
-		weibo = nil;
-	}
-	weibo = [[WeiBo alloc] init];
-    if (!weibo.isUserLoggedin) {
-        [self showLogin];
-    }
+    
+
+    
+    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+    [delegate.rootViewController.navigation setStyle:NAV_NORMAL];
+    //    [delegate.rootViewController hideTabBar];
+    
+    
+    UIButton* backButton = [delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    delegate.rootViewController.navigation.leftButton = backButton;
+    
+    delegate.rootViewController.navigation.rightButton = nil;
 }
 
 
@@ -189,6 +157,19 @@
 }
 
 #pragma mark - 
+
+- (void)back:(id)sender {
+    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+    delegate.rootViewController.navigation.leftButton = nil;
+    
+    [delegate.rootViewController.navigation setStyle:NAV_NORMAL];
+    //    [delegate.rootViewController showTabBar];
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
 - (void)getCurrUser {
     if( weibo )
 	{
@@ -221,6 +202,5 @@
         return;
     }  
 }
-
 
 @end

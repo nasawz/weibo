@@ -102,6 +102,7 @@
 		CB88AB6A1445B4E7000428BF /* ThumbleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB88AB691445B4E6000428BF /* ThumbleImageView.m */; };
 		CB88AB6D1445C23D000428BF /* ImageStoreWaiter.m in Sources */ = {isa = PBXBuildFile; fileRef = CB88AB6C1445C23C000428BF /* ImageStoreWaiter.m */; };
 		CB8B84831455411A0033B7BA /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8B84821455411A0033B7BA /* CommentCell.m */; };
+		CB8EDE1814726933002C0868 /* OtherProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8EDE1714726933002C0868 /* OtherProfileViewController.m */; };
 		CBA8E5A71442E061003085A4 /* bg_Navigation_a.png in Resources */ = {isa = PBXBuildFile; fileRef = CBA8E5A51442E061003085A4 /* bg_Navigation_a.png */; };
 		CBA8E5A81442E061003085A4 /* bg_Navigation_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBA8E5A61442E061003085A4 /* bg_Navigation_a@2x.png */; };
 		CBA8E5AC1442E2CD003085A4 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA8E5AB1442E2CD003085A4 /* ActivityViewController.m */; };
@@ -301,6 +302,8 @@
 		CB88AB6C1445C23C000428BF /* ImageStoreWaiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStoreWaiter.m; sourceTree = "<group>"; };
 		CB8B84811455411A0033B7BA /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		CB8B84821455411A0033B7BA /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		CB8EDE1614726933002C0868 /* OtherProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherProfileViewController.h; sourceTree = "<group>"; };
+		CB8EDE1714726933002C0868 /* OtherProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherProfileViewController.m; sourceTree = "<group>"; };
 		CBA8E5A51442E061003085A4 /* bg_Navigation_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_Navigation_a.png; sourceTree = "<group>"; };
 		CBA8E5A61442E061003085A4 /* bg_Navigation_a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_Navigation_a@2x.png"; sourceTree = "<group>"; };
 		CBA8E5AA1442E2CD003085A4 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
@@ -497,6 +500,8 @@
 				CB5AC450145A85F300BECB9D /* ProfileViewController.m */,
 				CB5AC462145AAB3900BECB9D /* ProfileStatusViewController.h */,
 				CB5AC463145AAB3900BECB9D /* ProfileStatusViewController.m */,
+				CB8EDE1614726933002C0868 /* OtherProfileViewController.h */,
+				CB8EDE1714726933002C0868 /* OtherProfileViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1134,6 +1139,7 @@
 				CB5AC45E145AA60000BECB9D /* UserTimelineController.m in Sources */,
 				CB5AC461145AA62000BECB9D /* UserTimelineDataSource.m in Sources */,
 				CB5AC464145AAB3A00BECB9D /* ProfileStatusViewController.m in Sources */,
+				CB8EDE1814726933002C0868 /* OtherProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

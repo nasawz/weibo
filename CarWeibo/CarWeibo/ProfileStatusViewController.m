@@ -69,7 +69,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [userTimelineController viewWillAppear:animated];
     [self.navigationController.view setFrame:CGRectMake(0, 0, 320, 460 - 44)];
 }
 

@@ -34,7 +34,8 @@
     controller = aController;
     tweetType  = type;
     [loadCell setType:MSG_TYPE_LOAD_MORE_FRIENDS];
-    isRestored = ([timeline restore:tweetType all:NO] < 20) ? YES : NO;
+    isRestored = YES;
+//    isRestored = ([timeline restore:tweetType all:NO] < 20) ? YES : NO;
     return self; 
 }
 
@@ -156,7 +157,7 @@
     }
     
     if (since_id) {
-        [param setObject:[NSString stringWithFormat:@"%d", since_id] forKey:@"since_id"];
+        //        [param setObject:[NSString stringWithFormat:@"%d", since_id] forKey:@"since_id"];
         [param setObject:@"200" forKey:@"count"];
     }
     [param setObject:[NSString stringWithFormat:@"%u",user.userId] forKey:@"user_id"];
@@ -193,18 +194,18 @@
             if (![dic isKindOfClass:[NSDictionary class]]) {
                 continue;
             }
-            sqlite_int64 statusId = [[[ary objectAtIndex:i] objectForKey:@"id"] longLongValue];
-            if (![Status isExists:statusId type:tweetType]) {
+//            sqlite_int64 statusId = [[[ary objectAtIndex:i] objectForKey:@"id"] longLongValue];
+//            if (![Status isExists:statusId type:tweetType]) {
                 Status* sts = [Status statusWithJsonDictionary:[ary objectAtIndex:i] type:tweetType];
                 if (sts.createdAt < lastStatus.createdAt) {
                     // Ignore stale message
                     continue;
                 }
-                [sts insertDB];
+//                [sts insertDB];
                 sts.unread = true;
                 [timeline insertStatus:sts atIndex:insertPosition];
                 ++unread;
-            }
+//            }
         }
         [DBConnection commitTransaction];
     }

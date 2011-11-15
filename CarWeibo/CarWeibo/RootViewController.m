@@ -252,6 +252,8 @@ static NSArray* tabBarItems = nil;
     // Add the new view controller's view
     [self.view insertSubview:viewController.view belowSubview:tabBar];
     
+    currNav = (UINavigationController *)viewController;
+    
 //    if (itemIndex == 0) {
 //        [(HomeViewController*)[(UINavigationController *)viewController topViewController] restoreAndLoadTimeline:YES];
 //    }
@@ -259,6 +261,10 @@ static NSArray* tabBarItems = nil;
     // In 1 second glow the selected tab
     //    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addGlowTimerFireMethod:) userInfo:[NSNumber numberWithInteger:itemIndex] repeats:NO];
     
+}
+
+- (UINavigationController *)getCurrNav {
+    return currNav;
 }
 
 - (void)addGlowTimerFireMethod:(NSTimer*)theTimer

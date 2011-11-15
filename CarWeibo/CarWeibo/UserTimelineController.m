@@ -66,8 +66,9 @@
     [super dealloc];
 }
 
-- (void)viewWillAppear:(BOOL)animated 
-{
+
+
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self.tableView setContentOffset:contentOffset animated:false];
@@ -75,6 +76,16 @@
     self.navigationController.navigationBar.tintColor = [UIColor navigationColorForTab:tab];
     self.tableView.separatorColor = [UIColor lightGrayColor]; 
     
+    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+    [delegate.rootViewController.navigation setStyle:NAV_NORMAL];
+    //    [delegate.rootViewController hideTabBar];
+    
+    
+    UIButton* backButton = [delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    delegate.rootViewController.navigation.leftButton = backButton;
+    
+    delegate.rootViewController.navigation.rightButton = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -113,6 +124,19 @@
 //
 // Public methods
 //
+
+- (void)back:(id)sender {
+    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+    delegate.rootViewController.navigation.leftButton = nil;
+    
+    [delegate.rootViewController.navigation setStyle:NAV_NORMAL];
+    //    [delegate.rootViewController showTabBar];
+    
+    
+    [navController popViewControllerAnimated:YES];
+    
+}
+
 - (void)loadTimeline
 {
     [timelineDataSource getTimeline];

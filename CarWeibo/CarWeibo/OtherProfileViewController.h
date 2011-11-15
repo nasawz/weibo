@@ -1,8 +1,8 @@
 //
-//  ProfileViewController.h
+//  OtherProfileViewController.h
 //  CarWeibo
 //
-//  Created by zhe wang on 11-10-28.
+//  Created by zhe wang on 11-11-15.
 //  Copyright (c) 2011年 nasa.wang. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 #import "User.h"
 
-@interface ProfileViewController : UIViewController <WBRequestDelegate>{
+@interface OtherProfileViewController : UIViewController  <WBRequestDelegate>{
     WeiBo * weibo;
     User * currUser;
     UIImageView * faceImageView;
@@ -19,11 +19,13 @@
     UILabel*        lab_location;
     UILabel*        txt_description;
     
-    UIButton* btnLogout;
+    //    UIButton* btnLogout;
     UIButton* btnViewStatus;
 }
 
-- (void)getCurrUser;
+@property (nonatomic, retain) User * currUser;
+
+- (void)getUser;
 
 - (void)buildUI;
 

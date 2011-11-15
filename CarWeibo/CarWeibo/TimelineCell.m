@@ -11,6 +11,7 @@
 #import "TimelineCell.h"
 #import "ColorUtils.h"
 #import "ImageStoreWaiter.h"
+#import "OtherProfileViewController.h"
 @implementation TimelineCell
 
 - (void)dealloc
@@ -26,7 +27,12 @@
 
 - (void)didTouchImageButton:(id)sender
 {
-//    CarWeiboAppDelegate *appDelegate = (CarWeiboAppDelegate*)[UIApplication sharedApplication].delegate;
+    CarWeiboAppDelegate *appDelegate = (CarWeiboAppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    OtherProfileViewController * profileVC = [[OtherProfileViewController alloc] init];
+    [profileVC setCurrUser:cellView.status.user];
+    
+    [[appDelegate.rootViewController getCurrNav] pushViewController:profileVC animated:YES];
 //    
 //    PostViewController* postView = appDelegate.postView;
 //    [postView inReplyTo:status];

@@ -127,6 +127,33 @@ typedef enum
 // 返回用户最新发表的微博消息列表。
 - (WBRequest*)getUserTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
 
+// 获取某话题下的微博消息。
+- (WBRequest*)getTrendsTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
+
+// 关注某话题。
+- (WBRequest*)getTrendFollowTimelineWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
+
+// 获取某用户的话题。
+- (WBRequest*)getTrendsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
+
+// 获取用户关注列表及每个关注用户的最新一条微博，返回结果按关注时间倒序排列，最新关注的用户排在最前面。
+- (WBRequest*)getFriendsWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
+
+// 发布一条微博信息。也可以同时转发某条微博。请求必须用POST方式提交。
+- (WBRequest*)updateTweetWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
+// 发表带图片的微博。必须用POST方式提交pic参数，且Content-Type必须设置为multipart/form-data。图片大小<5M。
+- (WBRequest*)uploadTweetWithParams:(NSMutableDictionary*)params andDelegate:(id <WBRequestDelegate>)delegate;
+
+- (WBRequest*)postWeiboRequestWithText:(NSString*)text							//Just create an URL request to post one weibo with text and image.
+                                params:(NSMutableDictionary*)params
+							  andImage:(UIImage*)image
+						   andDelegate:(id <WBRequestDelegate>)delegate;
+
 
 - (BOOL)isUserLoggedin;                         //Check whether the user has logged in.
 - (BOOL)isDefaultUserLoggedin;					//Check whether the user has logged in.
