@@ -9,6 +9,7 @@
 #import "CarWeiboAppDelegate.h"
 #import "DBConnection.h"
 
+static const NSInteger kGANDispatchPeriodSec = 10;
 
 @implementation CarWeiboAppDelegate
 @synthesize rootViewController;
@@ -16,8 +17,41 @@
 @synthesize screenName;
 @synthesize imageStore;
 
+- (void)startTrack {
+    // **************************************************************************
+    // PLEASE REPLACE WITH YOUR ACCOUNT DETAILS.
+    // **************************************************************************
+    [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-27221538-1"
+                                           dispatchPeriod:kGANDispatchPeriodSec
+                                                 delegate:nil];
+    
+    NSError *error;
+//    if (![[GANTracker sharedTracker] setCustomVariableAtIndex:1
+//                                                         name:@"CarWeibo"
+//                                                        value:@"v2.0"
+//                                                    withError:&error]) {
+//        // Handle error here
+//    }
+//    
+//    if (![[GANTracker sharedTracker] trackEvent:@"my_category"
+//                                         action:@"my_action"
+//                                          label:@"my_label"
+//                                          value:-1
+//                                      withError:&error]) {
+//        // Handle error here
+//    }
+    
+    if (![[GANTracker sharedTracker] trackPageview:@"/start"
+                                         withError:&error]) {
+        // Handle error here
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [self startTrack];
+    
     BOOL forceCreate = [[NSUserDefaults standardUserDefaults] boolForKey:@"clearLocalCache"];
     [DBConnection createEditableCopyOfDatabaseIfNeeded:forceCreate];
     [DBConnection getSharedDatabase];
@@ -104,6 +138,10 @@ static UIAlertView *sAlert = nil;
 {
     return (CarWeiboAppDelegate*)[UIApplication sharedApplication].delegate;
 }
++ (void)setTitle:(NSString *)title {
+    [[[(CarWeiboAppDelegate*)[UIApplication sharedApplication].delegate rootViewController] navigation] setTitle:title];
+}
+
 
 //
 // Handling links

@@ -22,9 +22,13 @@ typedef enum {
     UIButton *      leftButton;
     UIButton *      rightButton;
     
+    NSString *      title;
+    
+    UILabel *       lab_title;
 }
 
 @property (nonatomic,assign)NAV_STYLE style;
+@property (nonatomic,retain)NSString *      title;
 @property (nonatomic,retain)UIButton *      leftButton;
 @property (nonatomic,retain)UIButton *      rightButton;
 

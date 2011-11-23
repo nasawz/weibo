@@ -45,6 +45,14 @@
 }
 
 - (void)doLogout {
+    
+    
+    [[GANTracker sharedTracker] trackEvent:@"ProfimeView"
+                                    action:@"touchDown"
+                                     label:@"logout"
+                                     value:-1
+                                 withError:nil];
+    
     if( weibo )
 	{
 		[weibo release];
@@ -62,6 +70,13 @@
 }
 
 - (void)goStatus {
+    
+    
+    [[GANTracker sharedTracker] trackEvent:@"ProfimeView"
+                                    action:@"touchDown"
+                                     label:@"status"
+                                     value:-1
+                                 withError:nil];
     
     ProfileStatusViewController* statusViewController = [[[ProfileStatusViewController alloc] init] autorelease];
     [statusViewController setUser:currUser];
@@ -172,7 +187,17 @@
     if (!weibo.isUserLoggedin) {
         [self showLogin];
     }
+    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+    [delegate.rootViewController.navigation setStyle:NAV_NORMAL];
+    delegate.rootViewController.navigation.leftButton = nil;
+    delegate.rootViewController.navigation.rightButton = nil;
+    [CarWeiboAppDelegate setTitle:@"个人资料"];
+    
+    
+    [[GANTracker sharedTracker] trackPageview:@"/self_profile"
+                                    withError:nil];
 }
+
 
 
 - (void)viewDidUnload

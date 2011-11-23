@@ -101,7 +101,7 @@
         return;
     }  
     if ([controller respondsToSelector:@selector(timelineDidUpdate:count:insertAt:)]) {
-        [controller timelineDidUpdate:self count:[comments count] insertAt:insertPosition];
+        [controller timelineDidUpdate:self count:1 insertAt:insertPosition];
 	}   
     
 }

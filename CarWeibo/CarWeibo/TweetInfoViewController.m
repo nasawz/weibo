@@ -50,6 +50,14 @@
 }
 
 - (void)back:(id)sender {
+    
+    
+    [[GANTracker sharedTracker] trackEvent:@"InfoView"
+                                    action:@"touchDown"
+                                     label:@"back"
+                                     value:-1
+                                 withError:nil];
+    
     CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
     delegate.rootViewController.navigation.leftButton = nil;
     
@@ -146,12 +154,28 @@
 }
 
 - (void)onComment:(id)sender {
+    
+    
+    [[GANTracker sharedTracker] trackEvent:@"InfoView"
+                                    action:@"touchDown"
+                                     label:@"comment"
+                                     value:-1
+                                 withError:nil];
+    
     CommentsViewController * commentView = [[CommentsViewController alloc] initWithMessage:status];
     [commentView setInfo_delegate:self];
     [self.navigationController pushViewController:commentView animated:YES];
 }
 
 - (void)onReweet:(id)sender {
+    
+    
+    [[GANTracker sharedTracker] trackEvent:@"InfoView"
+                                    action:@"touchDown"
+                                     label:@"reweet"
+                                     value:-1
+                                 withError:nil];
+    
     if( weibo )
 	{
 		[weibo release];
@@ -182,6 +206,13 @@
     delegate.rootViewController.navigation.leftButton = backButton;
     
     delegate.rootViewController.navigation.rightButton = nil;
+    
+    
+    [CarWeiboAppDelegate setTitle:@"微博详情"];
+    
+    
+    [[GANTracker sharedTracker] trackPageview:@"/tweet_info"
+                                    withError:nil];
 }
 
 - (void)viewDidUnload

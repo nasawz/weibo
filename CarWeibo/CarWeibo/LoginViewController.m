@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "CarWeiboAppDelegate.h"
 #import "ImageUtils.h"
 
 @implementation LoginViewController
@@ -31,7 +32,7 @@
         [btnLogin.titleLabel setShadowColor:[UIColor blackColor]];
         [btnLogin.titleLabel setShadowOffset:CGSizeMake(0, -1)];
         [btnLogin setTitle:@"登陆" forState:UIControlStateNormal];
-        [btnLogin addTarget:self action:@selector(doLogin) forControlEvents:UIControlEventTouchUpInside];
+        [btnLogin addTarget:self action:@selector(doLogin:) forControlEvents:UIControlEventTouchUpInside];
         [contentView addSubview:btnLogin];
         
         btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -73,6 +74,13 @@
 }
 
 - (void)close:(id)sender {
+    
+    [[GANTracker sharedTracker] trackEvent:@"LoginView"
+                                    action:@"touchDown"
+                                     label:@"close"
+                                     value:-1
+                                 withError:nil];
+    
     [contentView setFrame:CGRectMake(0, 0, 320, 460)];
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -104,6 +112,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [CarWeiboAppDelegate setTitle:@"登陆"];
+    
+    
+    [[GANTracker sharedTracker] trackPageview:@"/login"
+                                    withError:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -157,14 +170,29 @@
     if (textField.tag == 0) {
         [txt_password becomeFirstResponder];
     }else if(textField.tag == 1){
-        [self doLogin];        
+        [self doLogin:nil];        
     }
+    
+    [[GANTracker sharedTracker] trackEvent:@"LoginView"
+                                    action:@"touchDown"
+                                     label:@"return"
+                                     value:-1
+                                 withError:nil];
     return YES;
 }
 
 #pragma mark - login
 
-- (void)doLogin {
+- (void)doLogin:(UIButton *)sender {
+    
+    if (sender) {
+        [[GANTracker sharedTracker] trackEvent:@"LoginView"
+                                        action:@"touchDown"
+                                         label:@"login"
+                                         value:-1
+                                     withError:nil];
+    }
+    
     [self moveDown];
     if( weibo )
 	{

@@ -15,6 +15,7 @@
 @implementation CustomNavigation
 @synthesize leftButton,rightButton;
 @synthesize style;
+@synthesize title;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -25,7 +26,7 @@
     return self;
 }
 
-- (id)initWithTitle:(NSString *)title AddStyle:(NAV_STYLE)aStyle {
+- (id)initWithTitle:(NSString *)aTitle AddStyle:(NAV_STYLE)aStyle {
     self = [super initWithFrame:CGRectMake(0, 0, 320, 61)];
     if (self) {
         UIImage * img_bg;
@@ -38,8 +39,25 @@
         view_bg = [[UIImageView alloc] initWithImage:img_bg];
         [self addSubview:view_bg];
         [img_bg release];
+        
+        title = [aTitle retain];
+        
+        lab_title = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 200, 50)];
+        lab_title.textColor = [UIColor darkTextColor];
+        [lab_title setTextAlignment:UITextAlignmentCenter];
+        [lab_title setBackgroundColor:[UIColor clearColor]];
+        [lab_title setFont:[UIFont systemFontOfSize:24.0f]];
+        lab_title.shadowOffset = CGSizeMake(0,1);
+        lab_title.shadowColor = [UIColor whiteColor];
+        lab_title.text = title;
+        [self addSubview:lab_title];
     }
     return self;    
+}
+
+- (void)setTitle:(NSString *)aTitle {
+    title = [aTitle retain];
+    lab_title.text = title;
 }
 
 - (void)setStyle:(NAV_STYLE)aStyle {

@@ -11,6 +11,7 @@
 #import "WBUtil.h"
 #import "HomeViewController.h"
 #import "ProfileViewController.h"
+#import "TrendsListViewController.h"
 
 //#define SinaWeiBo_APPKey @"2888398119"
 //#define SinaWeiBo_APPSecret @"5e9982830d03d178b7e07a83e27430a0"
@@ -39,19 +40,25 @@ static NSArray* tabBarItems = nil;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
+//        client = [[IEVTClient alloc] initWithTarget:self action:@selector(trendsDidLoad:obj:)];
+//        [client sendFeedBack:@"风华圆舞"];
+        
         UINavigationController * home_nav = [[UINavigationController alloc] initWithRootViewController:[[HomeViewController alloc] init]];
+        UINavigationController * trends_nav = [[UINavigationController alloc] initWithRootViewController:[[TrendsListViewController alloc] init]];
         UINavigationController * profile_nav = [[UINavigationController alloc] initWithRootViewController:[[ProfileViewController alloc] init]];
         
         tabBarItems = [[NSArray arrayWithObjects:
                         [NSDictionary dictionaryWithObjectsAndKeys:@"icon_home.png", @"image", home_nav, @"viewController", nil],
-//                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_topic.png", @"image", home_nav, @"viewController", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_topic.png", @"image", trends_nav, @"viewController", nil],
                         [NSDictionary dictionaryWithObjectsAndKeys:@"icon_profile.png", @"image", profile_nav, @"viewController", nil],
 //                        [NSDictionary dictionaryWithObjectsAndKeys:@"icon_activity.png", @"image", activity_nav, @"viewController", nil],
                         nil] retain];
     }
     return self;
 }
-
+//- (void)trendsDidLoad:(IEVTClient*)c obj:(id)obj {
+//    NSLog(@"%@",obj);
+//}
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -253,6 +260,14 @@ static NSArray* tabBarItems = nil;
     [self.view insertSubview:viewController.view belowSubview:tabBar];
     
     currNav = (UINavigationController *)viewController;
+    
+    
+    [[GANTracker sharedTracker] trackEvent:@"tabBar"
+                                    action:@"touchDown"
+                                     label:@"itemIndex"
+                                     value:itemIndex
+                                 withError:nil];
+    
     
 //    if (itemIndex == 0) {
 //        [(HomeViewController*)[(UINavigationController *)viewController topViewController] restoreAndLoadTimeline:YES];

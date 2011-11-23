@@ -14,6 +14,7 @@
 typedef enum {
     POST_TYPE_COMMENT,
     POST_TYPE_RETWEET,
+    POST_TYPE_POST,
 } PostType;
 
 @protocol PostViewControllerDelegate;
@@ -23,13 +24,19 @@ typedef enum {
     Status*                    status;
     WeiBo*                     weibo;
     id                         delegate;
+    NSString * keyWords;
+
 }
 
 - (id)initWithPostType:(PostType)type;
 
+@property (nonatomic, retain) NSString * keyWords;
 @property(nonatomic,assign) id <PostViewControllerDelegate> delegate;
 @property (nonatomic, retain) Status* status;
 @property (nonatomic, assign) PostType postType;
+
+
+- (void)reSetNav;
 
 @end
 

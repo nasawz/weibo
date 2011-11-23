@@ -22,6 +22,6 @@
     UIView* contentView;
 }
 
-- (void)doLogin;
+- (void)doLogin:(UIButton *)sender;
 
 @end

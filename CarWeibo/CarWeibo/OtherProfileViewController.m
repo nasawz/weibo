@@ -38,6 +38,13 @@
 
 - (void)goStatus {
     
+    
+    [[GANTracker sharedTracker] trackEvent:@"OtherProfimeView"
+                                    action:@"touchDown"
+                                     label:@"status"
+                                     value:-1
+                                 withError:nil];
+    
     ProfileStatusViewController* statusViewController = [[[ProfileStatusViewController alloc] init] autorelease];
     [statusViewController setUser:currUser];
     
@@ -140,6 +147,12 @@
     delegate.rootViewController.navigation.leftButton = backButton;
     
     delegate.rootViewController.navigation.rightButton = nil;
+    
+    [CarWeiboAppDelegate setTitle:@"个人资料"];
+    
+    
+    [[GANTracker sharedTracker] trackPageview:@"/other_profile"
+                                    withError:nil];
 }
 
 
@@ -159,6 +172,14 @@
 #pragma mark - 
 
 - (void)back:(id)sender {
+    
+    
+    [[GANTracker sharedTracker] trackEvent:@"OtherProfimeView"
+                                    action:@"touchDown"
+                                     label:@"back"
+                                     value:-1
+                                 withError:nil];
+    
     CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
     delegate.rootViewController.navigation.leftButton = nil;
     

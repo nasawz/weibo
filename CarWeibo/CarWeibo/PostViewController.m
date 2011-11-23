@@ -14,6 +14,7 @@
 @synthesize status;
 @synthesize postType;
 @synthesize delegate;
+@synthesize keyWords;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,47 +32,79 @@
         postType = type;
         
         postView = [[PostView alloc] init];
-        [postView setFrame:CGRectMake(0, 50, 320, 160)];
+        [postView setController:self];
+        [postView setFrame:CGRectMake(0, 50, 320, 430)];
         [self.view addSubview:postView];
         
-        CarWeiboAppDelegate *app_delegate = [CarWeiboAppDelegate getAppDelegate];
         
-        UIButton* backButton = [app_delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
-        [backButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-        [app_delegate.rootViewController.navigation setText:@"取消" onBackButton:backButton];
-        app_delegate.rootViewController.navigation.leftButton = backButton;
-        
-        
-        UIButton* sendButton = [app_delegate.rootViewController.navigation buttonWith:[UIImage imageNamed:@"nav_btn.png"] highlight:nil leftCapWidth:6.0];
-        [sendButton addTarget:self action:@selector(send:) forControlEvents:UIControlEventTouchUpInside];
-        [app_delegate.rootViewController.navigation setText:@" 发送 " onButton:sendButton];
-        app_delegate.rootViewController.navigation.rightButton = sendButton;
+        [self reSetNav];
     }
     return self;
 }
 
 - (void)setStatus:(Status *)aStatus {
-    status = [aStatus retain];
-    if (postType == POST_TYPE_COMMENT) {
-        [postView setBothText:@"同时转发到我的微博"];
+    if (aStatus) {
+        [postView SetPostMode:NO];
     }else{
-        [postView setBothText:[NSString stringWithFormat:@"同时评论给%@",status.user.name]];
+        [postView SetPostMode:YES];
+    }
+    
+    [postView bulidUI];
+    
+    if (aStatus) {
+        status = [aStatus retain];
+        if (postType == POST_TYPE_COMMENT) {
+            [postView setBothText:@"同时转发到我的微博"];
+            
+            
+            [[GANTracker sharedTracker] trackPageview:@"/comment"
+                                            withError:nil];
+            
+        }else if (postType == POST_TYPE_RETWEET){
+            [postView setBothText:[NSString stringWithFormat:@"同时评论给%@",status.user.name]];
+            [postView setText:[NSString stringWithFormat:@"//%@",status.text]];
+            
+            
+            [[GANTracker sharedTracker] trackPageview:@"/tweet_info/retweet"
+                                            withError:nil];
+        }else if (postType == POST_TYPE_POST){
+            
+        }
+    }else{
+        [postView setText:[NSString stringWithFormat:@"#%@#",keyWords]];
+        
+        
+        [[GANTracker sharedTracker] trackPageview:@"/post"
+                                        withError:nil];
     }
 }
 
 - (void)cancel:(id)sender {
+    
+    
+    [[GANTracker sharedTracker] trackEvent:@"PostView"
+                                    action:@"touchDown"
+                                     label:@"cancel"
+                                     value:-1
+                                 withError:nil];
+    
     [self dismissModalViewControllerAnimated:YES];
 }
 - (void)send:(id)sender {
+    
+    [[GANTracker sharedTracker] trackEvent:@"PostView"
+                                    action:@"touchDown"
+                                     label:@"send"
+                                     value:-1
+                                 withError:nil];
+    if (weibo)
+    {
+        [weibo release];
+        weibo = nil;
+    }
+    weibo = [[WeiBo alloc] init];
+    
     if (postType == POST_TYPE_COMMENT) {
-        //        if (weibo) return;if( weibo )
-        {
-            [weibo release];
-            weibo = nil;
-        }
-        weibo = [[WeiBo alloc] init];
-        
-        
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setObject:[NSString stringWithFormat:@"%lld",status.statusId] forKey:@"id"];
         if (postView.isBoth) {
@@ -84,9 +117,9 @@
             [weibo sendCommentsWithParams:param andDelegate:self];
         }
         
-    }else{
+    }else if(postType == POST_TYPE_RETWEET){
         
-        //        if (weibo) return;if( weibo )
+        if (weibo)
         {
             [weibo release];
             weibo = nil;
@@ -104,6 +137,10 @@
         }
         
         [weibo retweetStatusWithParams:param andDelegate:self];
+    }else if(postType == POST_TYPE_POST){
+        
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        [weibo postWeiboRequestWithText:postView.recipient.text params:param andImage:nil andDelegate:self];
     }
 }
 
@@ -111,15 +148,32 @@
     NSLog(@"=========succ");
     NSLog(@"%@",result);
     if (postType == POST_TYPE_COMMENT) {
-        // TODO: 提示成功
-        [self dismissModalViewControllerAnimated:YES];
-    }else{
-        // TODO: 提示成功
-        [self dismissModalViewControllerAnimated:YES];
+//        [[ROIFestivalAppDelegate getAppDelegate] alert:@"发布评论成功！"];
+    }else if (postType == POST_TYPE_RETWEET) {
+//        [[ROIFestivalAppDelegate getAppDelegate] alert:@"专发微博成功！"];     
     }
     if ([delegate respondsToSelector:@selector(PostDidSucc:res:)]) {
         [delegate PostDidSucc:self res:result];
     }
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)reSetNav {
+    
+    
+    CarWeiboAppDelegate *app_delegate = [CarWeiboAppDelegate getAppDelegate];
+    
+    UIButton* backButton = [app_delegate.rootViewController.navigation backButtonWith:[UIImage imageNamed:@"nav_btn_back.png"] highlight:nil leftCapWidth:14.0];
+    [backButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+    [app_delegate.rootViewController.navigation setText:@"取消" onBackButton:backButton];
+    app_delegate.rootViewController.navigation.leftButton = backButton;
+    
+    
+    UIButton* sendButton = [app_delegate.rootViewController.navigation buttonWith:[UIImage imageNamed:@"nav_btn.png"] highlight:nil leftCapWidth:6.0];
+    [sendButton addTarget:self action:@selector(send:) forControlEvents:UIControlEventTouchUpInside];
+    [app_delegate.rootViewController.navigation setText:@" 发送 " onButton:sendButton];
+    app_delegate.rootViewController.navigation.rightButton = sendButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -146,6 +200,27 @@
     [super viewDidLoad];
 }
 */
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (postType == POST_TYPE_COMMENT) {
+        [CarWeiboAppDelegate setTitle:@"评论"];
+    }else if(postType == POST_TYPE_RETWEET){
+        [CarWeiboAppDelegate setTitle:@"转发"];
+    }else if(postType == POST_TYPE_POST){
+        [CarWeiboAppDelegate setTitle:@"发布微博"];
+    }
+    
+    
+    CarWeiboAppDelegate *app_delegate = [CarWeiboAppDelegate getAppDelegate];
+    [app_delegate.rootViewController hideTabBar];
+    
+    
+    
+    [[GANTracker sharedTracker] trackPageview:@"/postView"
+                                    withError:nil];
+}
+
 
 - (void)viewDidUnload
 {
@@ -159,5 +234,11 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+- (void)setKeyWords:(NSString *)aKeyWords {
+    keyWords = [aKeyWords retain];
+    [postView setKeyWords:keyWords];
+}
+
 
 @end

@@ -86,6 +86,10 @@
     delegate.rootViewController.navigation.leftButton = backButton;
     
     delegate.rootViewController.navigation.rightButton = nil;
+    
+    
+    [[GANTracker sharedTracker] trackPageview:@"/user_timeline"
+                                    withError:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -126,6 +130,14 @@
 //
 
 - (void)back:(id)sender {
+    
+    
+    [[GANTracker sharedTracker] trackEvent:@"UserInfoView"
+                                    action:@"touchDown"
+                                     label:@"back"
+                                     value:-1
+                                 withError:nil];
+    
     CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
     delegate.rootViewController.navigation.leftButton = nil;
     

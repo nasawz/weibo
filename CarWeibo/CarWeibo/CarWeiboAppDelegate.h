@@ -38,4 +38,7 @@ typedef enum {
 + (BOOL)isMyScreenName:(NSString*)screen_name;
 + (CarWeiboAppDelegate*)getAppDelegate;
 
+
++ (void)setTitle:(NSString *)title;
+
 @end

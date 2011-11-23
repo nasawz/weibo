@@ -14,6 +14,10 @@
 - (NSString*)unescapeHTML;
 + (NSString*)localizedString:(NSString*)key;
 + (NSString*)base64encode:(NSString*)str;
+- (NSString*)md5;
++ (NSString*)urlencode:(NSString *) url;
+- (NSString*)stringByConvertingHTMLToPlainText;
+- (NSString *)stringByDecodingHTMLEntities;
 @end
 
 

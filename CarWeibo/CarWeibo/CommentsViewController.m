@@ -30,6 +30,13 @@
 
 - (void)back:(id)sender {
     
+    
+    [[GANTracker sharedTracker] trackEvent:@"CommentListView"
+                                    action:@"touchDown"
+                                     label:@"back"
+                                     value:-1
+                                 withError:nil];
+    
     if ([info_delegate respondsToSelector:@selector(CommentsBackToInfo:)]) {
         [info_delegate CommentsBackToInfo:[commentsTimelineViewController.timelineDataSource.comments count]];
     }
@@ -55,6 +62,14 @@
 }
 
 - (void)openPostView:(id)sender {
+    
+    
+    [[GANTracker sharedTracker] trackEvent:@"CommentListView"
+                                    action:@"touchDown"
+                                     label:@"comment"
+                                     value:-1
+                                 withError:nil];
+    
     if( weibo )
 	{
 		[weibo release];
@@ -88,6 +103,14 @@
 {
 }
 */
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [CarWeiboAppDelegate setTitle:@"评论列表"];
+    
+    
+    [[GANTracker sharedTracker] trackPageview:@"/comments_list"
+                                    withError:nil];
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

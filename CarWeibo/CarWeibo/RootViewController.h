@@ -10,12 +10,13 @@
 #import "WeiBo.h"
 #import "CustomTabBar.h"
 #import "CustomNavigation.h"
+#import "IEVTClient.h"
 
 @interface RootViewController : UIViewController <WBSessionDelegate,WBRequestDelegate,CustomTabBarDelegate>{
     WeiBo*          weibo;
     CustomTabBar*   tabBar;
     CustomNavigation * navigation;
-    
+    IEVTClient*         client;
     UINavigationController * currNav;
 }
 @property (nonatomic, retain) CustomNavigation* navigation;

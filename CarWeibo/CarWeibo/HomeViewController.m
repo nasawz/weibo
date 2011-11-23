@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "CarWeiboAppDelegate.h"
 
 @implementation HomeViewController
 
@@ -43,7 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+      
 //    tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 160)];
 //    
 //    activityQuickViewModule = [[ActivityQuickViewModule alloc] init];
@@ -69,7 +70,17 @@
     [super viewWillAppear:animated];
     
     [self.navigationController.view setFrame:CGRectMake(0, 0, 320, 460 - 44)];
+    
+    CarWeiboAppDelegate *delegate = [CarWeiboAppDelegate getAppDelegate];
+    delegate.rootViewController.navigation.leftButton = nil;
+    delegate.rootViewController.navigation.rightButton = nil;
+    [CarWeiboAppDelegate setTitle:@"车博通"];
+    
+    
+    [[GANTracker sharedTracker] trackPageview:@"/home"
+                                    withError:nil];  
 }
+
 
 - (void)dealloc {
 //    [tableHeaderView release];

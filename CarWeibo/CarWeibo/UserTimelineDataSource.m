@@ -90,6 +90,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    [[GANTracker sharedTracker] trackEvent:@"UserWeibos"
+                                    action:@"selectRow"
+                                     label:@"row"
+                                     value:[indexPath row]
+                                 withError:nil];
+    
     Status* sts = [timeline statusAtIndex:indexPath.row];
     
     [tableView deselectRowAtIndexPath:indexPath animated:TRUE];  
